@@ -14,13 +14,25 @@ document.addEventListener("DOMContentLoaded", function () {
   function openMenu() {
     sidebar.classList.add("open");
     overlay.classList.add("open");
+    document.body.classList.add("menu-open");   // stops the page behind scrolling
+    if (toggle) toggle.setAttribute("aria-expanded", "true");
   }
   function closeMenu() {
     sidebar.classList.remove("open");
     overlay.classList.remove("open");
+    document.body.classList.remove("menu-open");
+    if (toggle) toggle.setAttribute("aria-expanded", "false");
   }
 
-  if (toggle) toggle.addEventListener("click", openMenu);
+  // Escape closes the slide-in menu, as people expect it to.
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  // The button opens the menu and, while it is open, closes it again.
+  if (toggle) toggle.addEventListener("click", function () {
+    if (sidebar.classList.contains("open")) { closeMenu(); } else { openMenu(); }
+  });
   if (overlay) overlay.addEventListener("click", closeMenu);
 
   // Close the menu automatically if someone taps a page link inside it.

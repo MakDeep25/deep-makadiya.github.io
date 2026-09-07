@@ -85,7 +85,17 @@
     </div>
   </aside>
   <div class="overlay" id="overlay"></div>
-  <button class="menu-toggle" id="menuToggle" aria-label="Open menu">&#9776;</button>
+  <!-- ===================================================================
+       TOP BAR — only visible on tablets and phones (see the RESPONSIVE
+       section at the bottom of styles.css). It holds the menu button that
+       slides the sidebar in, plus your name so a phone visitor can see
+       whose site this is. On laptops it is hidden, because the sidebar is
+       already on screen.
+       =================================================================== -->
+  <header class="topbar">
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    <span class="topbar-title">Deep H. Makadiya</span>
+  </header>
 
   <main>
     <div class="wrap">
