@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Re-applies the colour scheme this visitor last chose (see the colour
+     circles at the bottom of the sidebar) BEFORE the page is painted, so the
+     page never flashes the default colours first. It must stay here in the
+     <head>, above the stylesheet. Nothing to edit. -->
+<script>(function(){try{var t=localStorage.getItem("site-theme");if(t){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
+<title>Academics — Deep H. Makadiya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lora:ital,wght@0,400;1,400;0,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="layout">
+
+  <!-- NOTE ON THIS FILE: even though the page is now called "Academics", the
+       file itself is still named "academic.html" — renaming the file would
+       mean updating the sidebar link on every other page too, and there's
+       no benefit to visitors, who never see the filename. So: file name
+       stays, visible title changes. -->
+  <aside class="sidebar" id="sidebar">
+    <img class="avatar" src="photo.jpg" alt="Deep H. Makadiya">
+    <h1>Deep H. Makadiya</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="academic.html" class="active">Academics</a>
+      <a href="research.html">Research</a>
+      <a href="teaching.html">Teaching</a>
+      <a href="professional-activities.html">Professional Activities</a>
+      <a href="beyond-academia.html">Beyond Academia</a>
+    </nav>
+
+    <!-- ===================================================================
+         COLOUR PICKER — the two rows of two-tone circles under the page
+         links. Clicking one re-colours the whole site (and every other
+         page), and the choice is remembered in the visitor's browser.
+         Each circle's LEFT half is that scheme's accent (--sw-a, the dark
+         one) and its RIGHT half is that scheme's paper colour (--sw-b);
+         "title" is the tooltip shown on hover. The order the buttons
+         appear in below is the order they appear on screen — five per row.
+         This same block appears in all 7 pages: if you add, remove or
+         re-order a circle, do it in every page so the picker matches
+         everywhere. The colour values themselves live in styles.css under
+         "COLOUR SCHEMES", with step-by-step notes at the bottom of that
+         file for adding a scheme of your own.
+         =================================================================== -->
+    <div class="theme-picker">
+      <p class="theme-picker-label">Colour</p>
+      <div class="swatches">
+          <button type="button" class="swatch" data-set-theme="cream"
+                  style="--sw-a:#a5501f;--sw-b:#efe6d2"
+                  title="Cream &amp; Terracotta" aria-label="Cream and Terracotta colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="mocha"
+                  style="--sw-a:#5b4636;--sw-b:#f0e9dd"
+                  title="Mocha &amp; Oat" aria-label="Mocha and Oat colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="olive"
+                  style="--sw-a:#64682c;--sw-b:#f0eedd"
+                  title="Olive &amp; Flax" aria-label="Olive and Flax colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="graphite"
+                  style="--sw-a:#3f4348;--sw-b:#eceae6"
+                  title="Graphite &amp; Chalk" aria-label="Graphite and Chalk colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="aubergine"
+                  style="--sw-a:#543a63;--sw-b:#efeae1"
+                  title="Aubergine &amp; Oat" aria-label="Aubergine and Oat colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="plum"
+                  style="--sw-a:#71385a;--sw-b:#f2e8ef"
+                  title="Plum &amp; Blush" aria-label="Plum and Blush colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="sage"
+                  style="--sw-a:#5c7a52;--sw-b:#eef2e6"
+                  title="Sage" aria-label="Sage colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="emerald"
+                  style="--sw-a:#1f6b52;--sw-b:#e7f0ec"
+                  title="Emerald &amp; Mist" aria-label="Emerald and Mist colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="indigo"
+                  style="--sw-a:#3a3670;--sw-b:#eceaf4"
+                  title="Indigo &amp; Ivory" aria-label="Indigo and Ivory colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="dusk"
+                  style="--sw-a:#3d5d82;--sw-b:#e9eef4"
+                  title="Dusk Blue" aria-label="Dusk Blue colour scheme"></button>
+      </div>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu">&#9776;</button>
+
+  <main>
+    <div class="wrap">
+
+      <div class="page-header">
+        <h1>Academics</h1>
+        <p class="page-desc">My education, professional experience, and academic achievements.</p>
+      </div>
+
+      <!-- In-page navigation: jumps to the sections below. If you rename a
+           section heading, also update its matching href="#..." here.
+           This bar freezes at the top of the window when you scroll, and
+           the arrow/fade hints on the sides appear automatically if there
+           are ever too many tabs to fit on one line — nothing to edit for
+           that part. -->
+      <div class="page-tabs-wrap">
+        <button class="tabs-arrow left" aria-label="Scroll tabs left">&#8249;</button>
+        <nav class="page-tabs">
+          <a href="#current-position">Current Position</a>
+          <a href="#past-positions">Past Positions</a>
+          <a href="#education">Education</a>
+          <a href="#achievements">Awards &amp; Grants</a>
+        </nav>
+        <button class="tabs-arrow right" aria-label="Scroll tabs right">&#8250;</button>
+        <div class="tabs-fade left" aria-hidden="true" hidden></div>
+        <div class="tabs-fade right" aria-hidden="true" hidden></div>
+      </div>
+
+      <!-- ===================================================================
+           CURRENT POSITION
+           =================================================================== -->
+      <section>
+        <h2 id="current-position" class="section-title">Current Position</h2>
+        <div class="item">
+          <h3>Post-doctoral Fellow</h3>
+          <p class="meta">Bar-Ilan University, Ramat-Gan, Israel · October 2025 – Present</p>
+          <p>Mentor: Prof. Elena I. Bunina</p>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           PAST ACADEMIC POSITIONS
+           To add a new one later: copy one whole <div class="item">...</div>
+           block and edit its title/meta/description. Newest goes on top.
+           =================================================================== -->
+      <section>
+        <h2 id="past-positions" class="section-title">Past Academic Positions</h2>
+        <div class="item">
+          <h3>Visiting Researcher</h3>
+          <p class="meta">Harish-Chandra Research Institute, Prayagraj · July – September 2025</p>
+          <p>Mentor: Prof. Manoj Kumar Yadav</p>
+        </div>
+        <div class="item">
+          <h3>Research Associate</h3>
+          <p class="meta">IIT Bombay · January – May 2025</p>
+          <p>Mentor: Prof. Shripad M. Garge</p>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           EDUCATION
+           Same pattern: copy a <div class="item"> block to add a new degree.
+           =================================================================== -->
+      <section>
+        <h2 id="education" class="section-title">Education</h2>
+        <div class="item">
+          <h3>Ph.D. in Mathematics</h3>
+          <p class="meta">IIT Bombay, Department of Mathematics · January 2020 – May 2025</p>
+          <p>Thesis: &ldquo;Some properties of twisted Chevalley groups.&rdquo;<br>Advisor: Prof. Shripad M. Garge</p>
+        </div>
+        <div class="item">
+          <h3>M.Sc. in Mathematics</h3>
+          <p class="meta">IIT Bombay, Department of Mathematics · July 2017 – May 2019</p>
+        </div>
+        <div class="item">
+          <h3>B.Sc. in Mathematics</h3>
+          <p class="meta">MS University of Baroda, Faculty of Science · June 2014 – April 2017</p>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           AWARDS, GRANTS AND OTHER ACADEMIC ACHIEVEMENTS
+           Three subsections:
+             - "Awards and Honours" — this one is COMMENTED OUT below (hidden
+               from the live site) because you don't have anything to put
+               there yet. See the instructions right above it for exactly
+               how to turn it back on once you do.
+             - "Grants and Scholarships" — fellowships/scholarships you were
+               awarded. Just add one <li> per award, newest first (no
+               numbering).
+             - "Other Academic Achievements" — everything else (exam ranks,
+               competitions, etc.), also plain bullet points, no numbering.
+               Ordered here exactly as on your old Google Site.
+           To add a new item to either visible list: add a new <li>...</li>
+           anywhere in that list — order doesn't matter since there's no
+           numbering to keep track of, just put newer items near the top if
+           you'd like.
+           =================================================================== -->
+      <section>
+        <h2 id="achievements" class="section-title">Awards, Grants and Other Academic Achievements</h2>
+
+        <!-- ===============================================================
+             HOW TO TURN ON "Awards and Honours":
+             Right now the whole subsection below is wrapped in a single
+             HTML comment, which is why it's invisible on the live site —
+             this is just a placeholder until you have a real award to
+             list. When you do:
+               1. Delete the short comment-opening line just below this
+                  one (it's on its own line, right above "<p class=
+                  "subhead">Awards and Honours").
+               2. Delete the matching comment-closing line right after
+                  the "</ul>" a few lines down.
+               3. Replace the example <li> with your real award(s) — copy
+                  the <li> line to add more than one, newest first.
+             =============================================================== -->
+        <!--
+        <p class="subhead">Awards and Honours</p>
+        <ul class="bullets">
+          <li>[Your award or honour — e.g. Best Poster Award, XYZ Conference — 2026]</li>
+        </ul>
+        -->
+
+        <p class="subhead">Grants and Scholarships</p>
+        <ul class="bullets">
+          <li>Awarded NET/JRF (Junior Research Fellowship)</li>
+        </ul>
+
+        <p class="subhead">Other Academic Achievements</p>
+        <ul class="bullets">
+          <li>Secured AIR 10 (out of 10,834) in the IIT-JAM Examination for M.Sc. Mathematics — 2017</li>
+          <li>All India JRF Rank 53 on first NET/JRF attempt — 2017</li>
+          <li>All India JRF Rank 67 on second NET/JRF attempt — 2018</li>
+          <li>All India JRF Rank 19 on third NET/JRF attempt — 2019</li>
+          <li>GATE examination qualification on first attempt — 2019</li>
+          <li>Rank 1 in MS University Entrance Examination for M.Sc. Mathematics — 2017</li>
+          <li>Rank 4 (Gujarat State) in Madhava Mathematics Competition — 2017</li>
+        </ul>
+      </section>
+
+    </div>
+    <footer>&copy; 2026 Deep H. Makadiya</footer>
+  </main>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>

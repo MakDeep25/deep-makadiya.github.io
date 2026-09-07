@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Re-applies the colour scheme this visitor last chose (see the colour
+     circles at the bottom of the sidebar) BEFORE the page is painted, so the
+     page never flashes the default colours first. It must stay here in the
+     <head>, above the stylesheet. Nothing to edit. -->
+<script>(function(){try{var t=localStorage.getItem("site-theme");if(t){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
+<title>Research — Deep H. Makadiya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lora:ital,wght@0,400;1,400;0,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'}};</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script>
+</head>
+<body>
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <img class="avatar" src="photo.jpg" alt="Deep H. Makadiya">
+    <h1>Deep H. Makadiya</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="academic.html">Academics</a>
+      <a href="research.html" class="active">Research</a>
+      <a href="teaching.html">Teaching</a>
+      <a href="professional-activities.html">Professional Activities</a>
+      <a href="beyond-academia.html">Beyond Academia</a>
+    </nav>
+
+    <!-- ===================================================================
+         COLOUR PICKER — the two rows of two-tone circles under the page
+         links. Clicking one re-colours the whole site (and every other
+         page), and the choice is remembered in the visitor's browser.
+         Each circle's LEFT half is that scheme's accent (--sw-a, the dark
+         one) and its RIGHT half is that scheme's paper colour (--sw-b);
+         "title" is the tooltip shown on hover. The order the buttons
+         appear in below is the order they appear on screen — five per row.
+         This same block appears in all 7 pages: if you add, remove or
+         re-order a circle, do it in every page so the picker matches
+         everywhere. The colour values themselves live in styles.css under
+         "COLOUR SCHEMES", with step-by-step notes at the bottom of that
+         file for adding a scheme of your own.
+         =================================================================== -->
+    <div class="theme-picker">
+      <p class="theme-picker-label">Colour</p>
+      <div class="swatches">
+          <button type="button" class="swatch" data-set-theme="cream"
+                  style="--sw-a:#a5501f;--sw-b:#efe6d2"
+                  title="Cream &amp; Terracotta" aria-label="Cream and Terracotta colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="mocha"
+                  style="--sw-a:#5b4636;--sw-b:#f0e9dd"
+                  title="Mocha &amp; Oat" aria-label="Mocha and Oat colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="olive"
+                  style="--sw-a:#64682c;--sw-b:#f0eedd"
+                  title="Olive &amp; Flax" aria-label="Olive and Flax colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="graphite"
+                  style="--sw-a:#3f4348;--sw-b:#eceae6"
+                  title="Graphite &amp; Chalk" aria-label="Graphite and Chalk colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="aubergine"
+                  style="--sw-a:#543a63;--sw-b:#efeae1"
+                  title="Aubergine &amp; Oat" aria-label="Aubergine and Oat colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="plum"
+                  style="--sw-a:#71385a;--sw-b:#f2e8ef"
+                  title="Plum &amp; Blush" aria-label="Plum and Blush colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="sage"
+                  style="--sw-a:#5c7a52;--sw-b:#eef2e6"
+                  title="Sage" aria-label="Sage colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="emerald"
+                  style="--sw-a:#1f6b52;--sw-b:#e7f0ec"
+                  title="Emerald &amp; Mist" aria-label="Emerald and Mist colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="indigo"
+                  style="--sw-a:#3a3670;--sw-b:#eceaf4"
+                  title="Indigo &amp; Ivory" aria-label="Indigo and Ivory colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="dusk"
+                  style="--sw-a:#3d5d82;--sw-b:#e9eef4"
+                  title="Dusk Blue" aria-label="Dusk Blue colour scheme"></button>
+      </div>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu">&#9776;</button>
+
+  <main>
+    <div class="wrap">
+
+      <div class="page-header">
+        <h1>Research</h1>
+        <p class="page-desc">My areas of interest, list of publications, and a short overview of current and past research.</p>
+      </div>
+
+      <div class="page-tabs-wrap">
+        <button class="tabs-arrow left" aria-label="Scroll tabs left">&#8249;</button>
+        <nav class="page-tabs">
+          <a href="#interests">Areas of Interest</a>
+          <a href="#publications">List of Publications</a>
+          <a href="#overview">Research Overview</a>
+        </nav>
+        <button class="tabs-arrow right" aria-label="Scroll tabs right">&#8250;</button>
+        <div class="tabs-fade left" aria-hidden="true" hidden></div>
+        <div class="tabs-fade right" aria-hidden="true" hidden></div>
+      </div>
+
+      <!-- ===================================================================
+           AREAS OF INTEREST — one <li> per topic. Uses its own "interest-list"
+           style (rounded rectangles, tinted fill) — separate from the
+           "skills-list" style used on the Beyond Academia page's Skills
+           section, so changing one doesn't affect the other.
+           =================================================================== -->
+      <section>
+        <h2 id="interests" class="section-title">Areas of Interest</h2>
+        <ul class="interest-list">
+          <li>Algebraic Groups</li>
+          <li>Chevalley Groups &amp; Algebras</li>
+          <li>Lie Groups &amp; Algebras</li>
+          <li>Representation Theory</li>
+        </ul>
+      </section>
+
+      <!-- ===================================================================
+           LIST OF PUBLICATIONS
+           Numbering convention (standard in academic pages): the newest
+           paper is at the TOP and has the HIGHEST number; numbers count
+           down to 1 at the oldest entry in that list.
+           "Preprints & In Preparation" is listed FIRST (before "Published &
+           Accepted") since that's your most active, changing list — if you'd
+           rather lead with published work later, just move the whole
+           "Published & Accepted" block (its <p class="subhead"> line plus
+           its <ul class="pub-list">...</ul>) above the "Preprints" block.
+
+           TO ADD A NEW PREPRINT:
+             1. Copy one whole <li>...</li> block under "Preprints & In
+                Preparation".
+             2. Paste your copy at the very TOP of that <ul class="pub-list">.
+             3. In the pasted copy, set the number in <span class="pub-num">
+                to (current top number + 1) — e.g. if the top is currently
+                "6.", your new entry becomes "7.". Leave every other number
+                untouched.
+             4. Edit the title, co-authors, and status (in preparation /
+                submitted / arXiv link).
+           The same steps apply to "Published & Accepted" below — it has
+           its own, separate numbering.
+           =================================================================== -->
+      <section>
+        <h2 id="publications" class="section-title">List of Publications</h2>
+
+        <p class="subhead">Preprints &amp; In Preparation</p>
+        <ul class="pub-list">
+          <li>
+            <span class="pub-num">6.</span>
+            <span class="pub-body">
+              <span class="pub-title">Automorphisms of twisted Chevalley groups over commutative rings</span>
+              <span class="pub-meta">with Elena I. Bunina — in preparation</span>
+            </span>
+          </li>
+          <li>
+            <span class="pub-num">5.</span>
+            <span class="pub-body">
+              <span class="pub-title">Automorphisms of twisted Chevalley groups of type \(^3D_4\) over local rings</span>
+              <span class="pub-meta">with Elena I. Bunina — in preparation</span>
+            </span>
+          </li>
+          <li>
+            <span class="pub-num">4.</span>
+            <span class="pub-body">
+              <span class="pub-title">Automorphisms of twisted Chevalley groups of type \(^2E_6\) over local rings</span>
+              <span class="pub-meta">with Elena I. Bunina — in preparation</span>
+            </span>
+          </li>
+          <li>
+            <span class="pub-num">3.</span>
+            <span class="pub-body">
+              <span class="pub-title">Automorphisms of twisted Chevalley groups of type \(^2D_\ell\ (\ell \ge 4)\) over local rings</span>
+              <span class="pub-meta">with Elena I. Bunina — submitted</span>
+              <span class="pub-links"><a href="https://doi.org/10.48550/arXiv.2608.02312">arXiv</a></span>
+            </span>
+          </li>
+          <li>
+            <span class="pub-num">2.</span>
+            <span class="pub-body">
+              <span class="pub-title">Automorphisms of twisted Chevalley groups of type \(^2A_\ell\ (\ell = 3, 4)\) over local rings</span>
+              <span class="pub-meta">with Elena I. Bunina — in preparation</span>
+            </span>
+          </li>
+          <li>
+            <span class="pub-num">1.</span>
+            <span class="pub-body">
+              <span class="pub-title">Automorphisms of twisted Chevalley groups of type \(^2A_\ell\ (\ell \ge 5)\) over local rings</span>
+              <span class="pub-meta">with Elena I. Bunina — submitted</span>
+              <span class="pub-links"><a href="https://doi.org/10.48550/arXiv.2607.22284">arXiv</a></span>
+            </span>
+          </li>
+        </ul>
+
+        <p class="subhead">Published &amp; Accepted</p>
+        <ul class="pub-list">
+          <li>
+            <span class="pub-num">3.</span>
+            <span class="pub-body">
+              <span class="pub-title">Triangular and unitriangular factorization of twisted Chevalley groups</span>
+              <span class="pub-meta">with Shripad M. Garge — Israel Journal of Mathematics (2025, forthcoming)</span>
+              <span class="pub-links"><a href="https://doi.org/10.48550/arXiv.2505.20224">arXiv</a></span>
+            </span>
+          </li>
+          <li>
+            <span class="pub-num">2.</span>
+            <span class="pub-body">
+              <span class="pub-title">Normalizer of twisted Chevalley groups over commutative rings</span>
+              <span class="pub-meta">with Shripad M. Garge — Journal of Pure and Applied Algebra, Vol. 229, No. 11 (2025), Paper No. 108094</span>
+              <span class="pub-links">
+                <a href="https://doi.org/10.1016/j.jpaa.2025.108094">DOI</a>
+                <a href="https://doi.org/10.48550/arXiv.2503.16894">arXiv</a>
+              </span>
+            </span>
+          </li>
+          <li>
+            <span class="pub-num">1.</span>
+            <span class="pub-body">
+              <span class="pub-title">On normal subgroups of twisted Chevalley groups over commutative rings</span>
+              <span class="pub-meta">with Shripad M. Garge — Journal of Algebra, Vol. 688 (2026), pp. 587–659</span>
+              <span class="pub-links">
+                <a href="https://doi.org/10.1016/j.jalgebra.2025.09.028">DOI</a>
+                <a href="https://doi.org/10.48550/arXiv.2502.04766">arXiv</a>
+              </span>
+            </span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===================================================================
+           RESEARCH OVERVIEW
+           NOTE: the two paragraphs below are a first draft, written from
+           your publication list — you said you'll rewrite this yourself
+           later, so treat this as placeholder text to replace.
+           =================================================================== -->
+      <section>
+        <h2 id="overview" class="section-title">Research Overview</h2>
+
+        <p class="subhead">Current Work</p>
+        <div class="item">
+          <p>With Prof. Elena I. Bunina at Bar-Ilan University, I am classifying the automorphisms of
+          twisted Chevalley groups of several types (\(^2A_\ell\), \(^2D_\ell\), \(^2E_6\), \(^3D_4\)) over
+          local and commutative rings — extending automorphism theory beyond the untwisted case.</p>
+        </div>
+
+        <p class="subhead">Past Projects</p>
+        <div class="item">
+          <p>My doctoral work at IIT Bombay, with Prof. Shripad M. Garge, studied the structure of twisted
+          Chevalley groups over commutative rings: their normal subgroups, the normalizer of the group inside
+          its automorphism group, and triangular/unitriangular factorizations.</p>
+        </div>
+      </section>
+
+    </div>
+    <footer>&copy; 2026 Deep H. Makadiya</footer>
+  </main>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Re-applies the colour scheme this visitor last chose (see the colour
+     circles at the bottom of the sidebar) BEFORE the page is painted, so the
+     page never flashes the default colours first. It must stay here in the
+     <head>, above the stylesheet. Nothing to edit. -->
+<script>(function(){try{var t=localStorage.getItem("site-theme");if(t){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
+<title>Teaching — Deep H. Makadiya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lora:ital,wght@0,400;1,400;0,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <img class="avatar" src="photo.jpg" alt="Deep H. Makadiya">
+    <h1>Deep H. Makadiya</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="academic.html">Academics</a>
+      <a href="research.html">Research</a>
+      <a href="teaching.html" class="active">Teaching</a>
+      <a href="professional-activities.html">Professional Activities</a>
+      <a href="beyond-academia.html">Beyond Academia</a>
+    </nav>
+
+    <!-- ===================================================================
+         COLOUR PICKER — the two rows of two-tone circles under the page
+         links. Clicking one re-colours the whole site (and every other
+         page), and the choice is remembered in the visitor's browser.
+         Each circle's LEFT half is that scheme's accent (--sw-a, the dark
+         one) and its RIGHT half is that scheme's paper colour (--sw-b);
+         "title" is the tooltip shown on hover. The order the buttons
+         appear in below is the order they appear on screen — five per row.
+         This same block appears in all 7 pages: if you add, remove or
+         re-order a circle, do it in every page so the picker matches
+         everywhere. The colour values themselves live in styles.css under
+         "COLOUR SCHEMES", with step-by-step notes at the bottom of that
+         file for adding a scheme of your own.
+         =================================================================== -->
+    <div class="theme-picker">
+      <p class="theme-picker-label">Colour</p>
+      <div class="swatches">
+          <button type="button" class="swatch" data-set-theme="cream"
+                  style="--sw-a:#a5501f;--sw-b:#efe6d2"
+                  title="Cream &amp; Terracotta" aria-label="Cream and Terracotta colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="mocha"
+                  style="--sw-a:#5b4636;--sw-b:#f0e9dd"
+                  title="Mocha &amp; Oat" aria-label="Mocha and Oat colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="olive"
+                  style="--sw-a:#64682c;--sw-b:#f0eedd"
+                  title="Olive &amp; Flax" aria-label="Olive and Flax colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="graphite"
+                  style="--sw-a:#3f4348;--sw-b:#eceae6"
+                  title="Graphite &amp; Chalk" aria-label="Graphite and Chalk colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="aubergine"
+                  style="--sw-a:#543a63;--sw-b:#efeae1"
+                  title="Aubergine &amp; Oat" aria-label="Aubergine and Oat colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="plum"
+                  style="--sw-a:#71385a;--sw-b:#f2e8ef"
+                  title="Plum &amp; Blush" aria-label="Plum and Blush colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="sage"
+                  style="--sw-a:#5c7a52;--sw-b:#eef2e6"
+                  title="Sage" aria-label="Sage colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="emerald"
+                  style="--sw-a:#1f6b52;--sw-b:#e7f0ec"
+                  title="Emerald &amp; Mist" aria-label="Emerald and Mist colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="indigo"
+                  style="--sw-a:#3a3670;--sw-b:#eceaf4"
+                  title="Indigo &amp; Ivory" aria-label="Indigo and Ivory colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="dusk"
+                  style="--sw-a:#3d5d82;--sw-b:#e9eef4"
+                  title="Dusk Blue" aria-label="Dusk Blue colour scheme"></button>
+      </div>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu">&#9776;</button>
+
+  <main>
+    <div class="wrap">
+
+      <div class="page-header">
+        <h1>Teaching</h1>
+        <p class="page-desc">The courses I have taught, along with relevant information such as notes and other materials, and my other teaching experience.</p>
+      </div>
+
+      <!-- This page has 3 tabs/sections:
+             1. Current Semester           
+	     2. Courses Taught in the Past 
+             2. Other Teaching Experience -->
+      <div class="page-tabs-wrap">
+        <button class="tabs-arrow left" aria-label="Scroll tabs left">&#8249;</button>
+        <nav class="page-tabs">
+          <a href="#current-semester">Current Semester</a>
+	  <a href="#past-courses">Courses Taught in the Past</a>
+          <a href="#other-experience">Other Teaching Experience</a>
+        </nav>
+        <button class="tabs-arrow right" aria-label="Scroll tabs right">&#8250;</button>
+        <div class="tabs-fade left" aria-hidden="true" hidden></div>
+        <div class="tabs-fade right" aria-hidden="true" hidden></div>
+      </div>
+
+      <!-- ===================================================================
+           CURRENT SEMESTER — a one-line status. Update this each semester:
+           either keep the "not teaching" remark below, or replace it with
+           the course(s) you're currently teaching (you can reuse the table
+           row format from the "Teaching Assistant — IIT Bombay" table below
+           if you'd like). Once a semester you're teaching ends, move that
+           course down into that table instead (see the note there).
+           =================================================================== -->
+      <section>
+        <h2 id="current-semester" class="section-title">Current Semester</h2>
+        <div class="item">
+          <p>I am not teaching any course this semester.</p>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           COURSES TAUGHT IN THE PAST — a one-line status. Update this later.
+           =================================================================== -->
+      <section>
+        <h2 id="past-courses" class="section-title">Courses Taught in the Past</h2>
+        <div class="item">
+          <p>Any course I teach will be added to this table once the semester is complete.</p>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           OTHER TEACHING EXPERIENCE — everything besides your current
+           semester's teaching goes here, as two subsections:
+             - "Teaching Assistant — IIT Bombay" — a table, one row per
+               course/semester, newest at the TOP. It's broken down by
+               course AND by half-semester exactly as it appeared on your
+               old Google Site, rather than merging repeat offerings of the
+               same course into one row — that way each row is a single,
+               precise teaching instance. The table isn't numbered, so
+               there's no count to keep track of.
+             - "Teaching Experience at PCI" — a single write-up, same style
+               as the entries on the Academics page.
+           TO ADD A NEW ROW to the table: copy one whole <tr>...</tr> line,
+           paste it as the new first row right after the opening
+           <table class="teach"> tag, and edit its two cells (course, when).
+           TO ADD A DIFFERENT KIND of teaching experience (a guest lecture,
+           mentoring, workshop instruction, etc.): add a new subsection by
+           copying the whole block starting at a "<p class="subhead">" line
+           down through its closing tag (either "</table>" or "</div>",
+           whichever the block you copied ends with) and edit the copy.
+           =================================================================== -->
+      <section>
+        <h2 id="other-experience" class="section-title">Other Teaching Experience</h2>
+
+        <p class="subhead">Teaching Assistant &mdash; IIT Bombay</p>
+        <table class="teach">
+          <tr><td>MA 419 — Basic Algebra</td><td>Autumn 2023–24</td></tr>
+          <tr><td>MA 414 — Algebra 1</td><td>Spring 2022–23</td></tr>
+          <tr><td>MA 419 — Basic Algebra</td><td>Autumn 2022–23</td></tr>
+          <tr><td>MA 108 — Differential Equations</td><td>Spring 2021–22 (2nd half)</td></tr>
+          <tr><td>MA 106 — Linear Algebra</td><td>Spring 2021–22 (1st half)</td></tr>
+          <tr><td>MA 111 — Calculus II</td><td>Autumn 2021–22 (2nd half)</td></tr>
+          <tr><td>MA 109 — Calculus I</td><td>Autumn 2021–22 (1st half)</td></tr>
+          <tr><td>MA 108 — Differential Equations</td><td>Spring 2020–21 (2nd half)</td></tr>
+          <tr><td>MA 106 — Linear Algebra</td><td>Spring 2020–21 (1st half)</td></tr>
+          <tr><td>MA 111 — Calculus II</td><td>Autumn 2020–21 (2nd half)</td></tr>
+        </table>
+
+        <p class="subhead">Teaching Experience at PCI</p>
+        <div class="item">
+          <h3>Mathematics Instructor</h3>
+          <p class="meta">PCI · July 2019 – January 2020</p>
+          <p>Provided guidance to IIT JAM and NET/JRF exam candidates, focused on mathematics preparation
+          for competitive examinations.</p>
+        </div>
+      </section>
+
+    </div>
+    <footer>&copy; 2026 Deep H. Makadiya</footer>
+  </main>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>

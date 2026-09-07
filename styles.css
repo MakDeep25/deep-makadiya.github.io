@@ -1,0 +1,513 @@
+/* =========================================================================
+   Deep H. Makadiya — academic site — DESIGN: "Editorial, switchable colours"
+   -------------------------------------------------------------------------
+   The Cream Editorial design — Playfair Display headings over a Lora body,
+   fully rounded ("pill") buttons and tags, softly rounded photo frame — with
+   TEN colour schemes built in. Visitors pick one from the two rows of
+   two-tone circles at the bottom of the sidebar (dark half = that scheme's
+   accent, light half = its paper), and the choice is remembered in their
+   browser for every page and every future visit.
+
+   HOW IT WORKS, in three parts:
+     1. ":root" below holds the ELEVEN colour values the whole site is drawn
+        from, set to the default scheme ("Cream & Terracotta").
+     2. Further down, under "COLOUR SCHEMES", each of the other nine schemes
+        re-states those same eleven values inside a [data-theme="..."]
+        block. Nothing else about the design changes.
+     3. script.js writes data-theme="..." onto the <html> element when a
+        circle is clicked, and a two-line script in each page's <head>
+        re-applies the saved choice before the page paints.
+   To change the DEFAULT scheme, swap the values in ":root" for those of the
+   scheme you prefer (each block is labelled). To add your own scheme, see
+   the step-by-step note at the very bottom of this file.
+   This one stylesheet is shared by every page (index.html, academic.html,
+   research.html, teaching.html, professional-activities.html,
+   beyond-academia.html, and gallery.html).
+   If you want to change a color or font everywhere at once, change it here
+   in one place under ":root" below — every page updates together.
+   ========================================================================= */
+
+:root{
+  /* ============ THE ELEVEN COLOURS THE WHOLE SITE IS DRAWN FROM ============
+     These are the default scheme, "Cream & Terracotta". Every other scheme
+     further down re-states exactly these eleven values and nothing else. */
+  --ink:#2a2115;             /* main text colour */
+  --muted:#8a7c66;           /* secondary/lighter text */
+  --line:#e6dcc8;            /* thin divider lines */
+  --cream:#f6f0e2;           /* page background */
+  --cream-2:#efe6d2;         /* sidebar background, cards, tinted tags */
+  --accent:#a5501f;          /* accent colour — links, headings, numbers, buttons */
+  --accent-soft:#d8b79a;     /* paler accent, used for link underlines */
+  --photo-bg:#ece2cc;        /* backdrop behind the photos while they load */
+  --nav-hover:#e6dac0;       /* sidebar nav link hover / active fill */
+  --placeholder-bg:#fbf7ee;  /* dashed "add something here" tiles */
+  --shadow-rgb:42,33,21;      /* photo-frame shadow, as red,green,blue */
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:"Lora",Georgia,serif;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{ font-family:"Playfair Display",Georgia,serif; }
+a{ color:var(--accent); text-decoration:underline; text-decoration-color:var(--accent-soft); }
+a:hover{ text-decoration-color:var(--accent); }
+
+/* =========================================================================
+   LAYOUT: sidebar (left) + main content (right)
+   ========================================================================= */
+.layout{ display:grid; grid-template-columns:240px 1fr; min-height:100vh; }
+
+/* ---- Sidebar: photo, name, and page navigation ONLY (no contact info) ---- */
+.sidebar{
+  background:var(--cream-2);
+  border-right:1px solid var(--line);
+  padding:3rem 1.6rem;
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+  text-align:center;
+  z-index:20;
+}
+.sidebar .avatar{
+  width:104px; height:104px; border-radius:50%; object-fit:cover; margin:0 auto 1rem;
+  background:var(--photo-bg); border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:.72rem; text-align:center;
+}
+.sidebar h1{ font-size:1.25rem; margin:0 0 1.8rem; font-weight:800; }
+
+.sidebar nav{ display:flex; flex-direction:column; gap:.15rem; text-align:left; }
+.sidebar nav a{
+  color:var(--ink); text-decoration:none; font-size:.92rem; padding:.6rem .7rem;
+  border-radius:6px; border-left:3px solid transparent;
+}
+.sidebar nav a:hover{ background:var(--nav-hover); color:var(--accent); }
+.sidebar nav a.active{ color:var(--accent); font-weight:600; border-left-color:var(--accent); background:var(--nav-hover); }
+
+/* ---- Mobile menu button + overlay (hidden on desktop) ---- */
+.menu-toggle{
+  display:none; /* shown only on narrow screens, see media query below */
+  position:fixed; top:1rem; left:1rem; z-index:30;
+  width:44px; height:44px; border-radius:8px;
+  background:var(--ink); color:var(--cream);
+  border:none; font-size:1.3rem; line-height:1;
+  align-items:center; justify-content:center;
+}
+.overlay{
+  display:none;
+  position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:15;
+}
+
+/* ---- Main content column ---- */
+main{ padding:3.2rem 2.6rem; }
+.wrap{ max-width:720px; margin:0 auto; }
+
+/* ---- Inner-page header: title + one descriptive line beneath it ----
+   (No colored "kicker" text above the title anymore — just the title
+   and, right under it, a plain sentence describing what's on the page.) */
+.page-header{ padding-bottom:1.6rem; margin-bottom:0; border-bottom:1px solid var(--line); text-align:left; }
+.page-header h1{ font-size:2.1rem; margin:0 0 .5rem; font-weight:800; }
+.page-header .page-desc{ max-width:60ch; color:var(--muted); font-style:italic; font-size:1rem; margin:0; }
+
+/* ---- In-page section navigation (tabs) --------------------------------
+   Sits right under the page header, and STAYS FROZEN at the top of the
+   window once you scroll down to it (position: sticky). It is always a
+   single line (it never wraps to a second row) — if there are too many
+   tabs to fit, the row scrolls left/right instead. When there's more
+   content than fits, a soft fade appears at whichever edge has more tabs
+   hidden, and — on wider screens — small arrow buttons appear too; both
+   are added/removed automatically by script.js, you don't need to touch
+   them when you add or rename a tab. ------------------------------------ */
+.page-tabs-wrap{
+  position:sticky; top:0; z-index:10;
+  background:var(--cream);
+  border-bottom:1px solid var(--line);
+  margin-bottom:2.4rem;
+  /* No shadow on purpose — it should feel like a seamless part of the page,
+     not a floating bar, even once it's stuck to the top while scrolling.
+     "position: sticky" already anchors the absolutely-positioned fade/arrow
+     children below, so no extra "position: relative" is needed here. */
+}
+.page-tabs{
+  display:flex; flex-wrap:nowrap; gap:.6rem;
+  overflow-x:auto;
+  scrollbar-width:none;      /* Firefox: hide the scrollbar itself */
+  -ms-overflow-style:none;   /* old Edge */
+  padding:1rem 2.2rem;
+}
+.page-tabs::-webkit-scrollbar{ display:none; } /* Chrome/Safari: hide the scrollbar */
+.page-tabs a{
+  text-decoration:none; color:var(--ink); font-size:.85rem;
+  padding:.4rem .9rem; border:1px solid var(--line); border-radius:999px;
+  white-space:nowrap; flex:none;
+}
+.page-tabs a:hover{ border-color:var(--accent); color:var(--accent); }
+
+/* Fade hints — a soft gradient over the edge that has more tabs hidden.
+   Shown/hidden automatically by script.js; purely visual (not clickable). */
+.tabs-fade{ position:absolute; top:0; bottom:0; width:2.6rem; pointer-events:none; z-index:1; }
+.tabs-fade.left{ left:0; background:linear-gradient(to right, var(--cream), transparent); }
+.tabs-fade.right{ right:0; background:linear-gradient(to left, var(--cream), transparent); }
+.tabs-fade[hidden]{ display:none; }
+
+/* Arrow buttons — desktop/wide-screen only; on touch devices people just
+   swipe the row left/right instead. Shown/hidden automatically. */
+.tabs-arrow{
+  display:none; position:absolute; top:0; bottom:0; width:2.2rem;
+  align-items:center; justify-content:center;
+  background:transparent; border:none; color:var(--accent);
+  font-size:1.4rem; cursor:pointer; z-index:2;
+}
+.tabs-arrow.left{ left:0; }
+.tabs-arrow.right{ right:0; }
+.tabs-arrow[hidden]{ display:none; }
+@media (min-width:821px){ .tabs-arrow{ display:flex; } }
+
+/* =========================================================================
+   HOME PAGE specifics
+   -------------------------------------------------------------------------
+   New design: an asymmetric "split hero" — photo in a framed square on
+   one side, name and a short tagline on the other — followed by "About
+   Me" and a tinted "Get in Touch" card. On narrow screens the hero
+   collapses to a single stacked column.
+   ========================================================================= */
+.hero-split{
+  display:grid; grid-template-columns:auto 1fr; gap:2.6rem; align-items:center;
+  padding:1.2rem 0 3rem;
+}
+.hero-photo-col{ text-align:center; }
+.hero-photo-frame{
+  display:inline-block;
+  padding:10px;
+  border:2px solid var(--accent);
+  border-radius:22px;
+  box-shadow:0 14px 26px rgba(var(--shadow-rgb),.14);
+}
+.hero-photo-frame a{ display:block; }
+.home-photo{
+  display:block; width:190px; height:190px;
+  border-radius:15px; object-fit:cover;
+  background:var(--photo-bg);
+  transition:opacity .15s ease;
+}
+.hero-photo-frame a:hover .home-photo{ opacity:.82; }
+.hero-text .eyebrow{
+  text-transform:uppercase; letter-spacing:.16em; font-size:.72rem;
+  color:var(--accent); margin:.5rem 0 0; font-family:"Lora",serif;
+}
+.home-name{ font-size:2.6rem; margin:0; font-weight:800; line-height:1.1; }
+.hero-text .lede{ font-size:1.05rem; }
+
+.lede{ max-width:62ch; font-size:1.05rem; }
+
+/* ---- "Get in Touch" tinted card panel ---- */
+.card-panel{
+  background:var(--cream-2); border:1px solid var(--line); border-radius:14px;
+  padding:2rem 2.2rem;
+}
+.contact-block h2{ font-size:1.4rem; margin:0 0 1.1rem; }
+.contact-line{ font-size:1.02rem; margin:0 0 .5rem; }
+.contact-line a{ font-weight:600; }
+.btn-row{ display:flex; flex-wrap:wrap; gap:.8rem; margin-top:1.4rem; }
+.btn{
+  display:inline-block; padding:.6rem 1.3rem; border:1px solid var(--accent);
+  border-radius:999px; color:var(--accent); font-family:"Lora",serif; font-size:.88rem;
+  text-decoration:none; transition:background .15s ease, color .15s ease;
+}
+.btn:hover{ background:var(--accent); color:#fff; }
+
+@media (max-width:640px){
+  .hero-split{ grid-template-columns:1fr; text-align:center; }
+  .hero-photo-frame{ margin:0 auto; }
+}
+
+/* =========================================================================
+   Generic content sections (used on every inner page)
+   ========================================================================= */
+section{ padding:2.4rem 0; border-bottom:1px solid var(--line); }
+section:last-of-type{ border-bottom:none; }
+/* The clickable tabs above jump to the HEADING (not the whole section box) —
+   that's what "scroll-margin-top" below controls: it's set to just clear
+   the frozen tabs bar plus a small, deliberately modest gap (about three
+   quarters of a normal line of text). Change this one number to make that
+   landing gap bigger or smaller everywhere at once. */
+h2.section-title{ font-size:1.5rem; margin:0 0 1.5rem; scroll-margin-top:5.1rem; }
+
+.item{ margin-bottom:1.8rem; }
+.item:last-child{ margin-bottom:0; }
+.item h3{ margin:0 0 .15rem; font-size:1.1rem; }
+.item .meta{ margin:0 0 .3rem; font-size:.9rem; color:var(--muted); font-style:italic; }
+.item p{ margin:0; font-size:.98rem; }
+
+.subhead{
+  font-size:.75rem; text-transform:uppercase;
+  letter-spacing:.14em; color:var(--accent); margin:1.8rem 0 1.1rem;
+}
+.subhead:first-child{ margin-top:0; }
+
+/* ---- Numbered lists (publications, talks) -----------------------------
+   Convention: newest entry is at the TOP and gets the HIGHEST number;
+   numbers count down to 1 at the oldest/bottom entry. This way, when you
+   add a brand-new entry, you only add ONE new top item — you never have
+   to renumber anything already there. See the comments further down in
+   each page for exactly how to add a new numbered entry. */
+.pub-list{ list-style:none; margin:0; padding:0; }
+.pub-list li{ padding:1.2rem 0; border-top:1px solid var(--line); display:flex; gap:.9rem; }
+.pub-list li:first-child{ border-top:none; }
+.pub-num{
+  font-family:"Playfair Display",serif; font-weight:700; color:var(--accent);
+  flex:none; min-width:2.2rem;
+}
+.pub-body{ flex:1; }
+.pub-title{ font-family:"Playfair Display",serif; font-weight:700; font-size:1.06rem; display:block; }
+.pub-meta{ font-size:.88rem; color:var(--muted); font-style:italic; display:block; margin-top:.3rem; }
+.pub-links{ font-size:.85rem; margin-top:.45rem; display:block; }
+.pub-links a{ margin-right:1.1rem; }
+
+/* ---- Teaching table ---- */
+table.teach{ width:100%; border-collapse:collapse; font-size:.94rem; }
+table.teach td{ padding:.7rem 0; border-top:1px solid var(--line); }
+table.teach tr:first-child td{ border-top:none; }
+table.teach td:first-child{ font-weight:600; width:48%; }
+
+/* ---- Simple numbered list (talks, achievements) ---- */
+ul.plain{ list-style:none; margin:0; padding:0; }
+ul.plain li{ padding:.95rem 0; border-top:1px solid var(--line); font-size:.97rem; display:flex; gap:.9rem; }
+ul.plain li:first-child{ border-top:none; }
+ul.plain .item-num{ font-family:"Playfair Display",serif; font-weight:700; color:var(--accent); flex:none; min-width:2.2rem; }
+ul.plain .year{ font-weight:700; margin-right:.4rem; }
+
+/* ---- Skills tags (Miscellaneous page) ---- */
+.skills-list{ display:flex; flex-wrap:wrap; gap:.6rem; list-style:none; margin:0; padding:0; }
+.skills-list li{
+  border:1px solid var(--line); border-radius:999px; padding:.5rem 1.1rem;
+  font-size:.92rem; background:#fff;
+}
+
+/* ---- Interest tags (Research page's "Areas of Interest") ----
+   Rounded rectangles (not pills) with a tinted fill, distinct from the
+   Skills tags above — change "border-radius" or "background" here to
+   restyle just these tags. */
+.interest-list{ display:flex; flex-wrap:wrap; gap:.6rem; list-style:none; margin:0; padding:0; }
+.interest-list li{
+  border:1px solid var(--line); border-radius:10px; padding:.5rem 1.1rem;
+  font-size:.92rem; background:var(--cream-2);
+}
+
+/* ---- Plain bullet list (Awards, Grants and Other Academic Achievements) ----
+   A normal bulleted list — no numbering, order doesn't matter. Just add or
+   remove <li> lines freely. */
+ul.bullets{ margin:0; padding-left:1.3rem; }
+ul.bullets li{ margin-bottom:.6rem; font-size:.97rem; }
+ul.bullets li:last-child{ margin-bottom:0; }
+
+/* ---- Placeholder callouts (Miscellaneous / Skills / Research overview) ---- */
+.placeholder{
+  border:1px dashed var(--muted); border-radius:8px; padding:1.1rem 1.3rem;
+  color:var(--muted); font-style:italic; font-size:.95rem; background:var(--placeholder-bg);
+}
+
+/* ---- Photo Gallery grid (gallery.html) ---------------------------------
+   Reflows automatically to fit however many tiles you have — no need to
+   change anything here when you add or remove photos. */
+.gallery-grid{
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(170px, 1fr));
+  gap:1rem;
+}
+/* A "not filled in yet" tile — replace with a <figure class="gallery-item">
+   (see the comments in gallery.html) once you have an actual photo. */
+.gallery-placeholder{
+  aspect-ratio:1 / 1; border:1px dashed var(--muted); border-radius:10px;
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  padding:.8rem; color:var(--muted); font-style:italic; font-size:.85rem;
+  background:var(--placeholder-bg);
+}
+/* A real photo tile, once you've added one. */
+.gallery-item{ margin:0; }
+.gallery-item img{
+  display:block; width:100%; aspect-ratio:1 / 1; object-fit:cover;
+  border-radius:10px; border:1px solid var(--line);
+}
+.gallery-item figcaption{
+  margin-top:.4rem; font-size:.8rem; color:var(--muted); font-style:italic;
+}
+
+footer{ text-align:center; font-size:.8rem; color:var(--muted); padding:2rem 1.5rem; font-style:italic; }
+
+
+/* =========================================================================
+   COLOUR SCHEMES
+   -------------------------------------------------------------------------
+   One block per alternative scheme. Each re-states the same eleven values
+   as ":root" at the top of this file — nothing else about the design
+   changes, which is why every scheme looks identical apart from its colour.
+   The order of the circles in the sidebar is set by the HTML, not here.
+   ========================================================================= */
+
+/* ---- Mocha & Oat ---- */
+[data-theme="mocha"]{
+  --ink:#241d16; --muted:#7f7466; --line:#e3dacb;
+  --cream:#faf6ef; --cream-2:#f0e9dd; --accent:#5b4636;
+  --accent-soft:#cbbaa6; --photo-bg:#ece3d4; --nav-hover:#e9e0cf;
+  --placeholder-bg:#f7f2e9; --shadow-rgb:36,29,22;
+}
+
+/* ---- Olive & Flax ---- */
+[data-theme="olive"]{
+  --ink:#262718; --muted:#7c7c63; --line:#e2dfc7;
+  --cream:#faf8ee; --cream-2:#f0eedd; --accent:#64682c;
+  --accent-soft:#c8c9a0; --photo-bg:#ebe8d3; --nav-hover:#e8e5ce;
+  --placeholder-bg:#f6f4e7; --shadow-rgb:38,39,24;
+}
+
+/* ---- Graphite & Chalk ---- */
+[data-theme="graphite"]{
+  --ink:#222426; --muted:#767a7e; --line:#ddd9d3;
+  --cream:#f7f6f4; --cream-2:#eceae6; --accent:#3f4348;
+  --accent-soft:#c2c5c8; --photo-bg:#e6e3de; --nav-hover:#e4e1db;
+  --placeholder-bg:#f4f2ef; --shadow-rgb:34,36,38;
+}
+
+/* ---- Aubergine & Oat ---- */
+[data-theme="aubergine"]{
+  --ink:#26202b; --muted:#7f7674; --line:#e2dccf;
+  --cream:#faf8f3; --cream-2:#efeae1; --accent:#543a63;
+  --accent-soft:#c6b8d1; --photo-bg:#eae4d9; --nav-hover:#e8e1d5;
+  --placeholder-bg:#f6f3ec; --shadow-rgb:38,32,43;
+}
+
+/* ---- Plum & Blush ---- */
+[data-theme="plum"]{
+  --ink:#2f2531; --muted:#8a7887; --line:#e7dce5;
+  --cream:#faf7f9; --cream-2:#f2e8ef; --accent:#71385a;
+  --accent-soft:#d3b4c6; --photo-bg:#ecdfe7; --nav-hover:#ebdbe5;
+  --placeholder-bg:#f8f2f6; --shadow-rgb:47,37,49;
+}
+
+/* ---- Sage ---- */
+[data-theme="sage"]{
+  --ink:#2f3a2f; --muted:#7c8a76; --line:#dde5d6;
+  --cream:#fbfaf5; --cream-2:#eef2e6; --accent:#5c7a52;
+  --accent-soft:#c3d3b8; --photo-bg:#e2e9d9; --nav-hover:#e3ead8;
+  --placeholder-bg:#f6f9f1; --shadow-rgb:47,58,47;
+}
+
+/* ---- Emerald & Mist ---- */
+[data-theme="emerald"]{
+  --ink:#1c2b25; --muted:#728079; --line:#d7e4de;
+  --cream:#f6faf8; --cream-2:#e7f0ec; --accent:#1f6b52;
+  --accent-soft:#a7cabb; --photo-bg:#dfece6; --nav-hover:#dde9e3;
+  --placeholder-bg:#f0f7f3; --shadow-rgb:28,43,37;
+}
+
+/* ---- Indigo & Ivory ---- */
+[data-theme="indigo"]{
+  --ink:#22203a; --muted:#78748c; --line:#ddd9ea;
+  --cream:#f8f7fb; --cream-2:#eceaf4; --accent:#3a3670;
+  --accent-soft:#bdb8d8; --photo-bg:#e3e0f0; --nav-hover:#e6e2f1;
+  --placeholder-bg:#f3f1f9; --shadow-rgb:34,32,58;
+}
+
+/* ---- Dusk Blue ---- */
+[data-theme="dusk"]{
+  --ink:#232b35; --muted:#78838f; --line:#dce1e8;
+  --cream:#f7f9fb; --cream-2:#e9eef4; --accent:#3d5d82;
+  --accent-soft:#b5c6da; --photo-bg:#dde5ee; --nav-hover:#dfe7f0;
+  --placeholder-bg:#f2f6fa; --shadow-rgb:35,43,53;
+}
+
+/* =========================================================================
+   THE COLOUR PICKER ITSELF (bottom of the sidebar)
+   -------------------------------------------------------------------------
+   Two rows of five circles. Each circle is one <button>, split down the
+   middle: the LEFT half is that scheme's accent (the dark half) and the
+   RIGHT half is its paper colour (the light half), both passed in from the
+   HTML as --sw-a and --sw-b. The disc is drawn as a background with no
+   border at all, and its thin rim is an inset shadow painted on top — that
+   way the two colours fill the circle right out to its edge. The selected
+   circle wears a ring in the current accent colour.
+   ========================================================================= */
+.theme-picker{ margin-top:2.2rem; padding-top:1.2rem; border-top:1px solid var(--line); text-align:left; }
+.theme-picker-label{
+  font-size:.66rem; text-transform:uppercase; letter-spacing:.15em;
+  color:var(--muted); margin:0 0 .8rem; font-family:"Lora",serif;
+}
+/* Five per row; change the 5 below to fit more or fewer on a line. */
+.swatches{ display:grid; grid-template-columns:repeat(5, 26px); gap:.6rem; }
+.swatch{
+  width:26px; height:26px; border-radius:50%; padding:0; border:0; cursor:pointer;
+  background-color:var(--sw-b);
+  background-image:linear-gradient(90deg, var(--sw-a) 0 50%, var(--sw-b) 50% 100%);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.25);
+  transition:transform .12s ease, box-shadow .15s ease;
+}
+.swatch:hover{ transform:scale(1.14); }
+.swatch.active{
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.25),
+             0 0 0 2px var(--cream-2),
+             0 0 0 3.5px var(--accent);
+}
+.swatch:focus-visible{ outline:2px solid var(--accent); outline-offset:4px; }
+
+/* A gentle cross-fade when a new scheme is chosen (skipped for anyone whose
+   system asks for reduced motion). */
+body, .sidebar, .sidebar nav a, .page-tabs-wrap, .page-tabs a, .card-panel,
+.btn, .skills-list li, .interest-list li, .placeholder, .gallery-placeholder,
+.menu-toggle, .theme-picker{
+  transition:background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+@media (prefers-reduced-motion: reduce){
+  body, .sidebar, .sidebar nav a, .page-tabs-wrap, .page-tabs a, .card-panel,
+  .btn, .skills-list li, .interest-list li, .placeholder, .gallery-placeholder,
+  .menu-toggle, .theme-picker, .swatch{ transition:none; }
+}
+
+/* =========================================================================
+   HOW TO ADD YOUR OWN COLOUR SCHEME
+   -------------------------------------------------------------------------
+     1. Copy one whole [data-theme="..."] block above, paste it below the
+        others, and give it a new one-word name in the quotes (say "mine").
+     2. Change its eleven colour values. A quick way to keep them in
+        balance: pick the accent first, then make --cream a very pale tint
+        of it, --cream-2 a slightly stronger tint, --line stronger again,
+        --nav-hover just past --cream-2, --photo-bg about the same,
+        --placeholder-bg between --cream and --cream-2, --accent-soft a
+        washed-out accent, --ink a very dark version of the accent's hue,
+        --muted a greyed version of it, and --shadow-rgb the red,green,blue
+        of --ink.
+     3. In EVERY page's sidebar, copy one <button class="swatch"> line and
+        set data-set-theme="mine", the two --sw- colours (--sw-a is the dark
+        left half, so your --accent; --sw-b is the light right half, so your
+        --cream-2) and the title/aria-label.
+   Nothing in script.js needs changing — it picks up whatever buttons it
+   finds. With more than ten circles, either raise the 5 in ".swatches"
+   above or just let them run onto a third row. To remove a scheme, delete
+   its block here and its button in each page (if you delete the one someone
+   already chose, they fall back to the default automatically).
+   ========================================================================= */
+
+/* =========================================================================
+   RESPONSIVE: sidebar becomes an off-canvas panel opened by a menu button
+   ========================================================================= */
+@media (max-width:820px){
+  .layout{ grid-template-columns:1fr; }
+
+  .sidebar{
+    position:fixed; top:0; left:0; height:100vh; width:250px;
+    transform:translateX(-100%);
+    transition:transform .25s ease;
+    box-shadow:2px 0 16px rgba(0,0,0,.15);
+  }
+  .sidebar.open{ transform:translateX(0); }
+
+  .menu-toggle{ display:flex; }
+  .overlay.open{ display:block; }
+
+  main{ padding:4.5rem 1.4rem 2rem; }
+
+  /* Leave room so the fixed menu button never sits on top of the first tab
+     when the tabs bar is stuck at the very top of the screen. */
+  .page-tabs{ padding-left:3.6rem; }
+}

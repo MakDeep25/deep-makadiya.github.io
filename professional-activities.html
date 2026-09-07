@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Re-applies the colour scheme this visitor last chose (see the colour
+     circles at the bottom of the sidebar) BEFORE the page is painted, so the
+     page never flashes the default colours first. It must stay here in the
+     <head>, above the stylesheet. Nothing to edit. -->
+<script>(function(){try{var t=localStorage.getItem("site-theme");if(t){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
+<title>Professional Activities — Deep H. Makadiya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lora:ital,wght@0,400;1,400;0,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<!-- NOTE: this page used to need MathJax (a script that renders math
+     notation like $SL_n$) for the Student Seminars list, but that list now
+     uses plain HTML subscripts instead (e.g. "SL<sub>n</sub>"), so the
+     MathJax scripts have been removed from this page. research.html still
+     uses MathJax for its publication titles, so don't remove it there. -->
+</head>
+<body>
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <img class="avatar" src="photo.jpg" alt="Deep H. Makadiya">
+    <h1>Deep H. Makadiya</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="academic.html">Academics</a>
+      <a href="research.html">Research</a>
+      <a href="teaching.html">Teaching</a>
+      <a href="professional-activities.html" class="active">Professional Activities</a>
+      <a href="beyond-academia.html">Beyond Academia</a>
+    </nav>
+
+    <!-- ===================================================================
+         COLOUR PICKER — the two rows of two-tone circles under the page
+         links. Clicking one re-colours the whole site (and every other
+         page), and the choice is remembered in the visitor's browser.
+         Each circle's LEFT half is that scheme's accent (--sw-a, the dark
+         one) and its RIGHT half is that scheme's paper colour (--sw-b);
+         "title" is the tooltip shown on hover. The order the buttons
+         appear in below is the order they appear on screen — five per row.
+         This same block appears in all 7 pages: if you add, remove or
+         re-order a circle, do it in every page so the picker matches
+         everywhere. The colour values themselves live in styles.css under
+         "COLOUR SCHEMES", with step-by-step notes at the bottom of that
+         file for adding a scheme of your own.
+         =================================================================== -->
+    <div class="theme-picker">
+      <p class="theme-picker-label">Colour</p>
+      <div class="swatches">
+          <button type="button" class="swatch" data-set-theme="cream"
+                  style="--sw-a:#a5501f;--sw-b:#efe6d2"
+                  title="Cream &amp; Terracotta" aria-label="Cream and Terracotta colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="mocha"
+                  style="--sw-a:#5b4636;--sw-b:#f0e9dd"
+                  title="Mocha &amp; Oat" aria-label="Mocha and Oat colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="olive"
+                  style="--sw-a:#64682c;--sw-b:#f0eedd"
+                  title="Olive &amp; Flax" aria-label="Olive and Flax colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="graphite"
+                  style="--sw-a:#3f4348;--sw-b:#eceae6"
+                  title="Graphite &amp; Chalk" aria-label="Graphite and Chalk colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="aubergine"
+                  style="--sw-a:#543a63;--sw-b:#efeae1"
+                  title="Aubergine &amp; Oat" aria-label="Aubergine and Oat colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="plum"
+                  style="--sw-a:#71385a;--sw-b:#f2e8ef"
+                  title="Plum &amp; Blush" aria-label="Plum and Blush colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="sage"
+                  style="--sw-a:#5c7a52;--sw-b:#eef2e6"
+                  title="Sage" aria-label="Sage colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="emerald"
+                  style="--sw-a:#1f6b52;--sw-b:#e7f0ec"
+                  title="Emerald &amp; Mist" aria-label="Emerald and Mist colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="indigo"
+                  style="--sw-a:#3a3670;--sw-b:#eceaf4"
+                  title="Indigo &amp; Ivory" aria-label="Indigo and Ivory colour scheme"></button>
+          <button type="button" class="swatch" data-set-theme="dusk"
+                  style="--sw-a:#3d5d82;--sw-b:#e9eef4"
+                  title="Dusk Blue" aria-label="Dusk Blue colour scheme"></button>
+      </div>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu">&#9776;</button>
+
+  <main>
+    <div class="wrap">
+
+      <div class="page-header">
+        <h1>Professional Activities</h1>
+        <p class="page-desc">Invited talks, seminar activity, conference participation, and other professional engagements.</p>
+      </div>
+
+      <div class="page-tabs-wrap">
+        <button class="tabs-arrow left" aria-label="Scroll tabs left">&#8249;</button>
+        <nav class="page-tabs">
+          <a href="#invited-talks">Invited Talks</a>
+          <a href="#conferences">Conferences &amp; Workshops</a>
+          <a href="#seminars">General Seminars</a>
+          <a href="#seminar-series">Seminar Series Led</a>
+          <a href="#student-seminars">Student Seminars</a>
+        </nav>
+        <button class="tabs-arrow right" aria-label="Scroll tabs right">&#8250;</button>
+        <div class="tabs-fade left" aria-hidden="true" hidden></div>
+        <div class="tabs-fade right" aria-hidden="true" hidden></div>
+      </div>
+
+      <!-- ===================================================================
+           Every list below uses the SAME numbering rule as Publications:
+           newest entry on top with the HIGHEST number, counting down to 1.
+           TO ADD A NEW ENTRY: copy one whole <li>...</li> line, paste it at
+           the TOP of that list's <ul class="plain">, and set its number to
+           (current top number + 1) — leave every other number in that list
+           untouched. Each of the 5 sections below has its OWN independent
+           numbering, so "3." in "Invited Talks" and "3." in "General
+           Seminars" are unrelated to each other.
+           =================================================================== -->
+
+      <!-- ===================================================================
+           INVITED TALKS & CONFERENCE PRESENTATIONS — talks/posters you gave
+           AT a conference or workshop (as opposed to just attending one,
+           which belongs in "Conferences & Workshops" below instead).
+           =================================================================== -->
+      <section>
+        <h2 id="invited-talks" class="section-title">Invited Talks &amp; Conference Presentations</h2>
+        <ul class="plain">
+          <li><span class="item-num">3.</span><span><span class="year">2026</span>Invited talk, &ldquo;Algebraic Geometry and Model Theory of Groups and Rings IV,&rdquo; international workshop, Tbilisi, Georgia — presented ongoing work with Elena I. Bunina on classifying the automorphisms of twisted Chevalley groups over commutative rings.</span></li>
+          <li><span class="item-num">2.</span><span><span class="year">2025</span>Poster presentation, &ldquo;Representations of Groups and Algebras&rdquo; conference, IMSc, Chennai — on classifying normal subgroups of twisted Chevalley groups over commutative rings.</span></li>
+          <li><span class="item-num">1.</span><span><span class="year">2024</span>Talk, &ldquo;Groups and Representations&rdquo; conference, IIT Bombay, Mumbai — presented ongoing work with Shripad M. Garge on classifying the automorphisms of twisted Chevalley groups over commutative rings.</span></li>
+        </ul>
+      </section>
+
+      <!-- ===================================================================
+           CONFERENCE & WORKSHOP PARTICIPATION — conferences/workshops you
+           attended, whether or not you presented (a couple of these overlap
+           with "Invited Talks" above on purpose — some events you both
+           attended AND presented at, so they're listed in both places,
+           matching how your old Google Site recorded them).
+           =================================================================== -->
+      <section>
+        <h2 id="conferences" class="section-title">Conference &amp; Workshop Participation</h2>
+        <ul class="plain">
+          <li><span class="item-num">7.</span><span><span class="year">2026</span>IMU Annual Meeting, Bar-Ilan University, Ramat-Gan, Israel.</span></li>
+          <li><span class="item-num">6.</span><span><span class="year">2025</span>ISF Workshop on &ldquo;Algebra, Geometry, Dynamics,&rdquo; Bar-Ilan University, Ramat-Gan, Israel.</span></li>
+          <li><span class="item-num">5.</span><span><span class="year">2025</span>Conference on &ldquo;Representations of Groups and Algebras,&rdquo; IMSc, Chennai.</span></li>
+          <li><span class="item-num">4.</span><span><span class="year">2024</span>Conference on &ldquo;Groups and Representations,&rdquo; IIT Bombay, Mumbai.</span></li>
+          <li><span class="item-num">3.</span><span><span class="year">2024</span>NCM Workshop on &ldquo;Lie Groups and Representation Theory,&rdquo; IISER Berhampur.</span></li>
+          <li><span class="item-num">2.</span><span><span class="year">2017</span>National Workshop on &ldquo;Problem Solving Technique in Mathematics,&rdquo; M.S. University of Baroda, Vadodara.</span></li>
+          <li><span class="item-num">1.</span><span><span class="year">2016</span>Workshop on &ldquo;Problem Solving &amp; Enrichment in Mathematics,&rdquo; St. Xavier&rsquo;s College, Ahmedabad.</span></li>
+        </ul>
+      </section>
+
+      <!-- ===================================================================
+           GENERAL SEMINARS — invited/departmental seminar talks you've given
+           (as distinct from the "Seminar Series" and "Student Seminars"
+           below, which were ongoing series you organized or presented in as
+           a student, respectively).
+           =================================================================== -->
+      <section>
+        <h2 id="seminars" class="section-title">General Seminars</h2>
+        <ul class="plain">
+          <li><span class="item-num">3.</span><span><span class="year">2026</span>&ldquo;Triangular and Unitriangular Factorizations of SL<sub>n</sub>(R) and SU<sub>n</sub>(R),&rdquo; Bar-Ilan University.</span></li>
+          <li><span class="item-num">2.</span><span><span class="year">2025</span>&ldquo;Triangular and Unitriangular Factorizations of SL<sub>n</sub>(R) and SU<sub>n</sub>(R),&rdquo; IIT Bombay.</span></li>
+          <li><span class="item-num">1.</span><span><span class="year">2025</span>&ldquo;Triangular and Unitriangular Factorizations of SL<sub>n</sub>(R) and SU<sub>n</sub>(R),&rdquo; Harish-Chandra Research Institute.</span></li>
+        </ul>
+      </section>
+
+      <!-- ===================================================================
+           SEMINAR SERIES LED — ongoing reading/seminar series you organized
+           at IIT Bombay, each covering one text or topic over time.
+           =================================================================== -->
+      <section>
+        <h2 id="seminar-series" class="section-title">Seminar Series Led — IIT Bombay</h2>
+        <ul class="plain">
+          <li><span class="item-num">4.</span><span><span class="year">2025</span>&ldquo;Spherical Functions on a Group of p-adic Type,&rdquo; following I. G. Macdonald.</span></li>
+          <li><span class="item-num">3.</span><span><span class="year">2024</span>&ldquo;Nilpotent Orbits of Lie Algebras,&rdquo; following D. H. Collingwood and W. M. McGovern.</span></li>
+          <li><span class="item-num">2.</span><span><span class="year">2023–24</span>&ldquo;Linear Algebraic Groups,&rdquo; following T. A. Springer.</span></li>
+          <li><span class="item-num">1.</span><span><span class="year">2023</span>Steinberg&rsquo;s paper, &ldquo;Regular Elements of Semisimple Algebraic Groups.&rdquo;</span></li>
+        </ul>
+      </section>
+
+      <!-- ===================================================================
+           STUDENT SEMINARS — talks given as a student (at IIT Bombay), i.e.
+           before you were the one organizing the series above.
+           =================================================================== -->
+      <section>
+        <h2 id="student-seminars" class="section-title">Student Seminars — IIT Bombay</h2>
+        <ul class="plain">
+          <li><span class="item-num">3.</span><span><span class="year">May 2024</span>&ldquo;Generator Relations of the Group SL<sub>n</sub>(F) and Steinberg Groups&rdquo; (presented twice).</span></li>
+          <li><span class="item-num">2.</span><span><span class="year">Feb 2024</span>&ldquo;Automorphisms of Local Rings which Fix the Maximal Ideal.&rdquo;</span></li>
+          <li><span class="item-num">1.</span><span><span class="year">Mar 2023</span>&ldquo;Representation Theory of SL<sub>2</sub>(&#8450;).&rdquo;</span></li>
+        </ul>
+      </section>
+
+    </div>
+    <footer>&copy; 2026 Deep H. Makadiya</footer>
+  </main>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
