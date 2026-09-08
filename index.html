@@ -9,7 +9,28 @@
      <head>, above the stylesheet. Nothing to edit. -->
 <script>(function(){try{var t=localStorage.getItem("site-theme");if(t){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
 <title>Deep H. Makadiya — Mathematics</title>
-<meta name="description" content="Deep H. Makadiya, Post-doctoral Fellow in Mathematics at Bar-Ilan University.">
+
+<!-- ===================================================================
+     SEARCH RESULTS AND LINK PREVIEWS
+     "description" is the grey line Google shows under your page title.
+     The "og:" and "twitter:" lines are what WhatsApp, LinkedIn, X, Slack
+     and friends read when someone pastes a link to this page — without
+     them a shared link shows an empty grey box.
+     IF YOUR SITE ADDRESS EVER CHANGES (a new GitHub username, a repo
+     rename, or your own domain), the three absolute links below —
+     canonical, og:url and og:image — must be updated on EVERY page.
+     They currently all begin with: https://deepmakadiya25.github.io
+     =================================================================== -->
+<meta name="description" content="Deep H. Makadiya, Post-doctoral Fellow in Mathematics at Bar-Ilan University, working on the structure and automorphisms of twisted Chevalley groups.">
+<link rel="canonical" href="https://deepmakadiya25.github.io/">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Deep H. Makadiya">
+<meta property="og:title" content="Deep H. Makadiya — Mathematics">
+<meta property="og:description" content="Deep H. Makadiya, Post-doctoral Fellow in Mathematics at Bar-Ilan University, working on the structure and automorphisms of twisted Chevalley groups.">
+<meta property="og:url" content="https://deepmakadiya25.github.io/">
+<meta property="og:image" content="https://deepmakadiya25.github.io/photo.jpg">
+<meta property="og:image:alt" content="Deep H. Makadiya">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lora:ital,wght@0,400;1,400;0,600&display=swap" rel="stylesheet">
@@ -34,7 +55,10 @@
        ===================================================================== -->
   <aside class="sidebar" id="sidebar">
     <img class="avatar" src="photo.jpg" alt="Deep H. Makadiya">
-    <h1>Deep H. Makadiya</h1>
+    <!-- Your name in the sidebar. It is deliberately NOT an <h1>: each page
+         already has one <h1> (the page title), and search engines expect
+         exactly one per page. Styled by ".sidebar-name" in styles.css. -->
+    <p class="sidebar-name">Deep H. Makadiya</p>
     <nav>
       <a href="index.html" class="active">Home</a>
       <a href="academic.html">Academics</a>
@@ -146,7 +170,7 @@
         on the automorphisms of twisted Chevalley groups over local and commutative rings. My doctoral work
         at IIT Bombay, under Prof. Shripad M. Garge, focused on the structure of twisted Chevalley groups —
         their normal subgroups, normalizers, and factorizations.</p>
-        <p class="lede">My CV can be found <a href="https://drive.google.com/file/d/1wBJMi7spro6wFVuaDzZuNbMRGUmXymEu/view?usp=sharing">here</a>.</p>
+        <p class="lede">My CV can be found <a href="Deep_CV.pdf" target="_blank" rel="noopener">here</a>.</p>
       </section>
 
       <!-- ===================================================================
@@ -164,34 +188,44 @@
       </section>
 
       <!-- ===================================================================
-           FIND ME ONLINE — your professional/academic profile links.
+           FIND ME ONLINE
+           Every link here leaves your site, so each one carries
+           target="_blank" rel="noopener" — it opens in a NEW browser tab and
+           your page stays behind it. Copy those two attributes onto any new
+           external link you add (links that stay on this site, like the page
+           links in the sidebar, deliberately do not have them). — your professional/academic profile links.
            To add another, copy one <a class="btn" ...>...</a> line and
            change its link and label.
            =================================================================== -->
       <section id="profiles" style="border-bottom:none;">
         <h2 class="section-title">Find Me Online</h2>
         <div class="btn-row">
-          <a class="btn" href="https://scholar.google.com/citations?user=v7X_OhYAAAAJ&hl=en">Google Scholar</a>
-          <a class="btn" href="https://orcid.org/0009-0000-8410-471X">ORCID</a>
-          <a class="btn" href="https://www.researchgate.net/profile/Deep-Makadiya">ResearchGate</a>
-          <a class="btn" href="http://www.linkedin.com/in/deep-makadiya">LinkedIn</a>
+          <a class="btn" href="https://www.researchgate.net/profile/Deep-Makadiya" target="_blank" rel="noopener">ResearchGate</a>
+          <a class="btn" href="https://scholar.google.com/citations?user=v7X_OhYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+	  <a class="btn" href="https://www.semanticscholar.org/author/Deep-H.-Makadiya/2344610145" target="_blank" rel="noopener">Semantic Scholar</a>
+          <a class="btn" href="https://orcid.org/0009-0000-8410-471X" target="_blank" rel="noopener">ORCID</a>
+          <a class="btn" href="https://arxiv.org/search/math?searchtype=author&amp;query=Makadiya,+D+H" target="_blank" rel="noopener">arXiv</a>
           <!-- NOTE: MathSciNet is a subscription database — visitors without
                an institutional login will only be able to see limited info
                on your author page, which is normal and out of your control. -->
-          <a class="btn" href="https://arxiv.org/search/math?searchtype=author&amp;query=Makadiya,+D+H">arXiv</a>
-          <a class="btn" href="https://mathscinet.ams.org/mathscinet/author?authorId=1687700">MathSciNet</a>
-          <!-- NOTE: You don't have a zbMATH author profile yet, so this
-               button just links to the zbMATH homepage for now. Once you
-               have a profile there, replace the href below with your exact
-               profile link (it will look like
-               "https://zbmath.org/authors/....your-id....") — the button
-               text/label "zbMATH" doesn't need to change. -->
-          <a class="btn" href="https://zbmath.org/">zbMATH</a>
+          <a class="btn" href="https://mathscinet.ams.org/mathscinet/author?authorId=1687700" target="_blank" rel="noopener">MathSciNet</a>
+          <a class="btn" href="https://zbmath.org/authors/makadiya.deep-h" target="_blank" rel="noopener">zbMATH</a>
+          <!-- NOTE: Edit this link later. -->
+          <a class="btn" href="https://www.mathgenealogy.org/index.php" target="_blank" rel="noopener">Math Genealogy</a>
+          <a class="btn" href="http://www.linkedin.com/in/deep-makadiya" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </section>
 
     </div>
-    <footer>&copy; 2026 Deep H. Makadiya</footer>
+    <!-- "Last updated" is written in by script.js and is EMPTY here on
+         purpose, so the date exists in exactly ONE place on the whole site:
+         the LAST_UPDATED line near the top of script.js. Change it there and
+         all seven pages follow. (If JavaScript is switched off the line simply
+         does not appear, rather than showing a stale date.) -->
+    <footer>
+      <p>&copy; 2026 Deep H. Makadiya</p>
+      <p class="updated" id="lastUpdatedLine" hidden>Last updated: <span id="lastUpdated"></span></p>
+    </footer>
   </main>
 
 </div>

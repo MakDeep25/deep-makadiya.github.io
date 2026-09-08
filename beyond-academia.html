@@ -9,6 +9,28 @@
      <head>, above the stylesheet. Nothing to edit. -->
 <script>(function(){try{var t=localStorage.getItem("site-theme");if(t){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
 <title>Beyond Academia — Deep H. Makadiya</title>
+
+<!-- ===================================================================
+     SEARCH RESULTS AND LINK PREVIEWS
+     "description" is the grey line Google shows under your page title.
+     The "og:" and "twitter:" lines are what WhatsApp, LinkedIn, X, Slack
+     and friends read when someone pastes a link to this page — without
+     them a shared link shows an empty grey box.
+     IF YOUR SITE ADDRESS EVER CHANGES (a new GitHub username, a repo
+     rename, or your own domain), the three absolute links below —
+     canonical, og:url and og:image — must be updated on EVERY page.
+     They currently all begin with: https://deepmakadiya25.github.io
+     =================================================================== -->
+<meta name="description" content="Skills, languages, hobbies and interests of Deep H. Makadiya, mathematician at Bar-Ilan University.">
+<link rel="canonical" href="https://deepmakadiya25.github.io/beyond-academia.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Deep H. Makadiya">
+<meta property="og:title" content="Beyond Academia — Deep H. Makadiya">
+<meta property="og:description" content="Skills, languages, hobbies and interests of Deep H. Makadiya, mathematician at Bar-Ilan University.">
+<meta property="og:url" content="https://deepmakadiya25.github.io/beyond-academia.html">
+<meta property="og:image" content="https://deepmakadiya25.github.io/photo.jpg">
+<meta property="og:image:alt" content="Deep H. Makadiya">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lora:ital,wght@0,400;1,400;0,600&display=swap" rel="stylesheet">
@@ -19,7 +41,10 @@
 
   <aside class="sidebar" id="sidebar">
     <img class="avatar" src="photo.jpg" alt="Deep H. Makadiya">
-    <h1>Deep H. Makadiya</h1>
+    <!-- Your name in the sidebar. It is deliberately NOT an <h1>: each page
+         already has one <h1> (the page title), and search engines expect
+         exactly one per page. Styled by ".sidebar-name" in styles.css. -->
+    <p class="sidebar-name">Deep H. Makadiya</p>
     <nav>
       <a href="index.html">Home</a>
       <a href="academic.html">Academics</a>
@@ -123,19 +148,29 @@
 
       <!-- ===================================================================
            SKILLS
-           There was nothing about technical skills on your old Google Site,
-           so this list below is just a placeholder — replace the example
-           items with your actual skills (languages, software, etc.), or
-           delete the ones you don't need. Each skill is one <li>...</li> —
-           copy or delete lines freely, the list reflows on its own.
+           Two lists, each under its own small heading: the software and
+           languages you work in, and the languages you speak. Each entry is
+           one <li>...</li> — copy or delete lines freely, the lists reflow
+           on their own. To add a third group (say "Certifications"), copy a
+           <p class="subhead"> line together with the <ul> beneath it.
            =================================================================== -->
       <section>
         <h2 id="skills" class="section-title">Skills</h2>
+
+        <p class="subhead">Programming &amp; Typesetting</p>
         <ul class="skills-list">
-          <li>[Your skill — e.g. Python]</li>
-          <li>[Your skill — e.g. C++]</li>
-          <li>[Your skill — e.g. LaTeX]</li>
-          <li>[Your skill — e.g. Mathematica]</li>
+          <li>LaTeX</li>
+          <li>C++</li>
+          <li>Python</li>
+          <li>SageMath</li>
+          <li>GAP</li>
+        </ul>
+
+        <p class="subhead">Languages</p>
+        <ul class="skills-list">
+          <li>English</li>
+          <li>Hindi</li>
+          <li>Gujarati</li>
         </ul>
       </section>
 
@@ -145,9 +180,10 @@
       <section>
         <h2 id="hobbies-interests" class="section-title">Hobbies &amp; Interests</h2>
         <ul class="skills-list">
-          <li>[Your hobby — e.g. Chess]</li>
-          <li>[Your hobby — e.g. Cricket]</li>
-          <li>[Your hobby — e.g. Photography]</li>
+          <li>Chess</li>
+          <li>Hindu Philosophy</li>
+          <li>Puzzle Solving</li>
+          <li>Exploring Places</li>
         </ul>
       </section>
 
@@ -198,7 +234,15 @@
       </section>
 
     </div>
-    <footer>&copy; 2026 Deep H. Makadiya</footer>
+    <!-- "Last updated" is written in by script.js and is EMPTY here on
+         purpose, so the date exists in exactly ONE place on the whole site:
+         the LAST_UPDATED line near the top of script.js. Change it there and
+         all seven pages follow. (If JavaScript is switched off the line simply
+         does not appear, rather than showing a stale date.) -->
+    <footer>
+      <p>&copy; 2026 Deep H. Makadiya</p>
+      <p class="updated" id="lastUpdatedLine" hidden>Last updated: <span id="lastUpdated"></span></p>
+    </footer>
   </main>
 
 </div>

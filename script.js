@@ -6,6 +6,13 @@
    all your text lives in the .html files. This file only makes the sidebar
    menu button work on narrow screens/phones.
    ========================================================================= */
+/* -------------------------------------------------------------------------
+   THE ONE LINE TO CHANGE WHEN YOU UPDATE THE SITE
+   Whatever you type between the quotes below is shown as "Last updated: ..."
+   in the footer of EVERY page. Change it here and all seven pages follow.
+   ------------------------------------------------------------------------- */
+var LAST_UPDATED = "September 2026";
+
 document.addEventListener("DOMContentLoaded", function () {
   var sidebar = document.getElementById("sidebar");
   var toggle = document.getElementById("menuToggle");
@@ -114,4 +121,116 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
   markActive();
+
+  // -----------------------------------------------------------------------
+  // "LAST UPDATED" — the date lives only in LAST_UPDATED at the top of this
+  // file, and is written into the footer of every page from here. The footer
+  // line starts out hidden and is revealed once a date has been put in it,
+  // so a page never shows an empty or stale "Last updated:".
+  // -----------------------------------------------------------------------
+  var stamp = document.getElementById("lastUpdated");
+  var stampLine = document.getElementById("lastUpdatedLine");
+  if (stamp && stampLine && LAST_UPDATED) {
+    stamp.textContent = LAST_UPDATED;
+    stampLine.hidden = false;
+  }
+
+  // -----------------------------------------------------------------------
+  // ABSTRACTS — each "Abstract" button in the publication list opens the
+  // panel whose id matches the button's aria-controls attribute. Works with
+  // however many buttons the page has; nothing here needs editing when you
+  // add a paper.
+  // -----------------------------------------------------------------------
+  var absButtons = document.querySelectorAll(".pub-toggle");
+  for (var a = 0; a < absButtons.length; a++) {
+    absButtons[a].addEventListener("click", function () {
+      var panel = document.getElementById(this.getAttribute("aria-controls"));
+      if (!panel) return;
+      var isOpen = this.getAttribute("aria-expanded") === "true";
+      this.setAttribute("aria-expanded", isOpen ? "false" : "true");
+      panel.hidden = isOpen;
+
+      // The maths inside an abstract is laid out the first time the panel is
+      // actually shown — measuring it while hidden can come out wrong.
+      if (!isOpen && !panel.dataset.typeset &&
+          window.MathJax && window.MathJax.typesetPromise) {
+        panel.dataset.typeset = "1";
+        window.MathJax.typesetPromise([panel]);
+      }
+    });
+  }
+
+  // -----------------------------------------------------------------------
+  // SECTION HIGHLIGHTING ("scrollspy")
+  // As you scroll an inner page, the tab for the section you are currently
+  // reading is marked with the "current" class (styled in styles.css). The
+  // section a tab points at is found from its own href — so adding, renaming
+  // or re-ordering tabs needs no change here. On narrow screens, where the
+  // tab row scrolls sideways, the highlighted tab is nudged into view.
+  // -----------------------------------------------------------------------
+  tabWraps.forEach(function (wrap) {
+    var tabs = wrap.querySelector(".page-tabs");
+    if (!tabs) return;
+
+    var links = [];
+    var anchors = tabs.querySelectorAll('a[href^="#"]');
+    for (var i = 0; i < anchors.length; i++) {
+      var target = document.getElementById(anchors[i].getAttribute("href").slice(1));
+      if (target) links.push({ link: anchors[i], target: target });
+    }
+    if (links.length === 0) return;
+
+    var active = null;
+
+    function setCurrent(entry) {
+      if (entry === active) return;
+      if (active) active.link.classList.remove("current");
+      active = entry;
+      if (!active) return;
+      active.link.classList.add("current");
+
+      // Keep the highlighted tab visible when the row is scrollable.
+      if (tabs.scrollWidth > tabs.clientWidth + 1) {
+        var t = active.link;
+        var left = t.offsetLeft - tabs.offsetLeft;
+        var right = left + t.offsetWidth;
+        if (left < tabs.scrollLeft + 8) {
+          tabs.scrollTo({ left: Math.max(0, left - 16), behavior: "smooth" });
+        } else if (right > tabs.scrollLeft + tabs.clientWidth - 8) {
+          tabs.scrollTo({ left: right - tabs.clientWidth + 16, behavior: "smooth" });
+        }
+      }
+    }
+
+    function spy() {
+      // Where a heading comes to rest when you click its tab — that is its
+      // CSS "scroll-margin-top", which already clears the frozen tab bar.
+      // Measuring from the same line means a tab lights up the instant you
+      // click it, instead of staying one section behind.
+      var landing = parseFloat(getComputedStyle(links[0].target).scrollMarginTop);
+      if (!landing || isNaN(landing)) landing = wrap.getBoundingClientRect().bottom + 12;
+      var line = landing + 6;
+      var found = null;
+      for (var i = 0; i < links.length; i++) {
+        if (links[i].target.getBoundingClientRect().top <= line) found = links[i];
+      }
+      // Above the first heading nothing is marked at all — the highlight
+      // only appears once you have actually scrolled into a section. At the
+      // very bottom of the page, always mark the last one.
+      var atBottom = (window.innerHeight + window.pageYOffset) >=
+                     (document.documentElement.scrollHeight - 2);
+      if (atBottom) found = links[links.length - 1];
+      setCurrent(found);
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () { spy(); ticking = false; });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    spy();
+  });
 });

@@ -9,6 +9,28 @@
      <head>, above the stylesheet. Nothing to edit. -->
 <script>(function(){try{var t=localStorage.getItem("site-theme");if(t){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
 <title>Research — Deep H. Makadiya</title>
+
+<!-- ===================================================================
+     SEARCH RESULTS AND LINK PREVIEWS
+     "description" is the grey line Google shows under your page title.
+     The "og:" and "twitter:" lines are what WhatsApp, LinkedIn, X, Slack
+     and friends read when someone pastes a link to this page — without
+     them a shared link shows an empty grey box.
+     IF YOUR SITE ADDRESS EVER CHANGES (a new GitHub username, a repo
+     rename, or your own domain), the three absolute links below —
+     canonical, og:url and og:image — must be updated on EVERY page.
+     They currently all begin with: https://deepmakadiya25.github.io
+     =================================================================== -->
+<meta name="description" content="Publications, preprints and research overview: automorphisms, normal subgroups and factorizations of twisted Chevalley groups over local and commutative rings.">
+<link rel="canonical" href="https://deepmakadiya25.github.io/research.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Deep H. Makadiya">
+<meta property="og:title" content="Research — Deep H. Makadiya">
+<meta property="og:description" content="Publications, preprints and research overview: automorphisms, normal subgroups and factorizations of twisted Chevalley groups over local and commutative rings.">
+<meta property="og:url" content="https://deepmakadiya25.github.io/research.html">
+<meta property="og:image" content="https://deepmakadiya25.github.io/photo.jpg">
+<meta property="og:image:alt" content="Deep H. Makadiya">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lora:ital,wght@0,400;1,400;0,600&display=swap" rel="stylesheet">
@@ -21,7 +43,10 @@
 
   <aside class="sidebar" id="sidebar">
     <img class="avatar" src="photo.jpg" alt="Deep H. Makadiya">
-    <h1>Deep H. Makadiya</h1>
+    <!-- Your name in the sidebar. It is deliberately NOT an <h1>: each page
+         already has one <h1> (the page title), and search engines expect
+         exactly one per page. Styled by ".sidebar-name" in styles.css. -->
+    <p class="sidebar-name">Deep H. Makadiya</p>
     <nav>
       <a href="index.html">Home</a>
       <a href="academic.html">Academics</a>
@@ -154,6 +179,15 @@
            The same steps apply to "Published & Accepted" below — it has
            its own, separate numbering.
            =================================================================== -->
+      <!-- Each entry that is public (published, or posted to arXiv) carries an
+           "Abstract" button beside its DOI / arXiv links. Clicking it expands
+           the <div class="pub-abstract"> that sits just below that entry's
+           links — the abstract text lives right there in this file, so to
+           edit one, edit that div. To add an Abstract button to a new paper:
+           copy a whole <button class="pub-toggle"> line plus the
+           <div class="pub-abstract"> beneath it, and give BOTH a new matching
+           id (the button's aria-controls must equal the div's id). script.js
+           needs no changes. -->
       <section>
         <h2 id="publications" class="section-title">List of Publications</h2>
 
@@ -185,7 +219,13 @@
             <span class="pub-body">
               <span class="pub-title">Automorphisms of twisted Chevalley groups of type \(^2D_\ell\ (\ell \ge 4)\) over local rings</span>
               <span class="pub-meta">with Elena I. Bunina — submitted</span>
-              <span class="pub-links"><a href="https://doi.org/10.48550/arXiv.2608.02312">arXiv</a></span>
+              <span class="pub-links"><a href="https://doi.org/10.48550/arXiv.2608.02312" target="_blank" rel="noopener">arXiv</a>
+                <button type="button" class="pub-toggle" aria-expanded="false"
+                        aria-controls="abs-pre-3">Abstract <span class="caret" aria-hidden="true">&#9656;</span></button>
+              </span>
+              <div class="pub-abstract" id="abs-pre-3" hidden>
+                <p>This paper is part of a series devoted to the classification of isomorphisms and automorphisms of twisted Chevalley groups over commutative rings. In this work, we prove that every automorphism of a twisted Chevalley group of type \(^2D_\ell\ (\ell \geqslant 4)\) over a local ring containing \(1/2\) is standard.</p>
+              </div>
             </span>
           </li>
           <li>
@@ -200,7 +240,13 @@
             <span class="pub-body">
               <span class="pub-title">Automorphisms of twisted Chevalley groups of type \(^2A_\ell\ (\ell \ge 5)\) over local rings</span>
               <span class="pub-meta">with Elena I. Bunina — submitted</span>
-              <span class="pub-links"><a href="https://doi.org/10.48550/arXiv.2607.22284">arXiv</a></span>
+              <span class="pub-links"><a href="https://doi.org/10.48550/arXiv.2607.22284" target="_blank" rel="noopener">arXiv</a>
+                <button type="button" class="pub-toggle" aria-expanded="false"
+                        aria-controls="abs-pre-1">Abstract <span class="caret" aria-hidden="true">&#9656;</span></button>
+              </span>
+              <div class="pub-abstract" id="abs-pre-1" hidden>
+                <p>This paper is the first in a series devoted to the classification of automorphisms and isomorphisms of twisted Chevalley groups over commutative rings. In the present paper, we prove that every automorphism of a twisted Chevalley group of type \(^2A_\ell\ (\ell \ge 5)\) over a local ring in which \(2\) is invertible is standard.</p>
+              </div>
             </span>
           </li>
         </ul>
@@ -212,7 +258,14 @@
             <span class="pub-body">
               <span class="pub-title">Triangular and unitriangular factorization of twisted Chevalley groups</span>
               <span class="pub-meta">with Shripad M. Garge — Israel Journal of Mathematics (2025, forthcoming)</span>
-              <span class="pub-links"><a href="https://doi.org/10.48550/arXiv.2505.20224">arXiv</a></span>
+              <span class="pub-links"><a href="https://doi.org/10.48550/arXiv.2505.20224" target="_blank" rel="noopener">arXiv</a>
+                <button type="button" class="pub-toggle" aria-expanded="false"
+                        aria-controls="abs-pub-3">Abstract <span class="caret" aria-hidden="true">&#9656;</span></button>
+              </span>
+              <div class="pub-abstract" id="abs-pub-3" hidden>
+                <p>The existence of triangular and unitriangular factorizations has been extensively studied for untwisted Chevalley groups, as well as for twisted Chevalley groups of types other than \(^2A_{2n}\ (n \ge 1)\). However, the case of twisted Chevalley groups of type \(^2A_{2n}\ (n \ge 1)\), has remained unresolved in the general setting of commutative rings. Prior work by A. Smolensky addressed this case only over certain fields, including finite fields and the field of complex numbers. These results indicate that, even over fields, the \(^2A_{2n}\) case demands more refined techniques, reflecting the difficulty of extending such factorizations to the broader class of commutative rings.</p>
+                <p>In this paper, we introduce two new classes of commutative rings: those satisfying the <em>special stable range one condition</em> and those that are <em>\(\theta\)-complete</em>. We discuss their basic properties and provide illustrative examples. Our main result establishes the existence of triangular and unitriangular factorizations for twisted Chevalley groups of type \(^2A_{2n}\) over a certain class of commutative rings, which includes all fields, all local rings (with mild restrictions), and several other important classes of rings.</p>
+              </div>
             </span>
           </li>
           <li>
@@ -221,9 +274,14 @@
               <span class="pub-title">Normalizer of twisted Chevalley groups over commutative rings</span>
               <span class="pub-meta">with Shripad M. Garge — Journal of Pure and Applied Algebra, Vol. 229, No. 11 (2025), Paper No. 108094</span>
               <span class="pub-links">
-                <a href="https://doi.org/10.1016/j.jpaa.2025.108094">DOI</a>
-                <a href="https://doi.org/10.48550/arXiv.2503.16894">arXiv</a>
+                <a href="https://doi.org/10.1016/j.jpaa.2025.108094" target="_blank" rel="noopener">DOI</a>
+                <a href="https://doi.org/10.48550/arXiv.2503.16894" target="_blank" rel="noopener">arXiv</a>
+                <button type="button" class="pub-toggle" aria-expanded="false"
+                        aria-controls="abs-pub-2">Abstract <span class="caret" aria-hidden="true">&#9656;</span></button>
               </span>
+              <div class="pub-abstract" id="abs-pub-2" hidden>
+                <p>Let \(R\) be a commutative ring with unity. Consider the twisted Chevalley group \(G_{\pi,\sigma}(\Phi, R)\) of type \(\Phi\) over \(R\) and its elementary subgroup \(E'_{\pi,\sigma}(\Phi, R)\). This paper investigates the normalizers of \(E'_{\pi,\sigma}(\Phi, R)\) and \(G_{\pi,\sigma}(\Phi, R)\) in the larger group \(G_{\pi,\sigma}(\Phi, S)\), where \(S\) is an extension ring of \(R\). We establish that under certain conditions on \(R\) these normalizers coincide. Moreover, in the case of adjoint type groups, we show that they are precisely equal to \(G_{\pi,\sigma}(\Phi, R)\).</p>
+              </div>
             </span>
           </li>
           <li>
@@ -232,9 +290,14 @@
               <span class="pub-title">On normal subgroups of twisted Chevalley groups over commutative rings</span>
               <span class="pub-meta">with Shripad M. Garge — Journal of Algebra, Vol. 688 (2026), pp. 587–659</span>
               <span class="pub-links">
-                <a href="https://doi.org/10.1016/j.jalgebra.2025.09.028">DOI</a>
-                <a href="https://doi.org/10.48550/arXiv.2502.04766">arXiv</a>
+                <a href="https://doi.org/10.1016/j.jalgebra.2025.09.028" target="_blank" rel="noopener">DOI</a>
+                <a href="https://doi.org/10.48550/arXiv.2502.04766" target="_blank" rel="noopener">arXiv</a>
+                <button type="button" class="pub-toggle" aria-expanded="false"
+                        aria-controls="abs-pub-1">Abstract <span class="caret" aria-hidden="true">&#9656;</span></button>
               </span>
+              <div class="pub-abstract" id="abs-pub-1" hidden>
+                <p>In this paper, we prove two structure theorems for twisted Chevalley groups \(G_\sigma(R)\) over a commutative ring \(R\) with unity. The first theorem concerns the normality of \(E'_\sigma(R, J)\), the elementary congruence subgroups at level \(J\), in the group \(G_\sigma(R)\). The second theorem classifies all subgroups of \(G_\sigma(R)\) normalized by its elementary subgroup \(E'_\sigma(R)\). Along the way, we obtain several interesting results. For instance, when \(R\) is a semilocal ring, we show that \(G_\sigma(R)\) can be expressed as the (internal) product of \(E'_\sigma(R)\) and the maximal torus \(T_\sigma(R)\) of \(G_\sigma(R)\).</p>
+              </div>
             </span>
           </li>
         </ul>
@@ -265,7 +328,15 @@
       </section>
 
     </div>
-    <footer>&copy; 2026 Deep H. Makadiya</footer>
+    <!-- "Last updated" is written in by script.js and is EMPTY here on
+         purpose, so the date exists in exactly ONE place on the whole site:
+         the LAST_UPDATED line near the top of script.js. Change it there and
+         all seven pages follow. (If JavaScript is switched off the line simply
+         does not appear, rather than showing a stale date.) -->
+    <footer>
+      <p>&copy; 2026 Deep H. Makadiya</p>
+      <p class="updated" id="lastUpdatedLine" hidden>Last updated: <span id="lastUpdated"></span></p>
+    </footer>
   </main>
 
 </div>

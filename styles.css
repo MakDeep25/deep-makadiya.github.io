@@ -88,7 +88,13 @@ a:hover{ text-decoration-color:var(--accent); }
   background:var(--photo-bg); border:1px solid var(--line);
   display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:.72rem; text-align:center;
 }
-.sidebar h1{ font-size:1.25rem; margin:0 0 1.8rem; font-weight:800; }
+/* Your name in the sidebar. It used to be an <h1>; it is now a plain
+   paragraph (so each page has exactly one <h1>, its own title), which means
+   the heading font has to be named here explicitly. */
+.sidebar-name{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:1.25rem; margin:0 0 1.8rem; font-weight:800; color:var(--ink);
+}
 
 .sidebar nav{ display:flex; flex-direction:column; gap:.15rem; text-align:left; }
 .sidebar nav a{
@@ -175,6 +181,15 @@ main{ padding:3.2rem 2.6rem; min-width:0; }
   white-space:nowrap; flex:none;
 }
 .page-tabs a:hover{ border-color:var(--accent); color:var(--accent); }
+
+/* The tab for the section currently on screen. script.js adds and removes
+   this class as you scroll — see "SECTION HIGHLIGHTING" there. The inset
+   shadow thickens the outline without changing the tab's size, so nothing
+   shifts sideways as the highlight moves along the row. */
+.page-tabs a.current{
+  color:var(--accent); border-color:var(--accent); font-weight:600;
+  box-shadow:inset 0 0 0 1px var(--accent);
+}
 
 /* Fade hints — a soft gradient over the edge that has more tabs hidden.
    Shown/hidden automatically by script.js; purely visual (not clickable). */
@@ -293,6 +308,30 @@ h2.section-title{ font-size:clamp(1.22rem, 4.4vw, 1.5rem); margin:0 0 1.5rem;
 .pub-links{ font-size:.85rem; margin-top:.45rem; display:block; }
 .pub-links a{ margin-right:1.1rem; }
 
+/* ---- "Abstract" — a button made to look exactly like the DOI and arXiv
+   links beside it. Clicking it opens the ".pub-abstract" panel below;
+   the little triangle turns to point downwards while it is open. ---- */
+.pub-toggle{
+  font:inherit; font-size:.85rem; color:var(--accent);
+  background:none; border:0; padding:0; margin-right:1.1rem;
+  cursor:pointer; text-decoration:underline;
+  text-decoration-color:var(--accent-soft); text-underline-offset:2px;
+}
+.pub-toggle:hover{ text-decoration-color:var(--accent); }
+.pub-toggle .caret{
+  display:inline-block; font-size:.7em; margin-left:.15rem;
+  transition:transform .18s ease; text-decoration:none;
+}
+.pub-toggle[aria-expanded="true"] .caret{ transform:rotate(90deg); }
+
+.pub-abstract{
+  margin-top:.8rem; padding-left:1rem;
+  border-left:2px solid var(--line);
+  font-size:.93rem;
+}
+.pub-abstract p{ margin:0 0 .7rem; }
+.pub-abstract p:last-child{ margin-bottom:0; }
+
 /* ---- Teaching table ---- */
 table.teach{ width:100%; border-collapse:collapse; font-size:.94rem; }
 table.teach td{ padding:.7rem 0; border-top:1px solid var(--line); }
@@ -306,21 +345,23 @@ ul.plain li:first-child{ border-top:none; }
 ul.plain .item-num{ font-family:"Playfair Display",serif; font-weight:700; color:var(--accent); flex:none; min-width:2.2rem; }
 ul.plain .year{ font-weight:700; margin-right:.4rem; }
 
-/* ---- Skills tags (Miscellaneous page) ---- */
+/* ---- Tags: Skills and Hobbies (Beyond Academia) and Areas of Interest
+   (Research) all share one look — no fill at all, just the page colour
+   showing through, with a slightly heavier outline so they still read as
+   separate items. Both lists are styled identically on purpose; change the
+   border width or radius here and in ".interest-list li" below together. ---- */
 .skills-list{ display:flex; flex-wrap:wrap; gap:.6rem; list-style:none; margin:0; padding:0; }
 .skills-list li{
-  border:1px solid var(--line); border-radius:999px; padding:.5rem 1.1rem;
-  font-size:.92rem; background:#fff;
+  border:2px solid var(--line); border-radius:10px; padding:.45rem 1.05rem;
+  font-size:.92rem; background:transparent;
 }
 
-/* ---- Interest tags (Research page's "Areas of Interest") ----
-   Rounded rectangles (not pills) with a tinted fill, distinct from the
-   Skills tags above — change "border-radius" or "background" here to
-   restyle just these tags. */
+/* ---- Interest tags (Research page's "Areas of Interest") — same outlined
+   box as the Skills tags above. ---- */
 .interest-list{ display:flex; flex-wrap:wrap; gap:.6rem; list-style:none; margin:0; padding:0; }
 .interest-list li{
-  border:1px solid var(--line); border-radius:10px; padding:.5rem 1.1rem;
-  font-size:.92rem; background:var(--cream-2);
+  border:2px solid var(--line); border-radius:10px; padding:.45rem 1.05rem;
+  font-size:.92rem; background:transparent;
 }
 
 /* ---- Plain bullet list (Awards, Grants and Other Academic Achievements) ----
@@ -362,6 +403,8 @@ ul.bullets li:last-child{ margin-bottom:0; }
 }
 
 footer{ text-align:center; font-size:.8rem; color:var(--muted); padding:2rem 1.5rem; font-style:italic; }
+footer p{ margin:0; }
+footer .updated{ font-size:.74rem; margin-top:.35rem; opacity:.85; }
 
 
 /* =========================================================================
