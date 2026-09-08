@@ -62,7 +62,18 @@ body{
 }
 h1,h2,h3{ font-family:"Playfair Display",Georgia,serif; }
 a{ color:var(--accent); text-decoration:underline; text-decoration-color:var(--accent-soft); }
-a:hover{ text-decoration-color:var(--accent); }
+/* ---- HOVER STATES ARE FOR MICE AND TRACKPADS ONLY ----------------------
+   Every ":hover" rule on this site is wrapped in "@media (hover: hover)".
+   The reason: on a touchscreen there is no such thing as hovering, so a
+   phone applies the hover style to whatever you TAPPED and leaves it there
+   until you tap something else. On the section tabs that looked like a
+   second, stuck highlight sitting beside the real one; on the profile
+   buttons a tapped button stayed filled in; on the colour circles a tapped
+   circle stayed enlarged. Guarding them means a phone shows only the real
+   state (the "current" section, the active page, the chosen colour), while
+   a laptop still gets hover feedback exactly as before.
+   ---------------------------------------------------------------------- */
+@media (hover: hover){ a:hover{ text-decoration-color:var(--accent); } }
 
 /* =========================================================================
    LAYOUT: sidebar (left) + main content (right)
@@ -101,7 +112,7 @@ a:hover{ text-decoration-color:var(--accent); }
   color:var(--ink); text-decoration:none; font-size:.92rem; padding:.6rem .7rem;
   border-radius:6px; border-left:3px solid transparent;
 }
-.sidebar nav a:hover{ background:var(--nav-hover); color:var(--accent); }
+@media (hover: hover){ .sidebar nav a:hover{ background:var(--nav-hover); color:var(--accent); } }
 .sidebar nav a.active{ color:var(--accent); font-weight:600; border-left-color:var(--accent); background:var(--nav-hover); }
 
 /* ---- Mobile / tablet top bar, menu button and overlay ----
@@ -180,7 +191,7 @@ main{ padding:3.2rem 2.6rem; min-width:0; }
   padding:.4rem .9rem; border:1px solid var(--line); border-radius:999px;
   white-space:nowrap; flex:none;
 }
-.page-tabs a:hover{ border-color:var(--accent); color:var(--accent); }
+@media (hover: hover){ .page-tabs a:hover{ border-color:var(--accent); color:var(--accent); } }
 
 /* The tab for the section currently on screen. script.js adds and removes
    this class as you scroll — see "SECTION HIGHLIGHTING" there. The inset
@@ -238,7 +249,7 @@ main{ padding:3.2rem 2.6rem; min-width:0; }
   background:var(--photo-bg);
   transition:opacity .15s ease;
 }
-.hero-photo-frame a:hover .home-photo{ opacity:.82; }
+@media (hover: hover){ .hero-photo-frame a:hover .home-photo{ opacity:.82; } }
 .hero-text .eyebrow{
   text-transform:uppercase; letter-spacing:.16em; font-size:.72rem;
   color:var(--accent); margin:.5rem 0 0; font-family:"Lora",serif;
@@ -262,7 +273,7 @@ main{ padding:3.2rem 2.6rem; min-width:0; }
   border-radius:999px; color:var(--accent); font-family:"Lora",serif; font-size:.88rem;
   text-decoration:none; transition:background .15s ease, color .15s ease;
 }
-.btn:hover{ background:var(--accent); color:#fff; }
+@media (hover: hover){ .btn:hover{ background:var(--accent); color:#fff; } }
 
 /* =========================================================================
    Generic content sections (used on every inner page)
@@ -317,7 +328,7 @@ h2.section-title{ font-size:clamp(1.22rem, 4.4vw, 1.5rem); margin:0 0 1.5rem;
   cursor:pointer; text-decoration:underline;
   text-decoration-color:var(--accent-soft); text-underline-offset:2px;
 }
-.pub-toggle:hover{ text-decoration-color:var(--accent); }
+@media (hover: hover){ .pub-toggle:hover{ text-decoration-color:var(--accent); } }
 .pub-toggle .caret{
   display:inline-block; font-size:.7em; margin-left:.15rem;
   transition:transform .18s ease; text-decoration:none;
@@ -344,6 +355,22 @@ ul.plain li{ padding:.95rem 0; border-top:1px solid var(--line); font-size:.97re
 ul.plain li:first-child{ border-top:none; }
 ul.plain .item-num{ font-family:"Playfair Display",serif; font-weight:700; color:var(--accent); flex:none; min-width:2.2rem; }
 ul.plain .year{ font-weight:700; margin-right:.4rem; }
+
+/* ---- Research Overview: numbered project entries -----------------------
+   Built on the same numbered "ul.plain" list as the talks and seminars, but
+   each entry holds a title and one or two paragraphs rather than a single
+   line. ---- */
+.overview-list li{ align-items:flex-start; }
+.overview-body{ flex:1; min-width:0; }
+.overview-title{
+  display:block; font-family:"Playfair Display",Georgia,serif;
+  font-weight:700; font-size:1.08rem; margin-bottom:.45rem;
+}
+.overview-body p{ margin:0 0 .75rem; }
+.overview-body p:last-child{ margin-bottom:0; }
+
+/* ---- "The complete list is on the blogs page." ---- */
+.see-all{ margin:1.5rem 0 0; font-size:.95rem; }
 
 /* ---- Tags: Skills and Hobbies (Beyond Academia) and Areas of Interest
    (Research) all share one look — no fill at all, just the page colour
@@ -513,7 +540,7 @@ footer .updated{ font-size:.74rem; margin-top:.35rem; opacity:.85; }
   box-shadow:inset 0 0 0 1px rgba(0,0,0,.25);
   transition:transform .12s ease, box-shadow .15s ease;
 }
-.swatch:hover{ transform:scale(1.14); }
+@media (hover: hover){ .swatch:hover{ transform:scale(1.14); } }
 .swatch.active{
   box-shadow:inset 0 0 0 1px rgba(0,0,0,.25),
              0 0 0 2px var(--cream-2),
