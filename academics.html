@@ -8,7 +8,7 @@
      page never flashes the default colours first. It must stay here in the
      <head>, above the stylesheet. Nothing to edit. -->
 <script>(function(){try{var t=localStorage.getItem("site-theme");if(t){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
-<title>Photo Gallery — Deep H. Makadiya</title>
+<title>Academics — Deep H. Makadiya</title>
 
 <!-- ===================================================================
      SEARCH RESULTS AND LINK PREVIEWS
@@ -21,13 +21,13 @@
      canonical, og:url and og:image — must be updated on EVERY page.
      They currently all begin with: https://deepmakadiya25.github.io
      =================================================================== -->
-<meta name="description" content="Photographs from the mathematical journey of Deep H. Makadiya — conferences, seminars and Ph.D. years.">
-<link rel="canonical" href="https://deepmakadiya25.github.io/gallery.html">
+<meta name="description" content="Education, academic positions, awards and grants of Deep H. Makadiya, Post-doctoral Fellow in Mathematics at Bar-Ilan University.">
+<link rel="canonical" href="https://deepmakadiya25.github.io/academics.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Deep H. Makadiya">
-<meta property="og:title" content="Photo Gallery — Deep H. Makadiya">
-<meta property="og:description" content="Photographs from the mathematical journey of Deep H. Makadiya — conferences, seminars and Ph.D. years.">
-<meta property="og:url" content="https://deepmakadiya25.github.io/gallery.html">
+<meta property="og:title" content="Academics — Deep H. Makadiya">
+<meta property="og:description" content="Education, academic positions, awards and grants of Deep H. Makadiya, Post-doctoral Fellow in Mathematics at Bar-Ilan University.">
+<meta property="og:url" content="https://deepmakadiya25.github.io/academics.html">
 <meta property="og:image" content="https://deepmakadiya25.github.io/photo.jpg">
 <meta property="og:image:alt" content="Deep H. Makadiya">
 <meta name="twitter:card" content="summary">
@@ -39,13 +39,6 @@
 <body>
 <div class="layout">
 
-  <!-- =====================================================================
-       NOTE ON THIS PAGE: Photo Gallery is deliberately NOT one of the 6
-       links below — it's a "hidden" page reached only by clicking the photo
-       on the Home page. The sidebar is still shown here (so visitors can
-       get back to the main pages), just with none of its links marked
-       "active", since this page isn't one of the 6.
-       ===================================================================== -->
   <aside class="sidebar" id="sidebar">
     <img class="avatar" src="photo.jpg" alt="Deep H. Makadiya">
     <!-- Your name in the sidebar. It is deliberately NOT an <h1>: each page
@@ -54,7 +47,7 @@
     <p class="sidebar-name">Deep H. Makadiya</p>
     <nav>
       <a href="index.html">Home</a>
-      <a href="academics.html">Academics</a>
+      <a href="academics.html" class="active">Academics</a>
       <a href="research.html">Research</a>
       <a href="teaching.html">Teaching</a>
       <a href="professional-activities.html">Professional Activities</a>
@@ -128,27 +121,23 @@
     <div class="wrap">
 
       <div class="page-header">
-        <h1>Photo Gallery</h1>
-        <p class="page-desc">Collecting memories of my mathematical journey — this page is a work in progress.</p>
+        <h1>Academics</h1>
+        <p class="page-desc">My education, professional experience, and academic achievements.</p>
       </div>
 
-      <!-- ===================================================================
-           HOW TO ADD A NEW CHAPTER/SECTION LATER (e.g. "Undergrad Days"):
-             1. Add a new tab below: <a href="#undergrad-days">Undergrad Days</a>
-             2. Copy one whole <section>...</section> block from further down
-                this file, paste it after the last one, and change its
-                h2 "id" AND text to match (here: id="undergrad-days").
-             3. Fill its <div class="gallery-grid"> with photos — see the
-                instructions just above that div, further down.
-           This bar freezes at the top when you scroll, and automatically
-           shows scroll arrows/fade hints if you add enough tabs that they
-           no longer all fit on one line — nothing to edit for that part.
-           =================================================================== -->
+      <!-- In-page navigation: jumps to the sections below. If you rename a
+           section heading, also update its matching href="#..." here.
+           This bar freezes at the top of the window when you scroll, and
+           the arrow/fade hints on the sides appear automatically if there
+           are ever too many tabs to fit on one line — nothing to edit for
+           that part. -->
       <div class="page-tabs-wrap">
         <button class="tabs-arrow left" aria-label="Scroll tabs left">&#8249;</button>
         <nav class="page-tabs">
-          <a href="#phd-journey">Ph.D. Journey</a>
-          <a href="#conference-georgia">Conference at Georgia</a>
+          <a href="#current-position">Current Position</a>
+          <a href="#past-positions">Past Positions</a>
+          <a href="#education">Education</a>
+          <a href="#achievements">Awards &amp; Grants</a>
         </nav>
         <button class="tabs-arrow right" aria-label="Scroll tabs right">&#8250;</button>
         <div class="tabs-fade left" aria-hidden="true" hidden></div>
@@ -156,33 +145,114 @@
       </div>
 
       <!-- ===================================================================
-           HOW TO ADD PHOTOS TO A SECTION:
-             1. Put your image files in a new folder named "gallery" next to
-                this HTML file (create the folder yourself the first time).
-             2. Replace a placeholder tile below with:
-                  <figure class="gallery-item">
-                    <img src="gallery/your-photo.jpg" alt="Short description">
-                    <figcaption>Optional one-line caption</figcaption>
-                  </figure>
-             3. Add or remove placeholder tiles freely — the grid reflows
-                automatically no matter how many photos you have.
+           CURRENT POSITION
            =================================================================== -->
       <section>
-        <h2 id="phd-journey" class="section-title">Ph.D. Journey</h2>
-        <div class="gallery-grid">
-          <div class="gallery-placeholder">[Add a photo here]</div>
-          <div class="gallery-placeholder">[Add a photo here]</div>
-          <div class="gallery-placeholder">[Add a photo here]</div>
+        <h2 id="current-position" class="section-title">Current Position</h2>
+        <div class="item">
+          <h3>Post-doctoral Fellow</h3>
+          <p class="meta">Bar-Ilan University, Ramat-Gan, Israel · October 2025 – Present</p>
+          <p>Mentor: Prof. Elena I. Bunina</p>
         </div>
       </section>
 
+      <!-- ===================================================================
+           PAST ACADEMIC POSITIONS
+           To add a new one later: copy one whole <div class="item">...</div>
+           block and edit its title/meta/description. Newest goes on top.
+           =================================================================== -->
       <section>
-        <h2 id="conference-georgia" class="section-title">Conference at Georgia</h2>
-        <div class="gallery-grid">
-          <div class="gallery-placeholder">[Add a photo here]</div>
-          <div class="gallery-placeholder">[Add a photo here]</div>
-          <div class="gallery-placeholder">[Add a photo here]</div>
+        <h2 id="past-positions" class="section-title">Past Academic Positions</h2>
+        <div class="item">
+          <h3>Visiting Researcher</h3>
+          <p class="meta">Harish-Chandra Research Institute, Prayagraj · July – September 2025</p>
+          <p>Mentor: Prof. Manoj Kumar Yadav</p>
         </div>
+        <div class="item">
+          <h3>Research Associate</h3>
+          <p class="meta">IIT Bombay · January – May 2025</p>
+          <p>Mentor: Prof. Shripad M. Garge</p>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           EDUCATION
+           Same pattern: copy a <div class="item"> block to add a new degree.
+           =================================================================== -->
+      <section>
+        <h2 id="education" class="section-title">Education</h2>
+        <div class="item">
+          <h3>Ph.D. in Mathematics</h3>
+          <p class="meta">IIT Bombay, Department of Mathematics · January 2020 – May 2025</p>
+          <p>Thesis: &ldquo;Some properties of twisted Chevalley groups.&rdquo;<br>Advisor: Prof. Shripad M. Garge</p>
+        </div>
+        <div class="item">
+          <h3>M.Sc. in Mathematics</h3>
+          <p class="meta">IIT Bombay, Department of Mathematics · July 2017 – May 2019</p>
+        </div>
+        <div class="item">
+          <h3>B.Sc. in Mathematics</h3>
+          <p class="meta">MS University of Baroda, Faculty of Science · June 2014 – April 2017</p>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           AWARDS, GRANTS AND OTHER ACADEMIC ACHIEVEMENTS
+           Three subsections:
+             - "Awards and Honours" — this one is COMMENTED OUT below (hidden
+               from the live site) because you don't have anything to put
+               there yet. See the instructions right above it for exactly
+               how to turn it back on once you do.
+             - "Grants and Scholarships" — fellowships/scholarships you were
+               awarded. Just add one <li> per award, newest first (no
+               numbering).
+             - "Other Academic Achievements" — everything else (exam ranks,
+               competitions, etc.), also plain bullet points, no numbering.
+               Ordered here exactly as on your old Google Site.
+           To add a new item to either visible list: add a new <li>...</li>
+           anywhere in that list — order doesn't matter since there's no
+           numbering to keep track of, just put newer items near the top if
+           you'd like.
+           =================================================================== -->
+      <section>
+        <h2 id="achievements" class="section-title">Awards, Grants and Other Academic Achievements</h2>
+
+        <!-- ===============================================================
+             HOW TO TURN ON "Awards and Honours":
+             Right now the whole subsection below is wrapped in a single
+             HTML comment, which is why it's invisible on the live site —
+             this is just a placeholder until you have a real award to
+             list. When you do:
+               1. Delete the short comment-opening line just below this
+                  one (it's on its own line, right above "<p class=
+                  "subhead">Awards and Honours").
+               2. Delete the matching comment-closing line right after
+                  the "</ul>" a few lines down.
+               3. Replace the example <li> with your real award(s) — copy
+                  the <li> line to add more than one, newest first.
+             =============================================================== -->
+        <!--
+        <p class="subhead">Awards and Honours</p>
+        <ul class="bullets">
+          <li>[Your award or honour — e.g. Best Poster Award, XYZ Conference — 2026]</li>
+        </ul>
+        -->
+
+        <p class="subhead">Grants and Scholarships</p>
+        <ul class="bullets">
+          <li>Awarded NET/JRF (Junior Research Fellowship)</li>
+        </ul>
+
+        <p class="subhead">Other Academic Achievements</p>
+        <ul class="bullets">
+          <li>Secured AIR 10 (out of 10,834) in the IIT-JAM Examination for M.Sc. Mathematics — 2017</li>
+          <li>All India JRF Rank 53 on first NET/JRF attempt — 2017</li>
+          <li>All India JRF Rank 67 on second NET/JRF attempt — 2018</li>
+          <li>All India JRF Rank 19 on third NET/JRF attempt — 2019</li>
+          <li>GATE examination qualification on first attempt — 2019</li>
+          <li>Rank 1 in MS University Entrance Examination for M.Sc. Mathematics — 2017</li>
+          <li>Rank 4 (Gujarat State) in Madhava Mathematics Competition — 2017</li>
+        </ul>
       </section>
 
     </div>

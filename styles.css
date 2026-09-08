@@ -20,9 +20,9 @@
    To change the DEFAULT scheme, swap the values in ":root" for those of the
    scheme you prefer (each block is labelled). To add your own scheme, see
    the step-by-step note at the very bottom of this file.
-   This one stylesheet is shared by every page (index.html, academic.html,
+   This one stylesheet is shared by every page (index.html, academics.html,
    research.html, teaching.html, professional-activities.html,
-   beyond-academia.html, and gallery.html).
+   beyond-mathematics.html, gallery.html and blogs.html).
    If you want to change a color or font everywhere at once, change it here
    in one place under ":root" below — every page updates together.
    ========================================================================= */
@@ -369,10 +369,41 @@ ul.plain .year{ font-weight:700; margin-right:.4rem; }
 .overview-body p{ margin:0 0 .75rem; }
 .overview-body p:last-child{ margin-bottom:0; }
 
+/* ---- Collapsible link groups ("Some Useful Links") ---------------------
+   Each group is a <details> element, so opening and closing is handled by
+   the browser itself — no script. They start closed because the <details>
+   tags carry no "open" attribute. The heading is styled to match the small
+   uppercase subheadings used elsewhere on the site, with a triangle that
+   turns as the group opens. ---- */
+.link-group{ border-top:1px solid var(--line); }
+.link-group:first-of-type{ border-top:none; }
+.link-group summary{
+  cursor:pointer; list-style:none;
+  display:flex; align-items:baseline; gap:.55rem;
+  padding:1.05rem 0;
+  font-size:.74rem; text-transform:uppercase; font-weight:600;
+  letter-spacing:.13em; color:var(--accent);
+}
+.link-group summary::-webkit-details-marker{ display:none; }  /* Safari's own arrow */
+.link-group summary .caret{
+  font-size:.85em; display:inline-block;
+  transition:transform .18s ease;
+}
+.link-group[open] summary .caret{ transform:rotate(90deg); }
+.link-group summary:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+/* The underline on hover goes on the label span only. It cannot go on the
+   whole <summary>: a text-decoration set on an element is drawn through all
+   of its in-flow children, so the little triangle would be underlined too,
+   and no rule on the triangle itself can take that away. */
+@media (hover: hover){
+  .link-group summary:hover .group-label{ text-decoration:underline; text-underline-offset:3px; }
+}
+.link-group .group-body{ padding:.2rem 0 1.3rem; }
+
 /* ---- "The complete list is on the blogs page." ---- */
 .see-all{ margin:1.5rem 0 0; font-size:.95rem; }
 
-/* ---- Tags: Skills and Hobbies (Beyond Academia) and Areas of Interest
+/* ---- Tags: Skills and Hobbies (Beyond Mathematics) and Areas of Interest
    (Research) all share one look — no fill at all, just the page colour
    showing through, with a slightly heavier outline so they still read as
    separate items. Both lists are styled identically on purpose; change the

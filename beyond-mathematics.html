@@ -8,7 +8,7 @@
      page never flashes the default colours first. It must stay here in the
      <head>, above the stylesheet. Nothing to edit. -->
 <script>(function(){try{var t=localStorage.getItem("site-theme");if(t){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
-<title>Professional Activities — Deep H. Makadiya</title>
+<title>Beyond Mathematics — Deep H. Makadiya</title>
 
 <!-- ===================================================================
      SEARCH RESULTS AND LINK PREVIEWS
@@ -21,13 +21,13 @@
      canonical, og:url and og:image — must be updated on EVERY page.
      They currently all begin with: https://deepmakadiya25.github.io
      =================================================================== -->
-<meta name="description" content="Invited talks, conference and workshop participation, seminars and seminar series led by Deep H. Makadiya.">
-<link rel="canonical" href="https://deepmakadiya25.github.io/professional-activities.html">
+<meta name="description" content="Skills, languages, hobbies and interests of Deep H. Makadiya, mathematician at Bar-Ilan University.">
+<link rel="canonical" href="https://deepmakadiya25.github.io/beyond-mathematics.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Deep H. Makadiya">
-<meta property="og:title" content="Professional Activities — Deep H. Makadiya">
-<meta property="og:description" content="Invited talks, conference and workshop participation, seminars and seminar series led by Deep H. Makadiya.">
-<meta property="og:url" content="https://deepmakadiya25.github.io/professional-activities.html">
+<meta property="og:title" content="Beyond Mathematics — Deep H. Makadiya">
+<meta property="og:description" content="Skills, languages, hobbies and interests of Deep H. Makadiya, mathematician at Bar-Ilan University.">
+<meta property="og:url" content="https://deepmakadiya25.github.io/beyond-mathematics.html">
 <meta property="og:image" content="https://deepmakadiya25.github.io/photo.jpg">
 <meta property="og:image:alt" content="Deep H. Makadiya">
 <meta name="twitter:card" content="summary">
@@ -35,11 +35,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lora:ital,wght@0,400;1,400;0,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<!-- NOTE: this page used to need MathJax (a script that renders math
-     notation like $SL_n$) for the Student Seminars list, but that list now
-     uses plain HTML subscripts instead (e.g. "SL<sub>n</sub>"), so the
-     MathJax scripts have been removed from this page. research.html still
-     uses MathJax for its publication titles, so don't remove it there. -->
+<!-- MathJax renders the mathematical notation in the "Useful Links" entries. -->
+<script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'}};</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script>
 </head>
 <body>
 <div class="layout">
@@ -55,8 +53,8 @@
       <a href="academics.html">Academics</a>
       <a href="research.html">Research</a>
       <a href="teaching.html">Teaching</a>
-      <a href="professional-activities.html" class="active">Professional Activities</a>
-      <a href="beyond-mathematics.html">Beyond Mathematics</a>
+      <a href="professional-activities.html">Professional Activities</a>
+      <a href="beyond-mathematics.html" class="active">Beyond Mathematics</a>
     </nav>
 
     <!-- ===================================================================
@@ -126,18 +124,25 @@
     <div class="wrap">
 
       <div class="page-header">
-        <h1>Professional Activities</h1>
-        <p class="page-desc">Invited talks, seminar activity, conference participation, and other professional engagements.</p>
+        <h1>Beyond Mathematics</h1>
+        <p class="page-desc">The things I work with and the things I enjoy — my skills and languages, my hobbies, a few pieces of writing, and some links worth keeping.</p>
       </div>
 
+      <!-- This page has 4 tabs/sections:
+             1. Skills                — a plain list of skills/tools.
+             2. Life Beyond Academics — two subsections: "Hobbies & Interests"
+                (a tag list, like Skills) and "A Few Stories" (short written
+                anecdotes/paragraphs).
+             3. Blogs                 — two subsections: "Academic Blogs"
+                and "Non-Academic Blogs", each a list of links.
+             4. Quick Links           — anything else worth linking to. -->
       <div class="page-tabs-wrap">
         <button class="tabs-arrow left" aria-label="Scroll tabs left">&#8249;</button>
         <nav class="page-tabs">
-          <a href="#invited-talks">Invited Talks</a>
-          <a href="#conferences">Conferences &amp; Workshops</a>
-          <a href="#seminars">General Seminars</a>
-          <a href="#seminar-series">Seminar Series Led</a>
-          <a href="#student-seminars">Student Seminars</a>
+          <a href="#skills">Skills</a>
+          <a href="#hobbies-interests">Hobbies &amp; Interests</a>
+          <a href="#blogs">Blogs</a>
+          <a href="#links">Useful Links</a>
         </nav>
         <button class="tabs-arrow right" aria-label="Scroll tabs right">&#8250;</button>
         <div class="tabs-fade left" aria-hidden="true" hidden></div>
@@ -145,90 +150,149 @@
       </div>
 
       <!-- ===================================================================
-           Every list below uses the SAME numbering rule as Publications:
-           newest entry on top with the HIGHEST number, counting down to 1.
-           TO ADD A NEW ENTRY: copy one whole <li>...</li> line, paste it at
-           the TOP of that list's <ul class="plain">, and set its number to
-           (current top number + 1) — leave every other number in that list
-           untouched. Each of the 5 sections below has its OWN independent
-           numbering, so "3." in "Invited Talks" and "3." in "General
-           Seminars" are unrelated to each other.
-           =================================================================== -->
-
-      <!-- ===================================================================
-           INVITED TALKS & CONFERENCE PRESENTATIONS — talks/posters you gave
-           AT a conference or workshop (as opposed to just attending one,
-           which belongs in "Conferences & Workshops" below instead).
+           SKILLS
+           Two lists, each under its own small heading: the software and
+           languages you work in, and the languages you speak. Each entry is
+           one <li>...</li> — copy or delete lines freely, the lists reflow
+           on their own. To add a third group (say "Certifications"), copy a
+           <p class="subhead"> line together with the <ul> beneath it.
            =================================================================== -->
       <section>
-        <h2 id="invited-talks" class="section-title">Invited Talks &amp; Conference Presentations</h2>
-        <ul class="plain">
-          <li><span class="item-num">3.</span><span><span class="year">2026</span>Invited talk, &ldquo;Algebraic Geometry and Model Theory of Groups and Rings IV,&rdquo; international workshop, Tbilisi, Georgia — presented ongoing work with Elena I. Bunina on classifying the automorphisms of twisted Chevalley groups over commutative rings.</span></li>
-          <li><span class="item-num">2.</span><span><span class="year">2025</span>Poster presentation, &ldquo;Representations of Groups and Algebras&rdquo; conference, IMSc, Chennai — on classifying normal subgroups of twisted Chevalley groups over commutative rings.</span></li>
-          <li><span class="item-num">1.</span><span><span class="year">2024</span>Talk, &ldquo;Groups and Representations&rdquo; conference, IIT Bombay, Mumbai — presented ongoing work with Shripad M. Garge on classifying the automorphisms of twisted Chevalley groups over commutative rings.</span></li>
+        <h2 id="skills" class="section-title">Skills</h2>
+
+        <p class="subhead">Programming &amp; Typesetting</p>
+        <ul class="skills-list">
+          <li>LaTeX</li>
+          <li>C++</li>
+          <li>Python</li>
+          <li>SageMath</li>
+          <li>GAP</li>
+        </ul>
+
+        <p class="subhead">Languages</p>
+        <ul class="skills-list">
+          <li>English</li>
+          <li>Hindi</li>
+          <li>Gujarati</li>
         </ul>
       </section>
 
       <!-- ===================================================================
-           CONFERENCE & WORKSHOP PARTICIPATION — conferences/workshops you
-           attended, whether or not you presented (a couple of these overlap
-           with "Invited Talks" above on purpose — some events you both
-           attended AND presented at, so they're listed in both places,
-           matching how your old Google Site recorded them).
+           HOBBIES &amp; INTERESTS
            =================================================================== -->
       <section>
-        <h2 id="conferences" class="section-title">Conference &amp; Workshop Participation</h2>
-        <ul class="plain">
-          <li><span class="item-num">7.</span><span><span class="year">2026</span>IMU Annual Meeting, Bar-Ilan University, Ramat-Gan, Israel.</span></li>
-          <li><span class="item-num">6.</span><span><span class="year">2025</span>ISF Workshop on &ldquo;Algebra, Geometry, Dynamics,&rdquo; Bar-Ilan University, Ramat-Gan, Israel.</span></li>
-          <li><span class="item-num">5.</span><span><span class="year">2025</span>Conference on &ldquo;Representations of Groups and Algebras,&rdquo; IMSc, Chennai.</span></li>
-          <li><span class="item-num">4.</span><span><span class="year">2024</span>Conference on &ldquo;Groups and Representations,&rdquo; IIT Bombay, Mumbai.</span></li>
-          <li><span class="item-num">3.</span><span><span class="year">2024</span>NCM Workshop on &ldquo;Lie Groups and Representation Theory,&rdquo; IISER Berhampur.</span></li>
-          <li><span class="item-num">2.</span><span><span class="year">2017</span>National Workshop on &ldquo;Problem Solving Technique in Mathematics,&rdquo; M.S. University of Baroda, Vadodara.</span></li>
-          <li><span class="item-num">1.</span><span><span class="year">2016</span>Workshop on &ldquo;Problem Solving &amp; Enrichment in Mathematics,&rdquo; St. Xavier&rsquo;s College, Ahmedabad.</span></li>
+        <h2 id="hobbies-interests" class="section-title">Hobbies &amp; Interests</h2>
+        <ul class="skills-list">
+          <li>Chess</li>
+          <li>Hindu Philosophy</li>
+          <li>Puzzle Solving</li>
+          <li>Exploring Places</li>
         </ul>
       </section>
 
       <!-- ===================================================================
-           GENERAL SEMINARS — invited/departmental seminar talks you've given
-           (as distinct from the "Seminar Series" and "Student Seminars"
-           below, which were ongoing series you organized or presented in as
-           a student, respectively).
+           BLOGS
+           Two subsections — "Academic Blogs" (math/research-related
+           writing, yours or others') and "Non-Academic Blogs" (anything
+           else). Each entry is a <div class="item"> with a linked title —
+           copy one to add another, or delete the placeholder if you'd
+           rather leave a subsection empty for now.
            =================================================================== -->
       <section>
-        <h2 id="seminars" class="section-title">General Seminars</h2>
-        <ul class="plain">
-          <li><span class="item-num">3.</span><span><span class="year">2026</span>&ldquo;Triangular and Unitriangular Factorizations of SL<sub>n</sub>(R) and SU<sub>n</sub>(R),&rdquo; Bar-Ilan University.</span></li>
-          <li><span class="item-num">2.</span><span><span class="year">2025</span>&ldquo;Triangular and Unitriangular Factorizations of SL<sub>n</sub>(R) and SU<sub>n</sub>(R),&rdquo; IIT Bombay.</span></li>
-          <li><span class="item-num">1.</span><span><span class="year">2025</span>&ldquo;Triangular and Unitriangular Factorizations of SL<sub>n</sub>(R) and SU<sub>n</sub>(R),&rdquo; Harish-Chandra Research Institute.</span></li>
-        </ul>
+        <h2 id="blogs" class="section-title">Blogs</h2>
+
+        <!-- ===================================================================
+             A few recent pieces only — three or four is plenty here. The full
+             list lives on blogs.html, linked from the line underneath. TO ADD
+             ONE: copy a whole <div class="item"> block, edit its title, link
+             and one-line description, and put the newest at the top. When you
+             have more than four, move the oldest off this page (it stays on
+             blogs.html).
+             =================================================================== -->
+        <div class="item">
+          <h3><a href="#">[Post title]</a></h3>
+          <p>[One line saying what this piece is about.]</p>
+        </div>
+        <div class="item">
+          <h3><a href="#">[Post title]</a></h3>
+          <p>[One line saying what this piece is about.]</p>
+        </div>
+        <div class="item">
+          <h3><a href="#">[Post title]</a></h3>
+          <p>[One line saying what this piece is about.]</p>
+        </div>
+
+        <p class="see-all">The complete list is on the <a href="blogs.html">blogs page</a>.</p>
       </section>
 
       <!-- ===================================================================
-           SEMINAR SERIES LED — ongoing reading/seminar series you organized
-           at IIT Bombay, each covering one text or topic over time.
-           =================================================================== -->
-      <section>
-        <h2 id="seminar-series" class="section-title">Seminar Series Led — IIT Bombay</h2>
-        <ul class="plain">
-          <li><span class="item-num">4.</span><span><span class="year">2025</span>&ldquo;Spherical Functions on a Group of p-adic Type,&rdquo; following I. G. Macdonald.</span></li>
-          <li><span class="item-num">3.</span><span><span class="year">2024</span>&ldquo;Nilpotent Orbits of Lie Algebras,&rdquo; following D. H. Collingwood and W. M. McGovern.</span></li>
-          <li><span class="item-num">2.</span><span><span class="year">2023–24</span>&ldquo;Linear Algebraic Groups,&rdquo; following T. A. Springer.</span></li>
-          <li><span class="item-num">1.</span><span><span class="year">2023</span>Steinberg&rsquo;s paper, &ldquo;Regular Elements of Semisimple Algebraic Groups.&rdquo;</span></li>
-        </ul>
-      </section>
+           SOME USEFUL LINKS
+           The links are grouped, and each group is a <details> block: it
+           starts CLOSED every time the page is opened, and expands when the
+           heading is clicked. That is plain HTML — no script involved — so
+           there is nothing to wire up.
 
-      <!-- ===================================================================
-           STUDENT SEMINARS — talks given as a student (at IIT Bombay), i.e.
-           before you were the one organizing the series above.
+           TO ADD A LINK: copy a whole <div class="item"> block into the
+           group it belongs to.
+           TO ADD A GROUP: copy an entire <details class="link-group">...
+           </details> block, change the text in its <summary> line, and put
+           your links inside its "group-body" div. Leaving out the word
+           "open" in the <details> tag is what keeps it closed to begin with;
+           adding it (<details class="link-group" open>) would make that one
+           group start expanded.
+           Every link here leaves this site, so each carries
+           target="_blank" rel="noopener" and opens in a new tab.
            =================================================================== -->
       <section>
-        <h2 id="student-seminars" class="section-title">Student Seminars — IIT Bombay</h2>
-        <ul class="plain">
-          <li><span class="item-num">3.</span><span><span class="year">May 2024</span>&ldquo;Generator Relations of the Group SL<sub>n</sub>(F) and Steinberg Groups&rdquo; (presented twice).</span></li>
-          <li><span class="item-num">2.</span><span><span class="year">Feb 2024</span>&ldquo;Automorphisms of Local Rings which Fix the Maximal Ideal.&rdquo;</span></li>
-          <li><span class="item-num">1.</span><span><span class="year">Mar 2023</span>&ldquo;Representation Theory of SL<sub>2</sub>(&#8450;).&rdquo;</span></li>
-        </ul>
+        <h2 id="links" class="section-title">Some Useful Links</h2>
+
+        <details class="link-group">
+          <summary><span class="caret" aria-hidden="true">&#9656;</span><span class="group-label">News &amp; Conference Updates</span></summary>
+          <div class="group-body">
+          <div class="item">
+            <h3><a href="https://www.advgrouptheory.com/GTNews.html" target="_blank" rel="noopener">Group Theory News</a></h3>
+            <p>A running calendar of group theory conferences and workshops around the world, kept by the
+            journal <em>Advances in Group Theory and Applications</em>.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://representationtheory.ca/" target="_blank" rel="noopener">RepresentationTheory.ca</a></h3>
+            <p>Upcoming conferences and meetings in representation theory, with speaker lists.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://web.math.ucsb.edu/~jon.mccammond/geogrouptheory/index.html" target="_blank" rel="noopener">The Geometric Group Theory Page</a></h3>
+            <p>Jon McCammond&rsquo;s long-running directory for geometric group theory and low-dimensional
+            topology — people, organizations, conferences, journals and problem lists.</p>
+          </div>
+          </div>
+        </details>
+
+        <details class="link-group">
+          <summary><span class="caret" aria-hidden="true">&#9656;</span><span class="group-label">Blogs &amp; Expository Writing</span></summary>
+          <div class="group-body">
+          <div class="item">
+            <h3><a href="https://terrytao.wordpress.com/" target="_blank" rel="noopener">Terence Tao&rsquo;s blog, <em>What&rsquo;s new</em></a></h3>
+            <p>Expository notes, lecture material and research updates across a wide sweep of mathematics.</p>
+          </div>
+          </div>
+        </details>
+
+        <details class="link-group">
+          <summary><span class="caret" aria-hidden="true">&#9656;</span><span class="group-label">Tools &amp; Interactive Demos</span></summary>
+          <div class="group-body">
+          <div class="item">
+            <h3><a href="https://billcookmath.com/sage/Lie_algebra/root_demo_prelim.html" target="_blank" rel="noopener">Simple Lie Algebra Roots &amp; Weights</a></h3>
+            <p>An interactive demo: give it a type \(X_N\) and a highest weight and it returns the Cartan
+            matrix, the Dynkin diagram, and the weights of the corresponding irreducible module — with a
+            plot in ranks up to three.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://matrixcalc.org/" target="_blank" rel="noopener">Matrix calculator</a></h3>
+            <p>Determinants, inverses, ranks, eigenvalues and row reduction, worked step by step in the
+            browser — handy for checking a computation by hand.</p>
+          </div>
+          </div>
+        </details>
+
       </section>
 
     </div>

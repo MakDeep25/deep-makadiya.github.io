@@ -161,6 +161,23 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // -----------------------------------------------------------------------
+  // COLLAPSIBLE GROUPS — the <details> blocks open and close on their own;
+  // this only re-lays-out any mathematical notation inside one the first
+  // time it is actually shown, since measuring maths while it is hidden can
+  // come out wrong. Nothing here needs editing when you add a group.
+  // -----------------------------------------------------------------------
+  var groups = document.querySelectorAll("details");
+  for (var g = 0; g < groups.length; g++) {
+    groups[g].addEventListener("toggle", function () {
+      if (!this.open || this.dataset.typeset) return;
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        this.dataset.typeset = "1";
+        window.MathJax.typesetPromise([this]);
+      }
+    });
+  }
+
+  // -----------------------------------------------------------------------
   // SECTION HIGHLIGHTING ("scrollspy")
   // As you scroll an inner page, the tab for the section you are currently
   // reading is marked with the "current" class (styled in styles.css). The
