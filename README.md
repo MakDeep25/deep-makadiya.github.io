@@ -1,2 +1,2 @@
-# deep-makadiya.github.io
+# deepmakadiya25.github.io
 My academic webpage
