@@ -3,23 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Re-applies the colour scheme this visitor last chose (see the colour
-     circles at the bottom of the sidebar) BEFORE the page is painted, so the
-     page never flashes the default colours first. It must stay here in the
-     <head>, above the stylesheet. Nothing to edit. -->
+<!-- Re-applies the visitor's saved colour scheme before the page paints, so
+     the default colours never flash first. Must stay here, above the
+     stylesheet. Nothing to edit. -->
 <script>(function(){try{var t=localStorage.getItem("site-theme");if(t){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
 <title>Teaching — Deep H. Makadiya</title>
 
-<!-- ===================================================================
-     SEARCH RESULTS AND LINK PREVIEWS
-     "description" is the grey line Google shows under your page title.
-     The "og:" and "twitter:" lines are what WhatsApp, LinkedIn, X, Slack
-     and friends read when someone pastes a link to this page — without
-     them a shared link shows an empty grey box.
-     IF YOUR SITE ADDRESS EVER CHANGES (a new GitHub username, a repo
-     rename, or your own domain), the three absolute links below —
-     canonical, og:url and og:image — must be updated on EVERY page.
-     They currently all begin with: https://deepmakadiya25.github.io
+<!-- SEARCH RESULTS AND LINK PREVIEWS
+     "description" is the grey line Google shows under the page title; the
+     og:/twitter: lines are what chat apps read when the link is pasted.
+     IF THE SITE ADDRESS EVER CHANGES, update canonical, og:url and og:image
+     on EVERY page. They all begin https://deepmakadiya25.github.io
      =================================================================== -->
 <meta name="description" content="Courses taught and other teaching experience of Deep H. Makadiya, including teaching assistantships in algebra, linear algebra and calculus at IIT Bombay.">
 <link rel="canonical" href="https://deepmakadiya25.github.io/teaching.html">
@@ -40,10 +34,9 @@
 <div class="layout">
 
   <aside class="sidebar" id="sidebar">
-    <img class="avatar" src="photo.jpg" alt="Deep H. Makadiya">
-    <!-- Your name in the sidebar. It is deliberately NOT an <h1>: each page
-         already has one <h1> (the page title), and search engines expect
-         exactly one per page. Styled by ".sidebar-name" in styles.css. -->
+    <img class="avatar" src="photo.jpg" alt="">
+    <!-- Not an <h1>: every page already has one (its title), and search
+         engines expect exactly one. Styled by ".sidebar-name" in styles.css. -->
     <p class="sidebar-name">Deep H. Makadiya</p>
     <nav>
       <a href="index.html">Home</a>
@@ -51,22 +44,16 @@
       <a href="research.html">Research</a>
       <a href="teaching.html" class="active">Teaching</a>
       <a href="professional-activities.html">Professional Activities</a>
-      <a href="beyond-mathematics.html">Beyond Mathematics</a>
+      <a href="miscellaneous.html">Miscellaneous</a>
     </nav>
 
-    <!-- ===================================================================
-         COLOUR PICKER — the two rows of two-tone circles under the page
-         links. Clicking one re-colours the whole site (and every other
-         page), and the choice is remembered in the visitor's browser.
-         Each circle's LEFT half is that scheme's accent (--sw-a, the dark
-         one) and its RIGHT half is that scheme's paper colour (--sw-b);
-         "title" is the tooltip shown on hover. The order the buttons
-         appear in below is the order they appear on screen — five per row.
-         This same block appears in all 7 pages: if you add, remove or
-         re-order a circle, do it in every page so the picker matches
-         everywhere. The colour values themselves live in styles.css under
-         "COLOUR SCHEMES", with step-by-step notes at the bottom of that
-         file for adding a scheme of your own.
+    <!-- COLOUR PICKER — clicking a circle re-colours the whole site, and the
+         choice is remembered in the visitor's browser. Each circle's LEFT half
+         is that scheme's accent (--sw-a), its RIGHT half the paper colour
+         (--sw-b); "title" is the hover tooltip. They appear in the order
+         listed, five per row. This block is repeated on all 8 pages — change
+         it everywhere if you add, remove or re-order a circle. The colours
+         themselves live in styles.css under "COLOUR SCHEMES".
          =================================================================== -->
     <div class="theme-picker">
       <p class="theme-picker-label">Colour</p>
@@ -105,15 +92,11 @@
     </div>
   </aside>
   <div class="overlay" id="overlay"></div>
-  <!-- ===================================================================
-       TOP BAR — only visible on tablets and phones (see the RESPONSIVE
-       section at the bottom of styles.css). It holds the menu button that
-       slides the sidebar in, plus your name so a phone visitor can see
-       whose site this is. On laptops it is hidden, because the sidebar is
-       already on screen.
+  <!-- TOP BAR — phones and tablets only; hidden on laptops, where the
+       sidebar is already on screen. Holds the menu button and your name.
        =================================================================== -->
   <header class="topbar">
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
     <span class="topbar-title">Deep H. Makadiya</span>
   </header>
 
@@ -122,33 +105,24 @@
 
       <div class="page-header">
         <h1>Teaching</h1>
-        <p class="page-desc">The courses I have taught, along with relevant information such as notes and other materials, and my other teaching experience.</p>
+        <p class="page-desc">The courses I have taught, along with relevant information, including notes and other materials.</p>
       </div>
 
-      <!-- This page has 3 tabs/sections:
-             1. Current Semester           
-	     2. Courses Taught in the Past 
-             2. Other Teaching Experience -->
       <div class="page-tabs-wrap">
-        <button class="tabs-arrow left" aria-label="Scroll tabs left">&#8249;</button>
+        <button type="button" class="tabs-arrow left" aria-label="Scroll tabs left">&#8249;</button>
         <nav class="page-tabs">
           <a href="#current-semester">Current Semester</a>
-	  <a href="#past-courses">Courses Taught in the Past</a>
+    <a href="#past-courses">Courses Taught in the Past</a>
           <a href="#other-experience">Other Teaching Experience</a>
         </nav>
-        <button class="tabs-arrow right" aria-label="Scroll tabs right">&#8250;</button>
+        <button type="button" class="tabs-arrow right" aria-label="Scroll tabs right">&#8250;</button>
         <div class="tabs-fade left" aria-hidden="true" hidden></div>
         <div class="tabs-fade right" aria-hidden="true" hidden></div>
       </div>
 
-      <!-- ===================================================================
-           CURRENT SEMESTER — a one-line status. Update this each semester:
-           either keep the "not teaching" remark below, or replace it with
-           the course(s) you're currently teaching (you can reuse the table
-           row format from the "Teaching Assistant — IIT Bombay" table below
-           if you'd like). Once a semester you're teaching ends, move that
-           course down into that table instead (see the note there).
-           =================================================================== -->
+      <!-- CURRENT SEMESTER — a one-line status; update it each semester.
+           Once a semester you taught ends, move that course into the table
+           below. -->
       <section>
         <h2 id="current-semester" class="section-title">Current Semester</h2>
         <div class="item">
@@ -156,9 +130,6 @@
         </div>
       </section>
 
-      <!-- ===================================================================
-           COURSES TAUGHT IN THE PAST — a one-line status. Update this later.
-           =================================================================== -->
       <section>
         <h2 id="past-courses" class="section-title">Courses Taught in the Past</h2>
         <div class="item">
@@ -166,26 +137,16 @@
         </div>
       </section>
 
-      <!-- ===================================================================
-           OTHER TEACHING EXPERIENCE — everything besides your current
-           semester's teaching goes here, as two subsections:
-             - "Teaching Assistant — IIT Bombay" — a table, one row per
-               course/semester, newest at the TOP. It's broken down by
-               course AND by half-semester exactly as it appeared on your
-               old Google Site, rather than merging repeat offerings of the
-               same course into one row — that way each row is a single,
-               precise teaching instance. The table isn't numbered, so
-               there's no count to keep track of.
-             - "Teaching Experience at PCI" — a single write-up, same style
-               as the entries on the Academics page.
-           TO ADD A NEW ROW to the table: copy one whole <tr>...</tr> line,
-           paste it as the new first row right after the opening
-           <table class="teach"> tag, and edit its two cells (course, when).
-           TO ADD A DIFFERENT KIND of teaching experience (a guest lecture,
-           mentoring, workshop instruction, etc.): add a new subsection by
-           copying the whole block starting at a "<p class="subhead">" line
-           down through its closing tag (either "</table>" or "</div>",
-           whichever the block you copied ends with) and edit the copy.
+      <!-- OTHER TEACHING EXPERIENCE — two subsections.
+           "Teaching Assistant — IIT Bombay": a table, one row per course per
+           half-semester, newest at the top, unnumbered. TO ADD A ROW, copy a
+           whole <tr>...</tr> to just under <table class="teach"> and edit its
+           two cells (course, when).
+           "Teaching Experience at PCI": a single write-up, same style as the
+           Academics entries.
+           TO ADD ANOTHER KIND of experience (guest lecture, mentoring...),
+           copy from a <p class="subhead"> line down to its closing </table>
+           or </div> and edit the copy.
            =================================================================== -->
       <section>
         <h2 id="other-experience" class="section-title">Other Teaching Experience</h2>
@@ -206,19 +167,16 @@
 
         <p class="subhead">Teaching Experience at PCI</p>
         <div class="item">
-          <h3>Mathematics Instructor</h3>
-          <p class="meta">PCI · July 2019 – January 2020</p>
-          <p>Provided guidance to IIT JAM and NET/JRF exam candidates, focused on mathematics preparation
-          for competitive examinations.</p>
+          <h3>Mathematics Tutor</h3>
+          <p class="meta">Pooja Coaching Institute · July 2019 – January 2020</p>
+          <p>Teaching and mentoring students in mathematics for the IIT JAM and CSIR-UGC NET/JRF examinations.</p>
         </div>
       </section>
 
     </div>
-    <!-- "Last updated" is written in by script.js and is EMPTY here on
-         purpose, so the date exists in exactly ONE place on the whole site:
-         the LAST_UPDATED line near the top of script.js. Change it there and
-         all seven pages follow. (If JavaScript is switched off the line simply
-         does not appear, rather than showing a stale date.) -->
+    <!-- Left empty on purpose: script.js fills it from LAST_UPDATED, so the
+         date lives in exactly one place for all 8 pages. With JavaScript off
+         the line stays hidden rather than showing a stale date. -->
     <footer>
       <p>&copy; 2026 Deep H. Makadiya</p>
       <p class="updated" id="lastUpdatedLine" hidden>Last updated: <span id="lastUpdated"></span></p>

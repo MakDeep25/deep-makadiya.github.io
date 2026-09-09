@@ -1,16 +1,12 @@
 /* =========================================================================
-   Deep H. Makadiya — academic site
-   Mobile sidebar toggle, in-page section tabs, and the sidebar colour
-   picker. This one script is shared by every page.
-   You do NOT need to understand or edit this file to update your content —
-   all your text lives in the .html files. This file only makes the sidebar
-   menu button work on narrow screens/phones.
+   Deep H. Makadiya — academic site. Shared by every page.
+   Handles the mobile sidebar toggle, the in-page section tabs, the colour
+   picker, the "Last updated" line and the Abstract toggles.
+   The only line you normally edit here is LAST_UPDATED, just below; all
+   your text lives in the .html files.
    ========================================================================= */
-/* -------------------------------------------------------------------------
-   THE ONE LINE TO CHANGE WHEN YOU UPDATE THE SITE
-   Whatever you type between the quotes below is shown as "Last updated: ..."
-   in the footer of EVERY page. Change it here and all seven pages follow.
-   ------------------------------------------------------------------------- */
+/* THE ONE LINE TO CHANGE WHEN YOU UPDATE THE SITE.
+   Shown as "Last updated: ..." in the footer of all 8 pages. */
 var LAST_UPDATED = "9 September 2026";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -19,14 +15,16 @@ document.addEventListener("DOMContentLoaded", function () {
   var overlay = document.getElementById("overlay");
 
   function openMenu() {
+    if (!sidebar) return;
     sidebar.classList.add("open");
-    overlay.classList.add("open");
+    if (overlay) overlay.classList.add("open");
     document.body.classList.add("menu-open");   // stops the page behind scrolling
     if (toggle) toggle.setAttribute("aria-expanded", "true");
   }
   function closeMenu() {
+    if (!sidebar) return;                       // a page without a sidebar (a blog post)
     sidebar.classList.remove("open");
-    overlay.classList.remove("open");
+    if (overlay) overlay.classList.remove("open");
     document.body.classList.remove("menu-open");
     if (toggle) toggle.setAttribute("aria-expanded", "false");
   }
@@ -50,12 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // -----------------------------------------------------------------------
-  // In-page section tabs: single scrollable line, with fade hints and
-  // arrow buttons that appear only when there are more tabs than fit.
-  // Runs automatically for every ".page-tabs-wrap" found on the page — you
-  // never need to edit this when you add or rename a tab in the HTML.
-  // -----------------------------------------------------------------------
+  // In-page section tabs: one scrollable line, with fade hints and arrows
+  // that appear only when the tabs overflow. Runs for every
+  // ".page-tabs-wrap" on the page — no edits needed when you add a tab.
   var tabWraps = document.querySelectorAll(".page-tabs-wrap");
   tabWraps.forEach(function (wrap) {
     var tabs = wrap.querySelector(".page-tabs");
@@ -86,18 +81,17 @@ document.addEventListener("DOMContentLoaded", function () {
     tabs.addEventListener("scroll", update);
     window.addEventListener("resize", update);
     update();
+    // Measure again once the web font has swapped in: the row is wider in Lora
+    // than in the fallback, so a first measurement can miss the overflow and
+    // leave the arrows and fades hidden when they are actually needed.
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(update);
   });
 
-  // -----------------------------------------------------------------------
-  // COLOUR PICKER (the two-tone circles at the bottom of the sidebar).
-  // Clicking one sets data-theme="..." on the <html> element — every colour
-  // on the site is a CSS variable, and styles.css re-states those variables
-  // for each scheme, so the whole page recolours at once. The choice is
-  // saved in the browser and re-applied by the small script in each page's
-  // <head> on the next page or visit.
-  // You never need to edit this: it works with whatever circles it finds in
-  // the sidebar, so adding or removing a scheme is purely an HTML + CSS job.
-  // -----------------------------------------------------------------------
+  // COLOUR PICKER (the circles in the sidebar). Clicking one sets
+  // data-theme="..." on <html>; styles.css re-states its colour variables
+  // per scheme, so the page recolours at once. The choice is saved in the
+  // browser and re-applied by the small script in each page's <head>.
+  // Works with whatever circles it finds — adding a scheme is HTML + CSS only.
   var STORE_KEY = "site-theme";
   var swatches = document.querySelectorAll("[data-set-theme]");
 
@@ -122,12 +116,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   markActive();
 
-  // -----------------------------------------------------------------------
-  // "LAST UPDATED" — the date lives only in LAST_UPDATED at the top of this
-  // file, and is written into the footer of every page from here. The footer
-  // line starts out hidden and is revealed once a date has been put in it,
-  // so a page never shows an empty or stale "Last updated:".
-  // -----------------------------------------------------------------------
+  // "LAST UPDATED" — written into every page's footer from LAST_UPDATED at
+  // the top of this file. The line stays hidden if no date is set.
   var stamp = document.getElementById("lastUpdated");
   var stampLine = document.getElementById("lastUpdatedLine");
   if (stamp && stampLine && LAST_UPDATED) {
@@ -135,13 +125,169 @@ document.addEventListener("DOMContentLoaded", function () {
     stampLine.hidden = false;
   }
 
-  // -----------------------------------------------------------------------
-  // ABSTRACTS — each "Abstract" button in the publication list opens the
-  // panel whose id matches the button's aria-controls attribute. Works with
-  // however many buttons the page has; nothing here needs editing when you
-  // add a paper.
-  // -----------------------------------------------------------------------
-  var absButtons = document.querySelectorAll(".pub-toggle");
+  // GALLERY LIGHTBOX (gallery.html). Clicking a ".gallery-item" tile opens the
+  // photo full size with its figcaption underneath. Clicking anywhere outside
+  // the photo, or pressing Escape, closes it again. The markup is built here,
+  // so a new photo tile needs nothing beyond its <figure> in the HTML.
+  var tiles = document.querySelectorAll(".gallery-item");
+  if (tiles.length) {
+    var box = document.createElement("div");
+    box.className = "lightbox";
+    box.hidden = true;
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-modal", "true");
+    box.setAttribute("aria-label", "Photo");
+    box.innerHTML =
+      '<button type="button" class="lightbox-close" aria-label="Close">&times;</button>' +
+      '<div class="lightbox-inner"><img alt=""><p></p></div>';
+    document.body.appendChild(box);
+
+    var boxImg = box.querySelector("img");
+    var boxText = box.querySelector("p");
+    var lastFocused = null;
+
+    function openBox(fig) {
+      var img = fig.querySelector("img");
+      var cap = fig.querySelector("figcaption");
+      if (!img) return;
+      lastFocused = document.activeElement;
+      boxImg.src = img.currentSrc || img.src;
+      boxImg.alt = img.alt || "";
+      boxText.textContent = cap ? cap.textContent.trim() : "";
+      boxText.hidden = !boxText.textContent;
+      box.hidden = false;
+      document.body.classList.add("lightbox-open");   // stops the page behind scrolling
+      box.querySelector(".lightbox-close").focus();
+    }
+
+    function closeBox() {
+      box.hidden = true;
+      boxImg.removeAttribute("src");
+      document.body.classList.remove("lightbox-open");
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    for (var t = 0; t < tiles.length; t++) {
+      (function (fig) {
+        // Wrap the caption text so styles.css can clamp it to three lines
+        // without a fourth bleeding into the padding. Plain text in the HTML;
+        // the span is added here.
+        var cap = fig.querySelector("figcaption");
+        if (cap && !cap.querySelector(".cap-text")) {
+          var span = document.createElement("span");
+          span.className = "cap-text";
+          while (cap.firstChild) span.appendChild(cap.firstChild);  // keeps <em>, <a>, <sub>
+          cap.appendChild(span);
+        }
+        fig.setAttribute("tabindex", "0");
+        fig.setAttribute("role", "button");
+        fig.addEventListener("click", function () { openBox(fig); });
+        fig.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openBox(fig); }
+        });
+      })(tiles[t]);
+    }
+
+    // ON TOUCH SCREENS there is no hover, so the caption is shown for whichever
+    // tile you have scrolled to — the one nearest the middle of the screen —
+    // the way a video list on a tablet plays the item you have scrolled onto.
+    // A finger resting on a tile marks that one instead. With a mouse this is
+    // all skipped and :hover in styles.css does the work.
+    if (window.matchMedia && window.matchMedia("(hover: none)").matches) {
+      var activeTile = null;
+      function setActive(fig) {
+        if (fig === activeTile) return;
+        if (activeTile) activeTile.classList.remove("is-active");
+        activeTile = fig;
+        if (fig) fig.classList.add("is-active");
+      }
+      function pickNearest() {
+        var middle = window.innerHeight / 2, best = null, bestGap = Infinity;
+        for (var i = 0; i < tiles.length; i++) {
+          var r = tiles[i].getBoundingClientRect();
+          if (r.bottom < 0 || r.top > window.innerHeight) continue;   // off screen
+          var gap = Math.abs(r.top + r.height / 2 - middle);
+          if (gap < bestGap) { bestGap = gap; best = tiles[i]; }
+        }
+        setActive(best);
+      }
+      var queued = false;
+      function onScroll() {
+        if (queued) return;
+        queued = true;
+        window.requestAnimationFrame(function () { queued = false; pickNearest(); });
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+      for (var q = 0; q < tiles.length; q++) {
+        tiles[q].addEventListener("touchstart", (function (fig) {
+          return function () { setActive(fig); };
+        })(tiles[q]), { passive: true });
+      }
+      pickNearest();
+    }
+
+    // Anywhere that is not the photo itself closes the lightbox.
+    box.addEventListener("click", function (e) {
+      if (e.target !== boxImg) closeBox();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !box.hidden) closeBox();
+    });
+  }
+
+  // "MORE / LESS" LINK BLOCKS (Miscellaneous > Some Useful Links).
+  // Each ".links-block" shows its first three ".item" links; anything beyond
+  // that is hidden behind a "More" button added here, which turns into "Less"
+  // once expanded. The arrow is the same glyph in both states, turned down or
+  // up by styles.css, so the two can never differ in size. Blocks with three
+  // links or fewer get no button at all, so adding a link is just pasting
+  // another ".item" into the HTML.
+  var VISIBLE_LINKS = 3;
+  var linkBlocks = document.querySelectorAll(".links-block");
+  for (var b = 0; b < linkBlocks.length; b++) {
+    (function (block) {
+      var items = block.querySelectorAll(".item");
+      if (items.length <= VISIBLE_LINKS) return;
+
+      function setExtras(hide) {
+        for (var k = VISIBLE_LINKS; k < items.length; k++) { items[k].hidden = hide; }
+      }
+      function label(text) {
+        btn.innerHTML = text + ' <span class="caret" aria-hidden="true">&#9656;</span>';
+      }
+
+      setExtras(true);
+      block.classList.add("has-more");          // lets styles.css tighten the gap above
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "pub-toggle links-more";
+      btn.setAttribute("aria-expanded", "false");
+      label("More");
+      block.appendChild(btn);
+
+      btn.addEventListener("click", function () {
+        var isOpen = btn.getAttribute("aria-expanded") === "true";
+        setExtras(isOpen);
+        btn.setAttribute("aria-expanded", isOpen ? "false" : "true");
+        label(isOpen ? "More" : "Less");
+        // Lay out any maths in the links that were hidden, the first time they
+        // are actually shown — measuring it while hidden can come out wrong.
+        if (!isOpen && !block.dataset.typeset &&
+            window.MathJax && window.MathJax.typesetPromise) {
+          block.dataset.typeset = "1";
+          window.MathJax.typesetPromise([block]);
+        }
+      });
+    })(linkBlocks[b]);
+  }
+
+  // ABSTRACTS — each "Abstract" button opens the panel whose id matches its
+  // aria-controls. Works for any number of buttons; no edits when you add a
+  // paper.
+  // ":not(.links-more)" keeps the Miscellaneous "More" button out of this —
+  // it shares the .pub-toggle look but has no abstract panel to open.
+  var absButtons = document.querySelectorAll(".pub-toggle:not(.links-more)");
   for (var a = 0; a < absButtons.length; a++) {
     absButtons[a].addEventListener("click", function () {
       var panel = document.getElementById(this.getAttribute("aria-controls"));
@@ -156,23 +302,6 @@ document.addEventListener("DOMContentLoaded", function () {
           window.MathJax && window.MathJax.typesetPromise) {
         panel.dataset.typeset = "1";
         window.MathJax.typesetPromise([panel]);
-      }
-    });
-  }
-
-  // -----------------------------------------------------------------------
-  // COLLAPSIBLE GROUPS — the <details> blocks open and close on their own;
-  // this only re-lays-out any mathematical notation inside one the first
-  // time it is actually shown, since measuring maths while it is hidden can
-  // come out wrong. Nothing here needs editing when you add a group.
-  // -----------------------------------------------------------------------
-  var groups = document.querySelectorAll("details");
-  for (var g = 0; g < groups.length; g++) {
-    groups[g].addEventListener("toggle", function () {
-      if (!this.open || this.dataset.typeset) return;
-      if (window.MathJax && window.MathJax.typesetPromise) {
-        this.dataset.typeset = "1";
-        window.MathJax.typesetPromise([this]);
       }
     });
   }

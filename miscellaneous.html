@@ -7,7 +7,7 @@
      the default colours never flash first. Must stay here, above the
      stylesheet. Nothing to edit. -->
 <script>(function(){try{var t=localStorage.getItem("site-theme");if(t){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
-<title>Blogs — Deep H. Makadiya</title>
+<title>Miscellaneous — Deep H. Makadiya</title>
 
 <!-- SEARCH RESULTS AND LINK PREVIEWS
      "description" is the grey line Google shows under the page title; the
@@ -15,13 +15,13 @@
      IF THE SITE ADDRESS EVER CHANGES, update canonical, og:url and og:image
      on EVERY page. They all begin https://deepmakadiya25.github.io
      =================================================================== -->
-<meta name="description" content="Writing by Deep H. Makadiya — short pieces on mathematics and research life, alongside more personal stories.">
-<link rel="canonical" href="https://deepmakadiya25.github.io/blogs.html">
+<meta name="description" content="Skills, hobbies, writing and useful links &mdash; Deep H. Makadiya, Post-doctoral Fellow in Mathematics at Bar-Ilan University.">
+<link rel="canonical" href="https://deepmakadiya25.github.io/miscellaneous.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Deep H. Makadiya">
-<meta property="og:title" content="Blogs — Deep H. Makadiya">
-<meta property="og:description" content="Writing by Deep H. Makadiya — short pieces on mathematics and research life, alongside more personal stories.">
-<meta property="og:url" content="https://deepmakadiya25.github.io/blogs.html">
+<meta property="og:title" content="Miscellaneous — Deep H. Makadiya">
+<meta property="og:description" content="Skills, hobbies, writing and useful links &mdash; Deep H. Makadiya, Post-doctoral Fellow in Mathematics at Bar-Ilan University.">
+<meta property="og:url" content="https://deepmakadiya25.github.io/miscellaneous.html">
 <meta property="og:image" content="https://deepmakadiya25.github.io/photo.jpg">
 <meta property="og:image:alt" content="Deep H. Makadiya">
 <meta name="twitter:card" content="summary">
@@ -29,14 +29,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lora:ital,wght@0,400;1,400;0,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<!-- MathJax renders the maths in the "Useful Links" entries. -->
+<script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'}};</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" defer></script>
 </head>
 <body>
 <div class="layout">
 
-  <!-- Blogs is deliberately NOT one of the 6 sidebar links — it is reached
-       from the Blogs section of Miscellaneous. The sidebar still shows so
-       visitors can get back, just with no link marked "active".
-       ===================================================================== -->
   <aside class="sidebar" id="sidebar">
     <img class="avatar" src="photo.jpg" alt="">
     <!-- Not an <h1>: every page already has one (its title), and search
@@ -48,7 +47,7 @@
       <a href="research.html">Research</a>
       <a href="teaching.html">Teaching</a>
       <a href="professional-activities.html">Professional Activities</a>
-      <a href="miscellaneous.html">Miscellaneous</a>
+      <a href="miscellaneous.html" class="active">Miscellaneous</a>
     </nav>
 
     <!-- COLOUR PICKER — clicking a circle re-colours the whole site, and the
@@ -108,56 +107,133 @@
     <div class="wrap">
 
       <div class="page-header">
-        <h1>Blogs</h1>
-        <!-- Drop the "work in progress" clause once the pieces are written —
-             gallery.html carries the same clause and will need the same. -->
-        <p class="page-desc">A few stories from my life, and my thoughts on mathematics and the world around it &mdash; this page is a work in progress.</p>
+        <h1>Miscellaneous</h1>
+        <p class="page-desc">A page for everything else: my skills, my hobbies, a few of my stories, and some useful links.</p>
       </div>
 
       <div class="page-tabs-wrap">
         <button type="button" class="tabs-arrow left" aria-label="Scroll tabs left">&#8249;</button>
         <nav class="page-tabs">
-          <a href="#on-mathematics">On Mathematics</a>
-          <a href="#personal">Personal</a>
+          <a href="#skills">Skills</a>
+          <a href="#hobbies-interests">Hobbies &amp; Interests</a>
+          <a href="#blogs">Blogs</a>
+          <a href="#links">Some Useful Links</a>
         </nav>
         <button type="button" class="tabs-arrow right" aria-label="Scroll tabs right">&#8250;</button>
         <div class="tabs-fade left" aria-hidden="true" hidden></div>
         <div class="tabs-fade right" aria-hidden="true" hidden></div>
       </div>
 
-      <!-- HOW TO ADD A POST — each post is one <div class="item">: a linked
-           title, a date line, and a sentence or two. Copy a block to the TOP of
-           its section and edit those three lines; newest first in both sections.
-           If the post lives elsewhere (Substack, Medium, a PDF), link straight
-           to it and add target="_blank" rel="noopener". If you write it as its
-           own page here, save it beside these files and link by filename, with
-           no target attribute.
-           Add your best three or four to the Blogs section of
-           miscellaneous.html as well.
-           =================================================================== -->
+      <!-- SKILLS — two lists, each under its own subhead: the tools you work
+           in, and the languages you speak. One <li> per entry; the lists reflow
+           on their own. To add a third group, copy a <p class="subhead"> line
+           together with the <ul> beneath it. -->
       <section>
-        <h2 id="on-mathematics" class="section-title">On Mathematics</h2>
-        <div class="item">
-          <p>Any future blog on mathematics will appear here.</p>
-        </div>
+        <h2 id="skills" class="section-title">Skills</h2>
+
+        <p class="subhead">Programming &amp; Typesetting</p>
+        <ul class="skills-list">
+          <li>LaTeX</li>
+          <li>C++</li>
+          <li>Python</li>
+          <li>SageMath</li>
+          <li>GAP</li>
+        </ul>
+
+        <p class="subhead">Languages</p>
+        <ul class="skills-list">
+          <li>English</li>
+          <li>Hindi</li>
+          <li>Gujarati</li>
+        </ul>
       </section>
 
       <section>
-        <h2 id="personal" class="section-title">Personal</h2>
+        <h2 id="hobbies-interests" class="section-title">Hobbies &amp; Interests</h2>
+        <ul class="skills-list">
+          <li>Chess</li>
+          <li>Philosophy</li>
+          <li>Puzzle Solving</li>
+          <li>Exploring Places</li>
+        </ul>
+      </section>
+
+      <!-- BLOGS — a short selection of your own pieces, with the note about the
+           full list at the TOP of the section. Each piece is a <div class="item">
+           whose title links to its own page in the blogs/ folder (no sidebar on those).
+           TO ADD ONE: copy an item block, point it at a new page in blogs/, and
+           keep the newest at the top.
+           =================================================================== -->
+      <section>
+        <h2 id="blogs" class="section-title">Blogs</h2>
+
+        <p class="pub-meta">These are a few selected pieces; the complete list is on the
+        <a href="blogs.html">blogs page</a>.</p>
+
         <div class="item">
           <h3><a href="blogs/about-my-name.html">About My Name</a></h3>
-          <p class="meta">[Month Year]</p>
-          <p>[A sentence or two on what this piece is about.]</p>
+          <p>[One line saying what this piece is about.]</p>
         </div>
         <div class="item">
           <h3><a href="blogs/how-i-ended-up-in-mathematics.html">How I Ended Up in Mathematics</a></h3>
-          <p class="meta">[Month Year]</p>
-          <p>[A sentence or two setting up the story.]</p>
+          <p>[One line saying what this piece is about.]</p>
         </div>
         <div class="item">
           <h3><a href="blogs/life-beyond-mathematics.html">Life Beyond Mathematics</a></h3>
-          <p class="meta">[Month Year]</p>
-          <p>[A sentence or two on what this piece is about.]</p>
+          <p>[One line saying what this piece is about.]</p>
+        </div>
+      </section>
+
+      <!-- SOME USEFUL LINKS — one group per heading: a <p class="subhead">
+           line, then a <div class="links-block"> holding that group's
+           <div class="item"> links. (The heading sits OUTSIDE the block on
+           purpose — ".subhead:first-child" in styles.css removes the top
+           margin, which would jam it against the group above.)
+           script.js shows only the first THREE links in a block and adds a
+           "More" button below them; the button becomes "Less" when expanded,
+           and it appears only once a block has more than three links. So to add
+           a link you just paste another <div class="item"> — nothing else.
+           TO ADD A GROUP: copy a whole <div class="links-block">...</div>.
+           Every link here is external, so each carries target="_blank" rel="noopener".
+           =================================================================== -->
+      <section>
+        <h2 id="links" class="section-title">Some Useful Links</h2>
+
+        <p class="subhead">News &amp; Conference Updates</p>
+        <div class="links-block">
+          <div class="item">
+            <h3><a href="https://www.advgrouptheory.com/GTNews.html" target="_blank" rel="noopener">Group Theory News</a></h3>
+            <p>A running calendar of group theory conferences and workshops around the world, kept by the
+            journal <em>Advances in Group Theory and Applications</em>.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://representationtheory.ca/" target="_blank" rel="noopener">RepresentationTheory.ca</a></h3>
+            <p>Upcoming conferences and meetings in representation theory, with speaker lists.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://web.math.ucsb.edu/~jon.mccammond/geogrouptheory/index.html" target="_blank" rel="noopener">The Geometric Group Theory Page</a></h3>
+            <p>Jon McCammond&rsquo;s long-running directory for geometric group theory and low-dimensional
+            topology &mdash; people, organizations, conferences, journals and problem lists.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://terrytao.wordpress.com/" target="_blank" rel="noopener">Terence Tao&rsquo;s blog, <em>What&rsquo;s new</em></a></h3>
+            <p>Expository notes, lecture material and research updates across a wide sweep of mathematics.</p>
+          </div>
+        </div>
+
+        <p class="subhead">Tools &amp; Interactive Demos</p>
+        <div class="links-block">
+          <div class="item">
+            <h3><a href="https://billcookmath.com/sage/Lie_algebra/root_demo_prelim.html" target="_blank" rel="noopener">Simple Lie Algebra Roots &amp; Weights</a></h3>
+            <p>An interactive demo: give it a type \(X_N\) and a highest weight and it returns the Cartan
+            matrix, the Dynkin diagram, and the weights of the corresponding irreducible module &mdash; with a
+            plot in ranks up to three.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://matrixcalc.org/" target="_blank" rel="noopener">Matrix calculator</a></h3>
+            <p>Determinants, inverses, ranks, eigenvalues and row reduction, worked step by step in the
+            browser &mdash; handy for checking a computation by hand.</p>
+          </div>
         </div>
       </section>
 

@@ -3,23 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Re-applies the colour scheme this visitor last chose (see the colour
-     circles at the bottom of the sidebar) BEFORE the page is painted, so the
-     page never flashes the default colours first. It must stay here in the
-     <head>, above the stylesheet. Nothing to edit. -->
+<!-- Re-applies the visitor's saved colour scheme before the page paints, so
+     the default colours never flash first. Must stay here, above the
+     stylesheet. Nothing to edit. -->
 <script>(function(){try{var t=localStorage.getItem("site-theme");if(t){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
 <title>Deep H. Makadiya — Mathematics</title>
 
-<!-- ===================================================================
-     SEARCH RESULTS AND LINK PREVIEWS
-     "description" is the grey line Google shows under your page title.
-     The "og:" and "twitter:" lines are what WhatsApp, LinkedIn, X, Slack
-     and friends read when someone pastes a link to this page — without
-     them a shared link shows an empty grey box.
-     IF YOUR SITE ADDRESS EVER CHANGES (a new GitHub username, a repo
-     rename, or your own domain), the three absolute links below —
-     canonical, og:url and og:image — must be updated on EVERY page.
-     They currently all begin with: https://deepmakadiya25.github.io
+<!-- SEARCH RESULTS AND LINK PREVIEWS
+     "description" is the grey line Google shows under the page title; the
+     og:/twitter: lines are what chat apps read when the link is pasted.
+     IF THE SITE ADDRESS EVER CHANGES, update canonical, og:url and og:image
+     on EVERY page. They all begin https://deepmakadiya25.github.io
      =================================================================== -->
 <meta name="description" content="Deep H. Makadiya, Post-doctoral Fellow in Mathematics at Bar-Ilan University, working on the structure and automorphisms of twisted Chevalley groups.">
 <link rel="canonical" href="https://deepmakadiya25.github.io/">
@@ -39,25 +33,16 @@
 <body>
 <div class="layout">
 
-  <!-- =====================================================================
-       SIDEBAR — identical on every page. Contains ONLY your photo, your
-       name, and the 6 page links. To rename a page everywhere, change the
-       link text here AND at the top of that page's own <nav class="sidebar">
-       block (all 6 main files each carry their own copy of this same
-       sidebar). Note that the "href" filename doesn't always match the
-       visible link text: "academics.html" behind the scenes still shows as
-       "Academics" here, since the page was renamed after the file was
-       created and there was no real benefit to renaming the file too (see
-       the note at the top of academics.html). gallery.html also carries a
-       copy of this sidebar (for easy navigation back to the main pages),
-       but it is deliberately left out of the 6 links above — see the
-       comment at the top of gallery.html.
+  <!-- SIDEBAR — the same on all 8 pages: photo, name, 6 page links.
+       To rename a page everywhere, change the link text in every page's copy.
+       File names need not match labels (academics.html shows as "Academics").
+       gallery.html and blogs.html carry the sidebar too, but are deliberately
+       left out of the 6 links — see the note at the top of each.
        ===================================================================== -->
   <aside class="sidebar" id="sidebar">
-    <img class="avatar" src="photo.jpg" alt="Deep H. Makadiya">
-    <!-- Your name in the sidebar. It is deliberately NOT an <h1>: each page
-         already has one <h1> (the page title), and search engines expect
-         exactly one per page. Styled by ".sidebar-name" in styles.css. -->
+    <img class="avatar" src="photo.jpg" alt="">
+    <!-- Not an <h1>: every page already has one (its title), and search
+         engines expect exactly one. Styled by ".sidebar-name" in styles.css. -->
     <p class="sidebar-name">Deep H. Makadiya</p>
     <nav>
       <a href="index.html" class="active">Home</a>
@@ -65,22 +50,16 @@
       <a href="research.html">Research</a>
       <a href="teaching.html">Teaching</a>
       <a href="professional-activities.html">Professional Activities</a>
-      <a href="beyond-mathematics.html">Beyond Mathematics</a>
+      <a href="miscellaneous.html">Miscellaneous</a>
     </nav>
 
-    <!-- ===================================================================
-         COLOUR PICKER — the two rows of two-tone circles under the page
-         links. Clicking one re-colours the whole site (and every other
-         page), and the choice is remembered in the visitor's browser.
-         Each circle's LEFT half is that scheme's accent (--sw-a, the dark
-         one) and its RIGHT half is that scheme's paper colour (--sw-b);
-         "title" is the tooltip shown on hover. The order the buttons
-         appear in below is the order they appear on screen — five per row.
-         This same block appears in all 7 pages: if you add, remove or
-         re-order a circle, do it in every page so the picker matches
-         everywhere. The colour values themselves live in styles.css under
-         "COLOUR SCHEMES", with step-by-step notes at the bottom of that
-         file for adding a scheme of your own.
+    <!-- COLOUR PICKER — clicking a circle re-colours the whole site, and the
+         choice is remembered in the visitor's browser. Each circle's LEFT half
+         is that scheme's accent (--sw-a), its RIGHT half the paper colour
+         (--sw-b); "title" is the hover tooltip. They appear in the order
+         listed, five per row. This block is repeated on all 8 pages — change
+         it everywhere if you add, remove or re-order a circle. The colours
+         themselves live in styles.css under "COLOUR SCHEMES".
          =================================================================== -->
     <div class="theme-picker">
       <p class="theme-picker-label">Colour</p>
@@ -119,35 +98,24 @@
     </div>
   </aside>
   <div class="overlay" id="overlay"></div>
-  <!-- ===================================================================
-       TOP BAR — only visible on tablets and phones (see the RESPONSIVE
-       section at the bottom of styles.css). It holds the menu button that
-       slides the sidebar in, plus your name so a phone visitor can see
-       whose site this is. On laptops it is hidden, because the sidebar is
-       already on screen.
+  <!-- TOP BAR — phones and tablets only; hidden on laptops, where the
+       sidebar is already on screen. Holds the menu button and your name.
        =================================================================== -->
   <header class="topbar">
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
     <span class="topbar-title">Deep H. Makadiya</span>
   </header>
 
   <main>
     <div class="wrap">
 
-      <!-- ===================================================================
-           HOME HERO — photo on one side, name + role tagline on the other.
-           photo.jpg is already in this folder. To swap in a different
-           picture later, just replace photo.jpg with a new file of the
-           same name (keep it roughly square for the best crop), or change
-           the "src" below to point to a differently-named file.
-           The little offset square frame around the photo is pure CSS
-           (see ".hero-photo-frame::before" in styles.css) — no image needed.
+      <!-- HOME HERO — photo on one side, name and role on the other. To use a
+           different picture, replace photo.jpg (keep it roughly square) or point
+           "src" at another file. The offset frame is CSS, not an image.
            =================================================================== -->
       <div class="hero-split">
-        <!-- The photo links to gallery.html (a Photo Gallery page). That page
-             is deliberately NOT listed in the sidebar — this photo is its
-             only entry point. The fade-in effect on hover is the only hint
-             that it's clickable (no visible caption/label on purpose). -->
+        <!-- The photo is the only way into gallery.html, which is deliberately
+             not in the sidebar. The hover fade is the only hint it is clickable. -->
         <div class="hero-photo-col">
           <div class="hero-photo-frame">
             <a href="gallery.html" aria-label="View Photo Gallery">
@@ -161,11 +129,8 @@
         </div>
       </div>
 
-      <!-- ===================================================================
-           ABOUT ME — short intro paragraph, plus a line pointing to your CV.
-           =================================================================== -->
-      <section id="about-me" style="padding-top:0;">
-        <h2 class="section-title">About Me</h2>
+      <section style="padding-top:0;">
+        <h2 id="about-me" class="section-title">About Me</h2>
         <p class="lede">I am a postdoctoral fellow in the department of mathematics at Bar-Ilan
         university, working with Prof. Elena I. Bunina on the automorphisms of twisted Chevalley groups
         over local and commutative rings. I completed my Ph.D. at IIT Bombay under Prof. Shripad M.
@@ -176,13 +141,10 @@
         <p class="lede">My CV can be found <a href="Deep_CV.pdf" target="_blank" rel="noopener">here</a>.</p>
       </section>
 
-      <!-- ===================================================================
-           GET IN TOUCH — plain contact details: email, office address, and
-           office hours. Each is just one <p class="contact-line"> line —
-           copy the pattern to add another (e.g. a phone number).
-           =================================================================== -->
-      <section class="contact-block" id="contact">
-        <h2 class="section-title">Get in Touch</h2>
+      <!-- GET IN TOUCH — one <p class="contact-line"> per detail; copy the
+           pattern to add another (a phone number, say). -->
+      <section class="contact-block">
+        <h2 id="contact" class="section-title">Get in Touch</h2>
         <div class="card-panel">
           <p class="contact-line"><strong>Email:</strong> <a href="mailto:deepmakadia25.dm@gmail.com">deepmakadia25.dm@gmail.com</a></p>
           <p class="contact-line"><strong>Office:</strong> Room 011, Department of Mathematics (Building 216), Bar-Ilan University, Ramat-Gan, 5290002, Israel</p>
@@ -190,41 +152,35 @@
         </div>
       </section>
 
-      <!-- ===================================================================
-           FIND ME ONLINE
-           Every link here leaves your site, so each one carries
-           target="_blank" rel="noopener" — it opens in a NEW browser tab and
-           your page stays behind it. Copy those two attributes onto any new
-           external link you add (links that stay on this site, like the page
-           links in the sidebar, deliberately do not have them). — your professional/academic profile links.
-           To add another, copy one <a class="btn" ...>...</a> line and
-           change its link and label.
+      <!-- FIND ME ONLINE — profile links. To add one, copy an
+           <a class="btn" ...> line and change its link and label. Everything
+           here leaves the site, so each carries target="_blank" rel="noopener"
+           (internal links, like the sidebar, deliberately do not).
            =================================================================== -->
-      <section id="profiles" style="border-bottom:none;">
-        <h2 class="section-title">Find Me Online</h2>
+      <section>
+        <h2 id="profiles" class="section-title">Find Me Online</h2>
         <div class="btn-row">
           <a class="btn" href="https://www.researchgate.net/profile/Deep-Makadiya" target="_blank" rel="noopener">ResearchGate</a>
           <a class="btn" href="https://scholar.google.com/citations?user=v7X_OhYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-	  <a class="btn" href="https://www.semanticscholar.org/author/Deep-H.-Makadiya/2344610145" target="_blank" rel="noopener">Semantic Scholar</a>
+    <a class="btn" href="https://www.semanticscholar.org/author/Deep-H.-Makadiya/2344610145" target="_blank" rel="noopener">Semantic Scholar</a>
           <a class="btn" href="https://orcid.org/0009-0000-8410-471X" target="_blank" rel="noopener">ORCID</a>
           <a class="btn" href="https://arxiv.org/search/math?searchtype=author&amp;query=Makadiya,+D+H" target="_blank" rel="noopener">arXiv</a>
-          <!-- NOTE: MathSciNet is a subscription database — visitors without
-               an institutional login will only be able to see limited info
-               on your author page, which is normal and out of your control. -->
+          <!-- MathSciNet is subscription-only: visitors without an institutional
+               login see limited information. Normal, and out of your control. -->
           <a class="btn" href="https://mathscinet.ams.org/mathscinet/author?authorId=1687700" target="_blank" rel="noopener">MathSciNet</a>
           <a class="btn" href="https://zbmath.org/authors/makadiya.deep-h" target="_blank" rel="noopener">zbMATH</a>
-          <!-- NOTE: Edit this link later. -->
+          <!-- PLACEHOLDER: points at the Math Genealogy front page, not at you.
+               Replace with your own profile URL once it exists, or delete the
+               button. -->
           <a class="btn" href="https://www.mathgenealogy.org/index.php" target="_blank" rel="noopener">Math Genealogy</a>
           <a class="btn" href="http://www.linkedin.com/in/deep-makadiya" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </section>
 
     </div>
-    <!-- "Last updated" is written in by script.js and is EMPTY here on
-         purpose, so the date exists in exactly ONE place on the whole site:
-         the LAST_UPDATED line near the top of script.js. Change it there and
-         all seven pages follow. (If JavaScript is switched off the line simply
-         does not appear, rather than showing a stale date.) -->
+    <!-- Left empty on purpose: script.js fills it from LAST_UPDATED, so the
+         date lives in exactly one place for all 8 pages. With JavaScript off
+         the line stays hidden rather than showing a stale date. -->
     <footer>
       <p>&copy; 2026 Deep H. Makadiya</p>
       <p class="updated" id="lastUpdatedLine" hidden>Last updated: <span id="lastUpdated"></span></p>

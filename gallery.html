@@ -3,23 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Re-applies the colour scheme this visitor last chose (see the colour
-     circles at the bottom of the sidebar) BEFORE the page is painted, so the
-     page never flashes the default colours first. It must stay here in the
-     <head>, above the stylesheet. Nothing to edit. -->
+<!-- Re-applies the visitor's saved colour scheme before the page paints, so
+     the default colours never flash first. Must stay here, above the
+     stylesheet. Nothing to edit. -->
 <script>(function(){try{var t=localStorage.getItem("site-theme");if(t){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
 <title>Photo Gallery — Deep H. Makadiya</title>
 
-<!-- ===================================================================
-     SEARCH RESULTS AND LINK PREVIEWS
-     "description" is the grey line Google shows under your page title.
-     The "og:" and "twitter:" lines are what WhatsApp, LinkedIn, X, Slack
-     and friends read when someone pastes a link to this page — without
-     them a shared link shows an empty grey box.
-     IF YOUR SITE ADDRESS EVER CHANGES (a new GitHub username, a repo
-     rename, or your own domain), the three absolute links below —
-     canonical, og:url and og:image — must be updated on EVERY page.
-     They currently all begin with: https://deepmakadiya25.github.io
+<!-- SEARCH RESULTS AND LINK PREVIEWS
+     "description" is the grey line Google shows under the page title; the
+     og:/twitter: lines are what chat apps read when the link is pasted.
+     IF THE SITE ADDRESS EVER CHANGES, update canonical, og:url and og:image
+     on EVERY page. They all begin https://deepmakadiya25.github.io
      =================================================================== -->
 <meta name="description" content="Photographs from the mathematical journey of Deep H. Makadiya — conferences, seminars and Ph.D. years.">
 <link rel="canonical" href="https://deepmakadiya25.github.io/gallery.html">
@@ -39,18 +33,14 @@
 <body>
 <div class="layout">
 
-  <!-- =====================================================================
-       NOTE ON THIS PAGE: Photo Gallery is deliberately NOT one of the 6
-       links below — it's a "hidden" page reached only by clicking the photo
-       on the Home page. The sidebar is still shown here (so visitors can
-       get back to the main pages), just with none of its links marked
-       "active", since this page isn't one of the 6.
+  <!-- Photo Gallery is deliberately NOT one of the 6 sidebar links — it is
+       reached only by clicking the photo on the Home page. The sidebar still
+       shows so visitors can get back, just with no link marked "active".
        ===================================================================== -->
   <aside class="sidebar" id="sidebar">
-    <img class="avatar" src="photo.jpg" alt="Deep H. Makadiya">
-    <!-- Your name in the sidebar. It is deliberately NOT an <h1>: each page
-         already has one <h1> (the page title), and search engines expect
-         exactly one per page. Styled by ".sidebar-name" in styles.css. -->
+    <img class="avatar" src="photo.jpg" alt="">
+    <!-- Not an <h1>: every page already has one (its title), and search
+         engines expect exactly one. Styled by ".sidebar-name" in styles.css. -->
     <p class="sidebar-name">Deep H. Makadiya</p>
     <nav>
       <a href="index.html">Home</a>
@@ -58,22 +48,16 @@
       <a href="research.html">Research</a>
       <a href="teaching.html">Teaching</a>
       <a href="professional-activities.html">Professional Activities</a>
-      <a href="beyond-mathematics.html">Beyond Mathematics</a>
+      <a href="miscellaneous.html">Miscellaneous</a>
     </nav>
 
-    <!-- ===================================================================
-         COLOUR PICKER — the two rows of two-tone circles under the page
-         links. Clicking one re-colours the whole site (and every other
-         page), and the choice is remembered in the visitor's browser.
-         Each circle's LEFT half is that scheme's accent (--sw-a, the dark
-         one) and its RIGHT half is that scheme's paper colour (--sw-b);
-         "title" is the tooltip shown on hover. The order the buttons
-         appear in below is the order they appear on screen — five per row.
-         This same block appears in all 7 pages: if you add, remove or
-         re-order a circle, do it in every page so the picker matches
-         everywhere. The colour values themselves live in styles.css under
-         "COLOUR SCHEMES", with step-by-step notes at the bottom of that
-         file for adding a scheme of your own.
+    <!-- COLOUR PICKER — clicking a circle re-colours the whole site, and the
+         choice is remembered in the visitor's browser. Each circle's LEFT half
+         is that scheme's accent (--sw-a), its RIGHT half the paper colour
+         (--sw-b); "title" is the hover tooltip. They appear in the order
+         listed, five per row. This block is repeated on all 8 pages — change
+         it everywhere if you add, remove or re-order a circle. The colours
+         themselves live in styles.css under "COLOUR SCHEMES".
          =================================================================== -->
     <div class="theme-picker">
       <p class="theme-picker-label">Colour</p>
@@ -112,15 +96,11 @@
     </div>
   </aside>
   <div class="overlay" id="overlay"></div>
-  <!-- ===================================================================
-       TOP BAR — only visible on tablets and phones (see the RESPONSIVE
-       section at the bottom of styles.css). It holds the menu button that
-       slides the sidebar in, plus your name so a phone visitor can see
-       whose site this is. On laptops it is hidden, because the sidebar is
-       already on screen.
+  <!-- TOP BAR — phones and tablets only; hidden on laptops, where the
+       sidebar is already on screen. Holds the menu button and your name.
        =================================================================== -->
   <header class="topbar">
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
     <span class="topbar-title">Deep H. Makadiya</span>
   </header>
 
@@ -132,41 +112,65 @@
         <p class="page-desc">Collecting memories of my mathematical journey — this page is a work in progress.</p>
       </div>
 
-      <!-- ===================================================================
-           HOW TO ADD A NEW CHAPTER/SECTION LATER (e.g. "Undergrad Days"):
-             1. Add a new tab below: <a href="#undergrad-days">Undergrad Days</a>
-             2. Copy one whole <section>...</section> block from further down
-                this file, paste it after the last one, and change its
-                h2 "id" AND text to match (here: id="undergrad-days").
-             3. Fill its <div class="gallery-grid"> with photos — see the
-                instructions just above that div, further down.
-           This bar freezes at the top when you scroll, and automatically
-           shows scroll arrows/fade hints if you add enough tabs that they
-           no longer all fit on one line — nothing to edit for that part.
+      <!-- TO ADD A SECTION LATER (e.g. "Undergrad Days"):
+             1. Add a tab here: <a href="#undergrad-days">Undergrad Days</a>
+             2. Copy a whole <section>...</section> from below, paste it after
+                the last one, and change its h2 id AND text to match.
+             3. Fill its <div class="gallery-grid"> — see the note above it.
+           The bar freezes on scroll and adds arrows/fades by itself.
            =================================================================== -->
       <div class="page-tabs-wrap">
-        <button class="tabs-arrow left" aria-label="Scroll tabs left">&#8249;</button>
+        <button type="button" class="tabs-arrow left" aria-label="Scroll tabs left">&#8249;</button>
         <nav class="page-tabs">
+          <a href="#profile-photos">Profile Photos</a>
+          <a href="#evolution">Evolution</a>
           <a href="#phd-journey">Ph.D. Journey</a>
           <a href="#conference-georgia">Conference at Georgia</a>
         </nav>
-        <button class="tabs-arrow right" aria-label="Scroll tabs right">&#8250;</button>
+        <button type="button" class="tabs-arrow right" aria-label="Scroll tabs right">&#8250;</button>
         <div class="tabs-fade left" aria-hidden="true" hidden></div>
         <div class="tabs-fade right" aria-hidden="true" hidden></div>
       </div>
 
-      <!-- ===================================================================
-           HOW TO ADD PHOTOS TO A SECTION:
-             1. Put your image files in a new folder named "gallery" next to
-                this HTML file (create the folder yourself the first time).
-             2. Replace a placeholder tile below with:
+      <!-- TO ADD PHOTOS:
+             1. Put the image files in the "gallery" folder beside this file.
+             2. Replace a placeholder tile with:
                   <figure class="gallery-item">
                     <img src="gallery/your-photo.jpg" alt="Short description">
-                    <figcaption>Optional one-line caption</figcaption>
+                    <figcaption>What this photo is, in a sentence or two.</figcaption>
                   </figure>
-             3. Add or remove placeholder tiles freely — the grid reflows
-                automatically no matter how many photos you have.
+             3. Add or remove tiles freely — the grid reflows.
+           The figcaption slides up over the tile — on hover with a mouse, and on
+           a touch screen for whichever tile you have scrolled to. It is capped
+           at three lines and ends in "..." when there is more; the full text is
+           always shown under the photo in the large view, so write as long a
+           caption as you like. script.js wires all of this up, so a tile needs
+           no markup beyond what is shown above. Keep "alt" short and factual —
+           it is read aloud by screen readers.
            =================================================================== -->
+      <section>
+        <h2 id="profile-photos" class="section-title">Profile Photos</h2>
+        <div class="gallery-grid">
+          <figure class="gallery-item">
+            <img src="gallery/chatgpt-portrait.jpg" alt="An AI-generated illustration of Deep at his desk, in front of a blackboard covered in twisted Chevalley group theory">
+            <figcaption>This is how ChatGPT sees me.</figcaption>
+          </figure>
+          <div class="gallery-placeholder">[Add a photo here]</div>
+          <div class="gallery-placeholder">[Add a photo here]</div>
+        </div>
+      </section>
+
+      <!-- EVOLUTION — photos from different times, oldest first, to show the
+           change across the years. -->
+      <section>
+        <h2 id="evolution" class="section-title">Evolution</h2>
+        <div class="gallery-grid">
+          <div class="gallery-placeholder">[Add a photo here]</div>
+          <div class="gallery-placeholder">[Add a photo here]</div>
+          <div class="gallery-placeholder">[Add a photo here]</div>
+        </div>
+      </section>
+
       <section>
         <h2 id="phd-journey" class="section-title">Ph.D. Journey</h2>
         <div class="gallery-grid">
@@ -186,11 +190,9 @@
       </section>
 
     </div>
-    <!-- "Last updated" is written in by script.js and is EMPTY here on
-         purpose, so the date exists in exactly ONE place on the whole site:
-         the LAST_UPDATED line near the top of script.js. Change it there and
-         all seven pages follow. (If JavaScript is switched off the line simply
-         does not appear, rather than showing a stale date.) -->
+    <!-- Left empty on purpose: script.js fills it from LAST_UPDATED, so the
+         date lives in exactly one place for all 8 pages. With JavaScript off
+         the line stays hidden rather than showing a stale date. -->
     <footer>
       <p>&copy; 2026 Deep H. Makadiya</p>
       <p class="updated" id="lastUpdatedLine" hidden>Last updated: <span id="lastUpdated"></span></p>

@@ -1,40 +1,30 @@
 /* =========================================================================
    Deep H. Makadiya — academic site — DESIGN: "Editorial, switchable colours"
-   -------------------------------------------------------------------------
-   The Cream Editorial design — Playfair Display headings over a Lora body,
-   fully rounded ("pill") buttons and tags, softly rounded photo frame — with
-   TEN colour schemes built in. Visitors pick one from the two rows of
-   two-tone circles at the bottom of the sidebar (dark half = that scheme's
-   accent, light half = its paper), and the choice is remembered in their
-   browser for every page and every future visit.
-
-   HOW IT WORKS, in three parts:
-     1. ":root" below holds the ELEVEN colour values the whole site is drawn
-        from, set to the default scheme ("Cream & Terracotta").
-     2. Further down, under "COLOUR SCHEMES", each of the other nine schemes
-        re-states those same eleven values inside a [data-theme="..."]
-        block. Nothing else about the design changes.
-     3. script.js writes data-theme="..." onto the <html> element when a
-        circle is clicked, and a two-line script in each page's <head>
-        re-applies the saved choice before the page paints.
-   To change the DEFAULT scheme, swap the values in ":root" for those of the
-   scheme you prefer (each block is labelled). To add your own scheme, see
-   the step-by-step note at the very bottom of this file.
-   This one stylesheet is shared by every page (index.html, academics.html,
-   research.html, teaching.html, professional-activities.html,
-   beyond-mathematics.html, gallery.html and blogs.html).
-   If you want to change a color or font everywhere at once, change it here
-   in one place under ":root" below — every page updates together.
+   Playfair Display headings over a Lora body, pill buttons and tags, a
+   softly rounded photo frame — with TEN colour schemes.
+   HOW IT WORKS:
+     1. ":root" below holds the ELEVEN colours the site is drawn from, set
+        to the default scheme ("Cream & Terracotta").
+     2. Under "COLOUR SCHEMES" further down, each other scheme re-states
+        those same eleven values in a [data-theme="..."] block. Nothing
+        else about the design changes.
+     3. script.js writes data-theme="..." on <html> when a circle is
+        clicked; a script in each page's <head> re-applies the saved choice
+        before the page paints.
+   To change the DEFAULT, swap ":root" for another scheme's values. To add
+   one of your own, see the note at the bottom of this file.
+   One stylesheet for all 8 pages — change a colour or font here and every
+   page follows.
    ========================================================================= */
 
 :root{
   /* ============ THE ELEVEN COLOURS THE WHOLE SITE IS DRAWN FROM ============
      These are the default scheme, "Cream & Terracotta". Every other scheme
      further down re-states exactly these eleven values and nothing else. */
-  --ink:#2a2115;             /* main text colour */
-  --muted:#8a7c66;           /* secondary/lighter text */
-  --line:#e6dcc8;            /* thin divider lines */
-  --cream:#f6f0e2;           /* page background */
+  --ink:#2a2115;             
+  --muted:#8a7c66;           
+  --line:#e6dcc8;            
+  --cream:#f6f0e2;           
   --cream-2:#efe6d2;         /* sidebar background, cards, tinted tags */
   --accent:#a5501f;          /* accent colour — links, headings, numbers, buttons */
   --accent-soft:#d8b79a;     /* paler accent, used for link underlines */
@@ -63,27 +53,19 @@ body{
 h1,h2,h3{ font-family:"Playfair Display",Georgia,serif; }
 a{ color:var(--accent); text-decoration:underline; text-decoration-color:var(--accent-soft); }
 /* ---- HOVER STATES ARE FOR MICE AND TRACKPADS ONLY ----------------------
-   Every ":hover" rule on this site is wrapped in "@media (hover: hover)".
-   The reason: on a touchscreen there is no such thing as hovering, so a
-   phone applies the hover style to whatever you TAPPED and leaves it there
-   until you tap something else. On the section tabs that looked like a
-   second, stuck highlight sitting beside the real one; on the profile
-   buttons a tapped button stayed filled in; on the colour circles a tapped
-   circle stayed enlarged. Guarding them means a phone shows only the real
-   state (the "current" section, the active page, the chosen colour), while
-   a laptop still gets hover feedback exactly as before.
-   ---------------------------------------------------------------------- */
+   Every ":hover" rule here is wrapped in "@media (hover: hover)". A
+   touchscreen has no hover, so without the guard a phone leaves the hover
+   style stuck on whatever was last tapped — a second highlight beside the
+   real one. Keep new :hover rules inside that guard. -------------------- */
 @media (hover: hover){ a:hover{ text-decoration-color:var(--accent); } }
 
 /* =========================================================================
    LAYOUT: sidebar (left) + main content (right)
    ========================================================================= */
 .layout{ display:grid; grid-template-columns:240px minmax(0,1fr); min-height:100vh; }
-/* "minmax(0,1fr)" above, and the "min-width:0" on main and .wrap further
-   down, are what stop a wide child (the single-line row of section tabs,
-   or a long publication title) from stretching the whole page sideways on
-   a narrow screen. Without them the page renders wider than the phone and
-   text gets cut off at the right edge. */
+/* "minmax(0,1fr)" above, and "min-width:0" on main and .wrap below, stop a
+   wide child (the tabs row, a long publication title) from stretching the
+   page sideways on a narrow screen. */
 
 /* ---- Sidebar: photo, name, and page navigation ONLY (no contact info) ---- */
 .sidebar{
@@ -97,7 +79,6 @@ a{ color:var(--accent); text-decoration:underline; text-decoration-color:var(--a
 .sidebar .avatar{
   width:104px; height:104px; border-radius:50%; object-fit:cover; margin:0 auto 1rem;
   background:var(--photo-bg); border:1px solid var(--line);
-  display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:.72rem; text-align:center;
 }
 /* Your name in the sidebar. It used to be an <h1>; it is now a plain
    paragraph (so each page has exactly one <h1>, its own title), which means
@@ -148,7 +129,6 @@ a{ color:var(--accent); text-decoration:underline; text-decoration-color:var(--a
   position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:15;
 }
 
-/* ---- Main content column ---- */
 main{ padding:3.2rem 2.6rem; min-width:0; }
 .wrap{ max-width:720px; margin:0 auto; min-width:0; }
 
@@ -160,14 +140,10 @@ main{ padding:3.2rem 2.6rem; min-width:0; }
 .page-header .page-desc{ max-width:60ch; color:var(--muted); font-style:italic; font-size:1rem; margin:0; }
 
 /* ---- In-page section navigation (tabs) --------------------------------
-   Sits right under the page header, and STAYS FROZEN at the top of the
-   window once you scroll down to it (position: sticky). It is always a
-   single line (it never wraps to a second row) — if there are too many
-   tabs to fit, the row scrolls left/right instead. When there's more
-   content than fits, a soft fade appears at whichever edge has more tabs
-   hidden, and — on wider screens — small arrow buttons appear too; both
-   are added/removed automatically by script.js, you don't need to touch
-   them when you add or rename a tab. ------------------------------------ */
+   Sits under the page header and freezes at the top of the window on
+   scroll (position: sticky). Always one line: if the tabs don't fit, the
+   row scrolls, and script.js adds the edge fades and (on wide screens) the
+   arrow buttons by itself. Nothing to touch when you add a tab. -------- */
 .page-tabs-wrap{
   position:sticky; top:var(--topbar-h); z-index:10;
   background:var(--cream);
@@ -220,15 +196,15 @@ main{ padding:3.2rem 2.6rem; min-width:0; }
 .tabs-arrow.left{ left:0; }
 .tabs-arrow.right{ right:0; }
 .tabs-arrow[hidden]{ display:none; }
-@media (min-width:821px){ .tabs-arrow{ display:flex; } }
+/* Arrows only above the mobile breakpoint: below it .page-tabs has less
+   side padding than an arrow is wide, so an arrow would sit on top of the
+   first and last tab and swallow taps meant for them. */
+@media (min-width:961px){ .tabs-arrow{ display:flex; } }
 
 /* =========================================================================
-   HOME PAGE specifics
-   -------------------------------------------------------------------------
-   New design: an asymmetric "split hero" — photo in a framed square on
-   one side, name and a short tagline on the other — followed by "About
-   Me" and a tinted "Get in Touch" card. On narrow screens the hero
-   collapses to a single stacked column.
+   HOME PAGE specifics — an asymmetric "split hero" (framed photo one side,
+   name and tagline the other), then About Me and the tinted Get in Touch
+   card. The hero stacks into one column on narrow screens.
    ========================================================================= */
 .hero-split{
   display:grid; grid-template-columns:auto 1fr; gap:2.6rem; align-items:center;
@@ -255,7 +231,6 @@ main{ padding:3.2rem 2.6rem; min-width:0; }
   color:var(--accent); margin:.5rem 0 0; font-family:"Lora",serif;
 }
 .home-name{ font-size:clamp(1.85rem, 7.5vw, 2.6rem); margin:0; font-weight:800; line-height:1.12; }
-.hero-text .lede{ font-size:1.05rem; }
 
 .lede{ max-width:62ch; font-size:1.05rem; }
 
@@ -264,7 +239,10 @@ main{ padding:3.2rem 2.6rem; min-width:0; }
   background:var(--cream-2); border:1px solid var(--line); border-radius:14px;
   padding:2rem 2.2rem;
 }
-.contact-block h2{ font-size:1.4rem; margin:0 0 1.1rem; }
+/* NOTE: a plain ".contact-block h2" rule used to sit here. It never had any
+   effect — "h2.section-title" further down is written with the same weight
+   and comes later, so it always won. The only surviving override is the
+   narrow-screen one in the RESPONSIVE section at the bottom. */
 .contact-line{ font-size:1.02rem; margin:0 0 .5rem; overflow-wrap:anywhere; }
 .contact-line a{ font-weight:600; }
 .btn-row{ display:flex; flex-wrap:wrap; gap:.8rem; margin-top:1.4rem; }
@@ -280,11 +258,9 @@ main{ padding:3.2rem 2.6rem; min-width:0; }
    ========================================================================= */
 section{ padding:2.4rem 0; border-bottom:1px solid var(--line); }
 section:last-of-type{ border-bottom:none; }
-/* The clickable tabs above jump to the HEADING (not the whole section box) —
-   that's what "scroll-margin-top" below controls: it's set to just clear
-   the frozen tabs bar plus a small, deliberately modest gap (about three
-   quarters of a normal line of text). Change this one number to make that
-   landing gap bigger or smaller everywhere at once. */
+/* The tabs jump to the HEADING, not the section box; "scroll-margin-top"
+   below is what clears the frozen tabs bar plus a small gap. Change that
+   one number to adjust the landing gap everywhere. */
 h2.section-title{ font-size:clamp(1.22rem, 4.4vw, 1.5rem); margin:0 0 1.5rem;
   scroll-margin-top:calc(var(--topbar-h) + 5.1rem); }
 
@@ -301,11 +277,10 @@ h2.section-title{ font-size:clamp(1.22rem, 4.4vw, 1.5rem); margin:0 0 1.5rem;
 .subhead:first-child{ margin-top:0; }
 
 /* ---- Numbered lists (publications, talks) -----------------------------
-   Convention: newest entry is at the TOP and gets the HIGHEST number;
-   numbers count down to 1 at the oldest/bottom entry. This way, when you
-   add a brand-new entry, you only add ONE new top item — you never have
-   to renumber anything already there. See the comments further down in
-   each page for exactly how to add a new numbered entry. */
+   research.html runs newest-first: top entry, highest number, counting down
+   to 1, so adding one never means renumbering. professional-activities.html
+   runs the other way, oldest first, numbers rising down the page. Each page's
+   comments give the exact steps. */
 .pub-list{ list-style:none; margin:0; padding:0; }
 .pub-list li{ padding:1.2rem 0; border-top:1px solid var(--line); display:flex; gap:.9rem; }
 .pub-list li:first-child{ border-top:none; }
@@ -335,6 +310,36 @@ h2.section-title{ font-size:clamp(1.22rem, 4.4vw, 1.5rem); margin:0 0 1.5rem;
 }
 .pub-toggle[aria-expanded="true"] .caret{ transform:rotate(90deg); }
 
+/* ---- Drop cap: the opening letter of a blog post (blogs/*.html) -----------
+   Put class="lede drop-cap" on the FIRST paragraph of a piece and its first
+   letter is set large in the heading face, floated so the next few lines wrap
+   around it. Only the first paragraph should carry the class. ---- */
+.drop-cap::first-letter{
+  float:left;
+  font-family:"Playfair Display", Georgia, serif;
+  font-weight:700; color:var(--accent);
+  font-size:3.1em; line-height:.8;
+  padding:.06em .1em 0 0;
+}
+/* A floated letter is taller than a short opening paragraph, and would other-
+   wise push the next paragraph's first line sideways. This drops that
+   paragraph clear of it; with a normal, longer opening paragraph the letter is
+   fully contained and this rule does nothing. */
+.drop-cap + *{ clear:left; }
+
+/* ---- "More / Less" under a links block (Miscellaneous > Useful Links).
+   Sits on its own line, centred under the text column and close under the
+   group it belongs to, so it reads as that group's control rather than as the
+   next heading. The pull-up is on the button rather than on the last link,
+   because while the block is collapsed that last link is hidden and so
+   contributes no margin of its own.
+   The arrow is the same glyph as the Abstract buttons use, turned down for
+   "More" and up for "Less" — turning one glyph rather than swapping in a
+   different character keeps both arrows exactly the same size. ---- */
+.links-more{ display:block; width:100%; margin-top:-.9rem; margin-right:0; text-align:center; }
+.pub-toggle.links-more .caret{ transform:rotate(90deg); }
+.pub-toggle.links-more[aria-expanded="true"] .caret{ transform:rotate(-90deg); }
+
 .pub-abstract{
   margin-top:.8rem; padding-left:1rem;
   border-left:2px solid var(--line);
@@ -343,18 +348,15 @@ h2.section-title{ font-size:clamp(1.22rem, 4.4vw, 1.5rem); margin:0 0 1.5rem;
 .pub-abstract p{ margin:0 0 .7rem; }
 .pub-abstract p:last-child{ margin-bottom:0; }
 
-/* ---- Teaching table ---- */
 table.teach{ width:100%; border-collapse:collapse; font-size:.94rem; }
 table.teach td{ padding:.7rem 0; border-top:1px solid var(--line); }
 table.teach tr:first-child td{ border-top:none; }
 table.teach td:first-child{ font-weight:600; width:48%; }
 
-/* ---- Simple numbered list (talks, achievements) ---- */
 ul.plain{ list-style:none; margin:0; padding:0; }
 ul.plain li{ padding:.95rem 0; border-top:1px solid var(--line); font-size:.97rem; display:flex; gap:.9rem; }
 ul.plain li:first-child{ border-top:none; }
 ul.plain .item-num{ font-family:"Playfair Display",serif; font-weight:700; color:var(--accent); flex:none; min-width:2.2rem; }
-ul.plain .year{ font-weight:700; margin-right:.4rem; }
 
 /* ---- Research Overview: numbered project entries -----------------------
    Built on the same numbered "ul.plain" list as the talks and seminars, but
@@ -369,55 +371,12 @@ ul.plain .year{ font-weight:700; margin-right:.4rem; }
 .overview-body p{ margin:0 0 .75rem; }
 .overview-body p:last-child{ margin-bottom:0; }
 
-/* ---- Collapsible link groups ("Some Useful Links") ---------------------
-   Each group is a <details> element, so opening and closing is handled by
-   the browser itself — no script. They start closed because the <details>
-   tags carry no "open" attribute. The heading is styled to match the small
-   uppercase subheadings used elsewhere on the site, with a triangle that
-   turns as the group opens. ---- */
-.link-group{ border-top:1px solid var(--line); }
-.link-group:first-of-type{ border-top:none; }
-.link-group summary{
-  cursor:pointer; list-style:none;
-  display:flex; align-items:baseline; gap:.55rem;
-  padding:1.05rem 0;
-  font-size:.74rem; text-transform:uppercase; font-weight:600;
-  letter-spacing:.13em; color:var(--accent);
-}
-.link-group summary::-webkit-details-marker{ display:none; }  /* Safari's own arrow */
-.link-group summary .caret{
-  font-size:.85em; display:inline-block;
-  transition:transform .18s ease;
-}
-.link-group[open] summary .caret{ transform:rotate(90deg); }
-.link-group summary:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
-/* The underline on hover goes on the label span only. It cannot go on the
-   whole <summary>: a text-decoration set on an element is drawn through all
-   of its in-flow children, so the little triangle would be underlined too,
-   and no rule on the triangle itself can take that away. */
-@media (hover: hover){
-  .link-group summary:hover .group-label{ text-decoration:underline; text-underline-offset:3px; }
-}
-.link-group .group-body{ padding:.2rem 0 1.3rem; }
-
-/* ---- "The complete list is on the blogs page." ---- */
 .see-all{ margin:1.5rem 0 0; font-size:.95rem; }
 
-/* ---- Tags: Skills and Hobbies (Beyond Mathematics) and Areas of Interest
-   (Research) all share one look — no fill at all, just the page colour
-   showing through, with a slightly heavier outline so they still read as
-   separate items. Both lists are styled identically on purpose; change the
-   border width or radius here and in ".interest-list li" below together. ---- */
-.skills-list{ display:flex; flex-wrap:wrap; gap:.6rem; list-style:none; margin:0; padding:0; }
-.skills-list li{
-  border:2px solid var(--line); border-radius:10px; padding:.45rem 1.05rem;
-  font-size:.92rem; background:transparent;
-}
-
-/* ---- Interest tags (Research page's "Areas of Interest") — same outlined
-   box as the Skills tags above. ---- */
-.interest-list{ display:flex; flex-wrap:wrap; gap:.6rem; list-style:none; margin:0; padding:0; }
-.interest-list li{
+/* ---- Tags: Skills and Hobbies (Miscellaneous) and Areas of Interest
+   (Research). One rule for both, so they cannot drift apart. ---- */
+.skills-list, .interest-list{ display:flex; flex-wrap:wrap; gap:.6rem; list-style:none; margin:0; padding:0; }
+.skills-list li, .interest-list li{
   border:2px solid var(--line); border-radius:10px; padding:.45rem 1.05rem;
   font-size:.92rem; background:transparent;
 }
@@ -428,12 +387,6 @@ ul.plain .year{ font-weight:700; margin-right:.4rem; }
 ul.bullets{ margin:0; padding-left:1.3rem; }
 ul.bullets li{ margin-bottom:.6rem; font-size:.97rem; }
 ul.bullets li:last-child{ margin-bottom:0; }
-
-/* ---- Placeholder callouts (Miscellaneous / Skills / Research overview) ---- */
-.placeholder{
-  border:1px dashed var(--muted); border-radius:8px; padding:1.1rem 1.3rem;
-  color:var(--muted); font-style:italic; font-size:.95rem; background:var(--placeholder-bg);
-}
 
 /* ---- Photo Gallery grid (gallery.html) ---------------------------------
    Reflows automatically to fit however many tiles you have — no need to
@@ -450,15 +403,75 @@ ul.bullets li:last-child{ margin-bottom:0; }
   padding:.8rem; color:var(--muted); font-style:italic; font-size:.85rem;
   background:var(--placeholder-bg);
 }
-/* A real photo tile, once you've added one. */
-.gallery-item{ margin:0; }
+/* A real photo tile. The figcaption is NOT shown under the photo: it slides up
+   over the tile and is capped at three lines, ending in "..." when there is
+   more to read — the full text is shown in the lightbox when the photo is
+   opened, so a long caption can never bury the picture.
+   WHEN IT APPEARS: with a mouse, on hover or keyboard focus. On a touch screen
+   there is no hover, so script.js marks the tile nearest the middle of the
+   screen as ".is-active" while you scroll, the way a video list on a tablet
+   plays whichever item you have scrolled to. */
+.gallery-item{ margin:0; position:relative; border-radius:10px; overflow:hidden; cursor:zoom-in; }
 .gallery-item img{
   display:block; width:100%; aspect-ratio:1 / 1; object-fit:cover;
   border-radius:10px; border:1px solid var(--line);
+  transition:transform .35s ease;
 }
 .gallery-item figcaption{
-  margin-top:.4rem; font-size:.8rem; color:var(--muted); font-style:italic;
+  position:absolute; left:0; right:0; bottom:0;
+  padding:.7rem .8rem;
+  font-size:.8rem; line-height:1.35; font-style:italic; color:#fff;
+  background:linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.6) 72%, rgba(0,0,0,0));
+  transform:translateY(101%); transition:transform .3s ease;
 }
+/* The three-line cap lives on an inner span, not on the figcaption itself:
+   "overflow:hidden" clips at the PADDING edge, so clamping the padded
+   figcaption would still let a fourth line show through its bottom padding.
+   script.js wraps each caption's text in this span, so the HTML stays plain.
+   The two -webkit- lines are not a Safari-only hack — every browser still
+   needs them for line clamping. */
+.gallery-item figcaption .cap-text{
+  display:-webkit-box; -webkit-box-orient:vertical;
+  -webkit-line-clamp:3; line-clamp:3; overflow:hidden;
+}
+.gallery-item:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.gallery-item.is-active figcaption{ transform:none; }
+@media (hover: hover){
+  .gallery-item:hover figcaption,
+  .gallery-item:focus-within figcaption{ transform:none; }
+  .gallery-item:hover img{ transform:scale(1.04); }
+}
+
+/* ---- Lightbox: the full-size photo opened by clicking a tile -------------
+   script.js builds this markup once per page and fills it from the tile that
+   was clicked. Clicking anywhere outside the photo, or pressing Escape,
+   closes it. Nothing here needs editing when you add photos. */
+body.lightbox-open{ overflow:hidden; }
+/* "display:flex" below would otherwise beat the hidden attribute's own
+   display:none, leaving an invisible full-screen panel swallowing every click
+   on the page. This line is what keeps it truly out of the way when closed. */
+.lightbox[hidden]{ display:none; }
+.lightbox{
+  position:fixed; inset:0; z-index:100;
+  display:flex; align-items:center; justify-content:center;
+  padding:clamp(1rem, 4vw, 3rem);
+  background:rgba(0,0,0,.86);
+}
+.lightbox-inner{ max-width:min(920px, 100%); max-height:100%; text-align:center; cursor:default; }
+.lightbox img{
+  display:block; max-width:100%; max-height:78vh; margin:0 auto;
+  border-radius:8px; object-fit:contain;
+}
+.lightbox p{
+  margin:.9rem auto 0; max-width:60ch;
+  color:#f3ece1; font-style:italic; font-size:.95rem; line-height:1.5;
+}
+.lightbox-close{
+  position:absolute; top:.6rem; right:1rem;
+  background:none; border:0; padding:.3rem .5rem;
+  color:#fff; font:inherit; font-size:1.8rem; line-height:1; cursor:pointer;
+}
+@media (hover: hover){ .lightbox-close:hover{ opacity:.7; } }
 
 footer{ text-align:center; font-size:.8rem; color:var(--muted); padding:2rem 1.5rem; font-style:italic; }
 footer p{ margin:0; }
@@ -466,11 +479,8 @@ footer .updated{ font-size:.74rem; margin-top:.35rem; opacity:.85; }
 
 
 /* =========================================================================
-   COLOUR SCHEMES
-   -------------------------------------------------------------------------
-   One block per alternative scheme. Each re-states the same eleven values
-   as ":root" at the top of this file — nothing else about the design
-   changes, which is why every scheme looks identical apart from its colour.
+   COLOUR SCHEMES — one block per alternative scheme, each re-stating the
+   same eleven values as ":root". Nothing else about the design changes.
    The order of the circles in the sidebar is set by the HTML, not here.
    ========================================================================= */
 
@@ -548,14 +558,11 @@ footer .updated{ font-size:.74rem; margin-top:.35rem; opacity:.85; }
 
 /* =========================================================================
    THE COLOUR PICKER ITSELF (bottom of the sidebar)
-   -------------------------------------------------------------------------
-   Two rows of five circles. Each circle is one <button>, split down the
-   middle: the LEFT half is that scheme's accent (the dark half) and the
-   RIGHT half is its paper colour (the light half), both passed in from the
-   HTML as --sw-a and --sw-b. The disc is drawn as a background with no
-   border at all, and its thin rim is an inset shadow painted on top — that
-   way the two colours fill the circle right out to its edge. The selected
-   circle wears a ring in the current accent colour.
+   Two rows of five circles, each one <button> split down the middle: LEFT
+   half is that scheme's accent, RIGHT half its paper colour, both passed
+   in from the HTML as --sw-a and --sw-b. The disc has no border — its thin
+   rim is an inset shadow, so the two colours reach the very edge. The
+   selected circle wears a ring in the current accent.
    ========================================================================= */
 .theme-picker{ margin-top:2.2rem; padding-top:1.2rem; border-top:1px solid var(--line); text-align:left; }
 .theme-picker-label{
@@ -587,51 +594,43 @@ body, .sidebar, .sidebar nav a, .page-tabs-wrap, .page-tabs a, .card-panel,
   transition:background-color .25s ease, color .25s ease, border-color .25s ease;
 }
 @media (prefers-reduced-motion: reduce){
-  body, .sidebar, .sidebar nav a, .page-tabs-wrap, .page-tabs a, .card-panel,
-  .btn, .skills-list li, .interest-list li, .placeholder, .gallery-placeholder,
-  .menu-toggle, .theme-picker, .swatch{ transition:none; }
+  /* Someone who has asked their system for less motion gets none of it: no
+     smooth scroll, no sliding panel, no zooming photo, no turning arrows. */
+  html{ scroll-behavior:auto; }
+  *, *::before, *::after{
+    animation-duration:.01ms !important; animation-iteration-count:1 !important;
+    transition-duration:.01ms !important; scroll-behavior:auto !important;
+  }
 }
 
 /* =========================================================================
    HOW TO ADD YOUR OWN COLOUR SCHEME
-   -------------------------------------------------------------------------
-     1. Copy one whole [data-theme="..."] block above, paste it below the
-        others, and give it a new one-word name in the quotes (say "mine").
-     2. Change its eleven colour values. A quick way to keep them in
-        balance: pick the accent first, then make --cream a very pale tint
-        of it, --cream-2 a slightly stronger tint, --line stronger again,
-        --nav-hover just past --cream-2, --photo-bg about the same,
-        --placeholder-bg between --cream and --cream-2, --accent-soft a
-        washed-out accent, --ink a very dark version of the accent's hue,
-        --muted a greyed version of it, and --shadow-rgb the red,green,blue
-        of --ink.
-     3. In EVERY page's sidebar, copy one <button class="swatch"> line and
-        set data-set-theme="mine", the two --sw- colours (--sw-a is the dark
-        left half, so your --accent; --sw-b is the light right half, so your
+     1. Copy a whole [data-theme="..."] block above, paste it below the
+        others, and give it a new one-word name (say "mine").
+     2. Change its eleven colours. To keep them balanced: pick --accent
+        first, then --cream a very pale tint of it, --cream-2 slightly
+        stronger, --line stronger again, --nav-hover just past --cream-2,
+        --photo-bg about the same, --placeholder-bg between --cream and
+        --cream-2, --accent-soft a washed-out accent, --ink a very dark
+        version of the accent's hue, --muted a greyed version, and
+        --shadow-rgb the r,g,b of --ink.
+     3. In EVERY page's sidebar, copy a <button class="swatch"> line and set
+        data-set-theme="mine", --sw-a (your --accent), --sw-b (your
         --cream-2) and the title/aria-label.
-   Nothing in script.js needs changing — it picks up whatever buttons it
-   finds. With more than ten circles, either raise the 5 in ".swatches"
-   above or just let them run onto a third row. To remove a scheme, delete
-   its block here and its button in each page (if you delete the one someone
-   already chose, they fall back to the default automatically).
+   script.js needs no changes. Past ten circles, raise the 5 in ".swatches"
+   above or let them wrap to a third row. To remove a scheme, delete its
+   block and its button on each page — anyone who had chosen it falls back
+   to the default.
    ========================================================================= */
 
 /* =========================================================================
    RESPONSIVE — three sizes
-   -------------------------------------------------------------------------
-   Laptops and desktops (961px and wider) keep the sidebar on screen at all
-   times, exactly as designed.
-
-   Tablets and phones (960px and below) — this covers every iPad in portrait
-   — hide the sidebar, put a slim fixed bar across the top with the menu
-   button and your name in it, and let the sidebar slide in over the page
-   when that button is tapped.
-
-   Small phones (560px and below) get a few extra adjustments on top of
-   that: tighter numbered lists, a stacked teaching table, smaller gallery
-   tiles.
-
-   Change the 960 below to move the point at which the sidebar collapses.
+     961px and up: sidebar always on screen.
+     960px and below (includes iPads in portrait): sidebar hidden behind a
+       slim fixed top bar with the menu button; it slides in when tapped.
+     560px and below: extra tweaks — tighter numbered lists, stacked
+       teaching table, smaller gallery tiles.
+   Change the 960 below to move the point where the sidebar collapses.
    ========================================================================= */
 
 /* ---- Narrower laptops / tablets in landscape: keep the sidebar, but stop
@@ -658,11 +657,16 @@ body, .sidebar, .sidebar nav a, .page-tabs-wrap, .page-tabs a, .card-panel,
     height:calc(100dvh - var(--topbar-h)); width:min(84vw, 280px);
     padding:1.6rem 1.5rem 2.5rem;
     transform:translateX(-100%);
-    transition:transform .25s ease;
+    /* visibility, not just the transform: without it the closed panel stays
+       in the tab order, so a keyboard user on a phone tabs through six
+       off-screen links and ten colour circles before reaching the page. The
+       delay lets it finish sliding out before it disappears. */
+    visibility:hidden;
+    transition:transform .25s ease, visibility 0s linear .25s;
     box-shadow:2px 0 20px rgba(0,0,0,.22);
     overscroll-behavior:contain;   /* scrolling the panel doesn't scroll the page */
   }
-  .sidebar.open{ transform:translateX(0); }
+  .sidebar.open{ transform:translateX(0); visibility:visible; transition-delay:0s; }
 
   /* Stop the page behind the panel from scrolling while it is open
      (script.js adds this class to <body>). */
