@@ -108,7 +108,7 @@
 
       <div class="page-header">
         <h1>Miscellaneous</h1>
-        <p class="page-desc">A page for everything else: my skills, my hobbies, a few of my stories, and some useful links.</p>
+        <p class="page-desc">A page for everything else: my skills, hobbies, informal writing, and links I find useful.</p>
       </div>
 
       <div class="page-tabs-wrap">
@@ -193,48 +193,171 @@
            "More" button below them; the button becomes "Less" when expanded,
            and it appears only once a block has more than three links. So to add
            a link you just paste another <div class="item"> — nothing else.
-           TO ADD A GROUP: copy a whole <div class="links-block">...</div>.
+           TO ADD A GROUP: copy a whole <p class="subhead"> line plus the
+           <div class="links-block">...</div> under it.
            Every link here is external, so each carries target="_blank" rel="noopener".
            =================================================================== -->
       <section>
         <h2 id="links" class="section-title">Some Useful Links</h2>
 
-        <p class="subhead">News &amp; Conference Updates</p>
+        <p class="subhead">Literature &amp; Search</p>
+        <div class="links-block">
+          <div class="item">
+            <h3><a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a></h3>
+            <p>Preprints, for everything.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://www.researchgate.net" target="_blank" rel="noopener">ResearchGate</a></h3>
+            <p>A repository and network for researchers.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a></h3>
+            <p>Citation counts and a quick way to find who has cited what.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://www.semanticscholar.org" target="_blank" rel="noopener">Semantic Scholar</a></h3>
+            <p>Paper search with citation context.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://mathscinet.ams.org/mathscinet/publications-search" target="_blank" rel="noopener">MathSciNet</a></h3>
+            <p>Reviews and citation data &mdash; subscription only.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://zbmath.org" target="_blank" rel="noopener">zbMATH Open</a></h3>
+            <p>Reviews and citation data &mdash; open to everyone.</p>
+          </div>
+        </div>
+
+        <p class="subhead">News, Conferences &amp; Schools</p>
         <div class="links-block">
           <div class="item">
             <h3><a href="https://www.advgrouptheory.com/GTNews.html" target="_blank" rel="noopener">Group Theory News</a></h3>
-            <p>A running calendar of group theory conferences and workshops around the world, kept by the
-            journal <em>Advances in Group Theory and Applications</em>.</p>
+            <p>A running calendar of group theory conferences and workshops around the world.</p>
           </div>
           <div class="item">
             <h3><a href="https://representationtheory.ca/" target="_blank" rel="noopener">RepresentationTheory.ca</a></h3>
-            <p>Upcoming conferences and meetings in representation theory, with speaker lists.</p>
+            <p>Upcoming conferences and meetings in representation theory.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://mathmeetings.net/gr-ra" target="_blank" rel="noopener">Mathematics Meetings &mdash; groups and algebras</a></h3>
+            <p>Conferences, workshops and summer schools; the site covers every area, and this link is
+            filtered to group theory and algebra.</p>
           </div>
           <div class="item">
             <h3><a href="https://web.math.ucsb.edu/~jon.mccammond/geogrouptheory/index.html" target="_blank" rel="noopener">The Geometric Group Theory Page</a></h3>
-            <p>Jon McCammond&rsquo;s long-running directory for geometric group theory and low-dimensional
-            topology &mdash; people, organizations, conferences, journals and problem lists.</p>
+            <p>A directory for geometric group theory and low-dimensional topology &mdash; people,
+            organizations, conferences, journals and problem lists.</p>
           </div>
+          <div class="item">
+            <h3><a href="https://www.atmschools.org" target="_blank" rel="noopener">ATM Schools (NCM)</a></h3>
+            <p>The National Centre for Mathematics&rsquo; annual schools and workshops in India.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://icts.res.in/" target="_blank" rel="noopener">ICTS, Bengaluru</a></h3>
+            <p>Programmes, schools and discussion meetings at the International Centre for Theoretical
+            Sciences, often several months long.</p>
+          </div>
+        </div>
+
+        <p class="subhead">Useful Tools</p>
+        <div class="links-block">
+          <div class="item">
+            <h3><a href="https://matrixcalc.org/" target="_blank" rel="noopener">Matrix calculator</a></h3>
+            <p>A handy way to check a matrix computation &mdash; and it accepts variable entries, not just
+            numbers.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://billcookmath.com/sage/Lie_algebra/root_demo_prelim.html" target="_blank" rel="noopener">Simple Lie Algebra Roots &amp; Weights</a></h3>
+            <p>Give it a type \(X_N\) and a highest weight; it returns the Cartan matrix, the Dynkin diagram
+            and the weights.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://q.uiver.app" target="_blank" rel="noopener">quiver</a></h3>
+            <p>A commutative diagram editor that exports <code>tikz-cd</code>.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://detexify.kirelabs.org/#/" target="_blank" rel="noopener">Detexify</a></h3>
+            <p>Draw a symbol with the mouse and it tells you the LaTeX command.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://www.wolframalpha.com" target="_blank" rel="noopener">WolframAlpha</a></h3>
+            <p>Quick symbolic and numerical answers.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://sagecell.sagemath.org/" target="_blank" rel="noopener">SageMathCell</a></h3>
+            <p>Run Sage in the browser, with nothing to install.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://magma.maths.usyd.edu.au/calc/" target="_blank" rel="noopener">Magma Calculator</a></h3>
+            <p>Magma in the browser, no licence needed &mdash; sixty seconds per run.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://www.gap-system.org" target="_blank" rel="noopener">GAP</a></h3>
+            <p>Computational discrete algebra, with large libraries of groups and character tables.</p>
+          </div>
+        </div>
+
+        <p class="subhead">Reference, Databases &amp; History</p>
+        <div class="links-block">
+          <div class="item">
+            <h3><a href="https://mathworld.wolfram.com" target="_blank" rel="noopener">MathWorld</a></h3>
+            <p>A broad encyclopedia of mathematical definitions and identities.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://stacks.math.columbia.edu" target="_blank" rel="noopener">The Stacks Project</a></h3>
+            <p>An open, fully cross-referenced textbook on algebraic geometry.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://ncatlab.org/nlab/show/HomePage" target="_blank" rel="noopener">nLab</a></h3>
+            <p>A collaborative wiki on mathematics, written from a category-theoretic point of view.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://www.lmfdb.org" target="_blank" rel="noopener">LMFDB</a></h3>
+            <p>Databases of L-functions, modular forms and abstract groups &mdash; twisted Chevalley groups
+            among them.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://brauer.maths.qmul.ac.uk/Atlas/v3/" target="_blank" rel="noopener">ATLAS of Finite Group Representations</a></h3>
+            <p>Representations, generators and maximal subgroups for the finite simple groups.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://mathshistory.st-andrews.ac.uk" target="_blank" rel="noopener">MacTutor History of Mathematics</a></h3>
+            <p>Biographies of mathematicians, kept at St Andrews.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://fabpedigree.com/james/gmat200.htm" target="_blank" rel="noopener">The 200 Greatest Mathematicians</a></h3>
+            <p>One writer&rsquo;s ranked list, argued at length.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://bhavana.org.in" target="_blank" rel="noopener">Bh&#257;van&#257;</a></h3>
+            <p>A quarterly magazine on mathematics and the people who do it, published from India.</p>
+          </div>
+        </div>
+
+        <p class="subhead">Community &amp; Blogs</p>
+        <div class="links-block">
           <div class="item">
             <h3><a href="https://terrytao.wordpress.com/" target="_blank" rel="noopener">Terence Tao&rsquo;s blog, <em>What&rsquo;s new</em></a></h3>
             <p>Expository notes, lecture material and research updates across a wide sweep of mathematics.</p>
           </div>
+          <div class="item">
+            <h3><a href="https://cameroncounts.wordpress.com" target="_blank" rel="noopener">Peter Cameron&rsquo;s blog</a></h3>
+            <p>A group theorist writing regularly about groups, conferences and the life of the subject.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://mathoverflow.net" target="_blank" rel="noopener">MathOverflow</a></h3>
+            <p>Research-level questions and answers.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://math.stackexchange.com" target="_blank" rel="noopener">Mathematics Stack Exchange</a></h3>
+            <p>The same format, pitched below research level.</p>
+          </div>
+          <div class="item">
+            <h3><a href="https://www.quora.com" target="_blank" rel="noopener">Quora</a></h3>
+            <p>General-purpose question and answer site.</p>
+          </div>
         </div>
 
-        <p class="subhead">Tools &amp; Interactive Demos</p>
-        <div class="links-block">
-          <div class="item">
-            <h3><a href="https://billcookmath.com/sage/Lie_algebra/root_demo_prelim.html" target="_blank" rel="noopener">Simple Lie Algebra Roots &amp; Weights</a></h3>
-            <p>An interactive demo: give it a type \(X_N\) and a highest weight and it returns the Cartan
-            matrix, the Dynkin diagram, and the weights of the corresponding irreducible module &mdash; with a
-            plot in ranks up to three.</p>
-          </div>
-          <div class="item">
-            <h3><a href="https://matrixcalc.org/" target="_blank" rel="noopener">Matrix calculator</a></h3>
-            <p>Determinants, inverses, ranks, eigenvalues and row reduction, worked step by step in the
-            browser &mdash; handy for checking a computation by hand.</p>
-          </div>
-        </div>
       </section>
 
     </div>
